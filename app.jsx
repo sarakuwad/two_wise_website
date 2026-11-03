@@ -340,6 +340,9 @@ function App() {
               <a href="#why-us" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-charcoal hover:bg-gray-50 rounded-xl transition-colors">
                 Why Two Wise
               </a>
+              <a href="#faculty" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-charcoal hover:bg-gray-50 rounded-xl transition-colors">
+                Faculty
+              </a>
               <a href="#contact" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-charcoal hover:bg-gray-50 rounded-xl transition-colors">
                 Contact
               </a>
@@ -420,6 +423,12 @@ function App() {
                 className="px-3 py-2.5 text-base font-medium text-gray-700 hover:bg-brand-lavender/40 rounded-xl cursor-pointer"
               >
                 Why Two Wise
+              </a>
+              <a 
+                onClick={() => scrollToSection('faculty')} 
+                className="px-3 py-2.5 text-base font-medium text-gray-700 hover:bg-brand-lavender/40 rounded-xl cursor-pointer"
+              >
+                Faculty & Mentors
               </a>
               <a 
                 onClick={() => scrollToSection('contact')} 
@@ -1350,6 +1359,193 @@ function App() {
       </section>
 
       {/* ========================================================================= */}
+      {/* SECTION: MEET OUR FOUNDERS & FACULTY */}
+      {/* ========================================================================= */}
+      <section id="faculty" className="py-20 bg-white relative border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+            <span className="px-3.5 py-1.5 rounded-full bg-brand-lavender/80 border border-purple-200/50 text-xs font-bold tracking-wide uppercase text-brand-charcoal">
+              Leadership & Educators
+            </span>
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-charcoal tracking-tight">
+              Meet the Mentors Behind Two Wise.
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+              Founded by passionate, experienced educators dedicated to student-centric guidance, conceptual clarity, and building genuine academic confidence.
+            </p>
+          </div>
+
+          {/* Founders Profile Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            
+            {/* 1. Reva Mehta */}
+            <div className="p-8 sm:p-10 rounded-4xl bg-brand-lavender/40 border border-purple-200/60 shadow-soft hover-card-lift flex flex-col justify-between space-y-6">
+              <div className="space-y-5">
+                
+                {/* Header Profile Info */}
+                <div className="flex items-start justify-between gap-4">
+                  <div className="space-y-1">
+                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-white text-purple-900 shadow-sm border border-purple-100">
+                      Co-Founder & Director
+                    </span>
+                    <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-brand-charcoal pt-1">
+                      Reva Mehta
+                    </h3>
+                    <p className="text-xs sm:text-sm font-semibold text-purple-900/80">
+                      Senior-Secondary Educator & Academic Director
+                    </p>
+                  </div>
+
+                  <div className="w-16 h-16 rounded-3xl bg-white shadow-soft flex items-center justify-center shrink-0 border border-purple-100">
+                    <span className="font-heading font-extrabold text-xl text-purple-800">RM</span>
+                  </div>
+                </div>
+
+                {/* Badges / Credentials */}
+                <div className="flex flex-wrap gap-2 pt-1">
+                  <span className="px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-purple-100 flex items-center gap-1.5">
+                    <Icon name="graduationCap" className="w-4 h-4 text-purple-700" />
+                    <span>MBA, SIBM Pune</span>
+                  </span>
+                  <span className="px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-purple-100 flex items-center gap-1.5">
+                    <Icon name="award" className="w-4 h-4 text-purple-700" />
+                    <span>6+ Years Teaching Experience</span>
+                  </span>
+                  <span className="px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-purple-100 flex items-center gap-1.5">
+                    <Icon name="bookOpen" className="w-4 h-4 text-purple-700" />
+                    <span>Ex-Symbiosis International School</span>
+                  </span>
+                </div>
+
+                {/* Bio / Description */}
+                <p className="text-sm text-gray-600 leading-relaxed pt-2">
+                  An MBA graduate from the prestigious Symbiosis Institute of Business Management (SIBM), Pune, Reva brings over six years of senior-secondary teaching experience, including teaching at Symbiosis International School. She specializes in higher-grade analytical thinking, rigorous curriculum mastery, and examination strategy across ICSE, CBSE, IB, and IGCSE boards.
+                </p>
+
+                {/* Mentorship Ethos Quote */}
+                <div className="p-4 rounded-2xl bg-white/80 border border-purple-200/50">
+                  <p className="text-xs italic text-gray-700 leading-relaxed">
+                    “True learning begins when students understand the 'why' behind every concept. We deconstruct complex theories into intuitive, relatable logic so students build permanent mastery.”
+                  </p>
+                </div>
+              </div>
+
+              {/* Core Strengths */}
+              <div className="pt-4 border-t border-purple-200/40 grid grid-cols-2 gap-3 text-xs font-medium text-gray-700">
+                <div className="flex items-center gap-2">
+                  <Icon name="check" className="w-4 h-4 text-purple-700 shrink-0" />
+                  <span>Senior-Secondary Strategy</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="check" className="w-4 h-4 text-purple-700 shrink-0" />
+                  <span>Analytical Problem Solving</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="check" className="w-4 h-4 text-purple-700 shrink-0" />
+                  <span>Board Exam Excellence</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="check" className="w-4 h-4 text-purple-700 shrink-0" />
+                  <span>1-on-1 Concept Mentoring</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Diya Shah */}
+            <div className="p-8 sm:p-10 rounded-4xl bg-brand-peach/40 border border-orange-200/60 shadow-soft hover-card-lift flex flex-col justify-between space-y-6">
+              <div className="space-y-5">
+                
+                {/* Header Profile Info */}
+                <div className="flex items-start justify-between gap-4">
+                  <div className="space-y-1">
+                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-white text-orange-900 shadow-sm border border-orange-100">
+                      Co-Founder & Educator
+                    </span>
+                    <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-brand-charcoal pt-1">
+                      Diya Shah
+                    </h3>
+                    <p className="text-xs sm:text-sm font-semibold text-orange-900/80">
+                      Foundational Stage & Upper-Primary Specialist
+                    </p>
+                  </div>
+
+                  <div className="w-16 h-16 rounded-3xl bg-white shadow-soft flex items-center justify-center shrink-0 border border-orange-100">
+                    <span className="font-heading font-extrabold text-xl text-orange-700">DS</span>
+                  </div>
+                </div>
+
+                {/* Badges / Credentials */}
+                <div className="flex flex-wrap gap-2 pt-1">
+                  <span className="px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-orange-100 flex items-center gap-1.5">
+                    <Icon name="graduationCap" className="w-4 h-4 text-orange-700" />
+                    <span>BBA in Finance</span>
+                  </span>
+                  <span className="px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-orange-100 flex items-center gap-1.5">
+                    <Icon name="award" className="w-4 h-4 text-orange-700" />
+                    <span>6+ Years Teaching Experience</span>
+                  </span>
+                  <span className="px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-orange-100 flex items-center gap-1.5">
+                    <Icon name="smile" className="w-4 h-4 text-orange-700" />
+                    <span>Upper-Primary & Foundation Expert</span>
+                  </span>
+                </div>
+
+                {/* Bio / Description */}
+                <p className="text-sm text-gray-600 leading-relaxed pt-2">
+                  A BBA Finance graduate with over six years of dedicated teaching experience, Diya specializes in foundational learning for upper-primary and middle-school students. Her teaching methodology focuses on demystifying core concepts, igniting curiosity, and creating a supportive classroom where asking questions is always celebrated.
+                </p>
+
+                {/* Mentorship Ethos Quote */}
+                <div className="p-4 rounded-2xl bg-white/80 border border-orange-200/50">
+                  <p className="text-xs italic text-gray-700 leading-relaxed">
+                    “When children feel heard and encouraged, learning naturally shifts from an intimidating chore to an exciting, joyful journey of discovery.”
+                  </p>
+                </div>
+              </div>
+
+              {/* Core Strengths */}
+              <div className="pt-4 border-t border-orange-200/40 grid grid-cols-2 gap-3 text-xs font-medium text-gray-700">
+                <div className="flex items-center gap-2">
+                  <Icon name="check" className="w-4 h-4 text-orange-700 shrink-0" />
+                  <span>Foundational Concept Building</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="check" className="w-4 h-4 text-orange-700 shrink-0" />
+                  <span>Interactive Visual Teaching</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="check" className="w-4 h-4 text-orange-700 shrink-0" />
+                  <span>Judgment-Free Doubt Solving</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="check" className="w-4 h-4 text-orange-700 shrink-0" />
+                  <span>Student Confidence Building</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Recognition Banner: Inauguration by Frank Freese */}
+          <div className="mt-12 p-6 rounded-3xl bg-brand-mint/40 border border-emerald-200/60 shadow-soft flex flex-col sm:flex-row items-center gap-4 text-left">
+            <div className="w-12 h-12 rounded-2xl bg-white shadow-soft flex items-center justify-center shrink-0">
+              <Icon name="award" className="w-6 h-6 text-emerald-700" />
+            </div>
+            <div className="space-y-0.5">
+              <h4 className="font-heading font-bold text-sm text-emerald-950">
+                Inaugurated by Distinguished Academic Leaders
+              </h4>
+              <p className="text-xs text-emerald-900/80 leading-relaxed">
+                Two Wise Academy was inaugurated in the presence of esteemed chief guest <strong>Mr. Frank Freese</strong> (former Principal of The Bishop's School, Pune) and <strong>Hon. Mrs. Siddhi Avinash Shilimkar</strong> (Corporator), commending the founders' progressive vision for conceptual, student-centric coaching.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
       {/* SECTION 7: PARENT AND STUDENT SECTION */}
       {/* ========================================================================= */}
       <section className="py-20 bg-gray-50/50 relative border-t border-gray-100">
@@ -1932,6 +2128,7 @@ function App() {
                 <li><a href="#boards" className="hover:text-brand-charcoal hover:underline">Programs</a></li>
                 <li><a href="#approach" className="hover:text-brand-charcoal hover:underline">Our Approach</a></li>
                 <li><a href="#why-us" className="hover:text-brand-charcoal hover:underline">Why Two Wise</a></li>
+                <li><a href="#faculty" className="hover:text-brand-charcoal hover:underline">Faculty & Mentors</a></li>
                 <li><a href="#contact" className="hover:text-brand-charcoal hover:underline">Contact</a></li>
               </ul>
             </div>

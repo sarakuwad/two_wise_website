@@ -627,6 +627,9 @@ function App() {
     href: "#why-us",
     className: "px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-charcoal hover:bg-gray-50 rounded-xl transition-colors"
   }, "Why Two Wise"), /*#__PURE__*/React.createElement("a", {
+    href: "#faculty",
+    className: "px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-charcoal hover:bg-gray-50 rounded-xl transition-colors"
+  }, "Faculty"), /*#__PURE__*/React.createElement("a", {
     href: "#contact",
     className: "px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-charcoal hover:bg-gray-50 rounded-xl transition-colors"
   }, "Contact")), /*#__PURE__*/React.createElement("div", {
@@ -678,6 +681,9 @@ function App() {
     onClick: () => scrollToSection('why-us'),
     className: "px-3 py-2.5 text-base font-medium text-gray-700 hover:bg-brand-lavender/40 rounded-xl cursor-pointer"
   }, "Why Two Wise"), /*#__PURE__*/React.createElement("a", {
+    onClick: () => scrollToSection('faculty'),
+    className: "px-3 py-2.5 text-base font-medium text-gray-700 hover:bg-brand-lavender/40 rounded-xl cursor-pointer"
+  }, "Faculty & Mentors"), /*#__PURE__*/React.createElement("a", {
     onClick: () => scrollToSection('contact'),
     className: "px-3 py-2.5 text-base font-medium text-gray-700 hover:bg-brand-lavender/40 rounded-xl cursor-pointer"
   }, "Contact")), /*#__PURE__*/React.createElement("div", {
@@ -1582,6 +1588,160 @@ function App() {
     name: "check",
     className: "w-3.5 h-3.5"
   }), /*#__PURE__*/React.createElement("span", null, "Continuous progress evaluation"))))))), /*#__PURE__*/React.createElement("section", {
+    id: "faculty",
+    className: "py-20 bg-white relative border-t border-gray-100"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-center max-w-3xl mx-auto space-y-4 mb-16"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "px-3.5 py-1.5 rounded-full bg-brand-lavender/80 border border-purple-200/50 text-xs font-bold tracking-wide uppercase text-brand-charcoal"
+  }, "Leadership & Educators"), /*#__PURE__*/React.createElement("h2", {
+    className: "font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-charcoal tracking-tight"
+  }, "Meet the Mentors Behind Two Wise."), /*#__PURE__*/React.createElement("p", {
+    className: "text-base sm:text-lg text-gray-600 leading-relaxed"
+  }, "Founded by passionate, experienced educators dedicated to student-centric guidance, conceptual clarity, and building genuine academic confidence.")), /*#__PURE__*/React.createElement("div", {
+    className: "grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "p-8 sm:p-10 rounded-4xl bg-brand-lavender/40 border border-purple-200/60 shadow-soft hover-card-lift flex flex-col justify-between space-y-6"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "space-y-5"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between gap-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "space-y-1"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "px-3 py-1 rounded-full text-[11px] font-bold bg-white text-purple-900 shadow-sm border border-purple-100"
+  }, "Co-Founder & Director"), /*#__PURE__*/React.createElement("h3", {
+    className: "font-heading text-2xl sm:text-3xl font-extrabold text-brand-charcoal pt-1"
+  }, "Reva Mehta"), /*#__PURE__*/React.createElement("p", {
+    className: "text-xs sm:text-sm font-semibold text-purple-900/80"
+  }, "Senior-Secondary Educator & Academic Director")), /*#__PURE__*/React.createElement("div", {
+    className: "w-16 h-16 rounded-3xl bg-white shadow-soft flex items-center justify-center shrink-0 border border-purple-100"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "font-heading font-extrabold text-xl text-purple-800"
+  }, "RM"))), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 pt-1"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-purple-100 flex items-center gap-1.5"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "graduationCap",
+    className: "w-4 h-4 text-purple-700"
+  }), /*#__PURE__*/React.createElement("span", null, "MBA, SIBM Pune")), /*#__PURE__*/React.createElement("span", {
+    className: "px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-purple-100 flex items-center gap-1.5"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "award",
+    className: "w-4 h-4 text-purple-700"
+  }), /*#__PURE__*/React.createElement("span", null, "6+ Years Teaching Experience")), /*#__PURE__*/React.createElement("span", {
+    className: "px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-purple-100 flex items-center gap-1.5"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "bookOpen",
+    className: "w-4 h-4 text-purple-700"
+  }), /*#__PURE__*/React.createElement("span", null, "Ex-Symbiosis International School"))), /*#__PURE__*/React.createElement("p", {
+    className: "text-sm text-gray-600 leading-relaxed pt-2"
+  }, "An MBA graduate from the prestigious Symbiosis Institute of Business Management (SIBM), Pune, Reva brings over six years of senior-secondary teaching experience, including teaching at Symbiosis International School. She specializes in higher-grade analytical thinking, rigorous curriculum mastery, and examination strategy across ICSE, CBSE, IB, and IGCSE boards."), /*#__PURE__*/React.createElement("div", {
+    className: "p-4 rounded-2xl bg-white/80 border border-purple-200/50"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "text-xs italic text-gray-700 leading-relaxed"
+  }, "“True learning begins when students understand the 'why' behind every concept. We deconstruct complex theories into intuitive, relatable logic so students build permanent mastery.”"))), /*#__PURE__*/React.createElement("div", {
+    className: "pt-4 border-t border-purple-200/40 grid grid-cols-2 gap-3 text-xs font-medium text-gray-700"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "check",
+    className: "w-4 h-4 text-purple-700 shrink-0"
+  }), /*#__PURE__*/React.createElement("span", null, "Senior-Secondary Strategy")), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "check",
+    className: "w-4 h-4 text-purple-700 shrink-0"
+  }), /*#__PURE__*/React.createElement("span", null, "Analytical Problem Solving")), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "check",
+    className: "w-4 h-4 text-purple-700 shrink-0"
+  }), /*#__PURE__*/React.createElement("span", null, "Board Exam Excellence")), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "check",
+    className: "w-4 h-4 text-purple-700 shrink-0"
+  }), /*#__PURE__*/React.createElement("span", null, "1-on-1 Concept Mentoring")))), /*#__PURE__*/React.createElement("div", {
+    className: "p-8 sm:p-10 rounded-4xl bg-brand-peach/40 border border-orange-200/60 shadow-soft hover-card-lift flex flex-col justify-between space-y-6"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "space-y-5"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start justify-between gap-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "space-y-1"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "px-3 py-1 rounded-full text-[11px] font-bold bg-white text-orange-900 shadow-sm border border-orange-100"
+  }, "Co-Founder & Educator"), /*#__PURE__*/React.createElement("h3", {
+    className: "font-heading text-2xl sm:text-3xl font-extrabold text-brand-charcoal pt-1"
+  }, "Diya Shah"), /*#__PURE__*/React.createElement("p", {
+    className: "text-xs sm:text-sm font-semibold text-orange-900/80"
+  }, "Foundational Stage & Upper-Primary Specialist")), /*#__PURE__*/React.createElement("div", {
+    className: "w-16 h-16 rounded-3xl bg-white shadow-soft flex items-center justify-center shrink-0 border border-orange-100"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "font-heading font-extrabold text-xl text-orange-700"
+  }, "DS"))), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-wrap gap-2 pt-1"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-orange-100 flex items-center gap-1.5"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "graduationCap",
+    className: "w-4 h-4 text-orange-700"
+  }), /*#__PURE__*/React.createElement("span", null, "BBA in Finance")), /*#__PURE__*/React.createElement("span", {
+    className: "px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-orange-100 flex items-center gap-1.5"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "award",
+    className: "w-4 h-4 text-orange-700"
+  }), /*#__PURE__*/React.createElement("span", null, "6+ Years Teaching Experience")), /*#__PURE__*/React.createElement("span", {
+    className: "px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-orange-100 flex items-center gap-1.5"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "smile",
+    className: "w-4 h-4 text-orange-700"
+  }), /*#__PURE__*/React.createElement("span", null, "Upper-Primary & Foundation Expert"))), /*#__PURE__*/React.createElement("p", {
+    className: "text-sm text-gray-600 leading-relaxed pt-2"
+  }, "A BBA Finance graduate with over six years of dedicated teaching experience, Diya specializes in foundational learning for upper-primary and middle-school students. Her teaching methodology focuses on demystifying core concepts, igniting curiosity, and creating a supportive classroom where asking questions is always celebrated."), /*#__PURE__*/React.createElement("div", {
+    className: "p-4 rounded-2xl bg-white/80 border border-orange-200/50"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "text-xs italic text-gray-700 leading-relaxed"
+  }, "“When children feel heard and encouraged, learning naturally shifts from an intimidating chore to an exciting, joyful journey of discovery.”"))), /*#__PURE__*/React.createElement("div", {
+    className: "pt-4 border-t border-orange-200/40 grid grid-cols-2 gap-3 text-xs font-medium text-gray-700"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "check",
+    className: "w-4 h-4 text-orange-700 shrink-0"
+  }), /*#__PURE__*/React.createElement("span", null, "Foundational Concept Building")), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "check",
+    className: "w-4 h-4 text-orange-700 shrink-0"
+  }), /*#__PURE__*/React.createElement("span", null, "Interactive Visual Teaching")), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "check",
+    className: "w-4 h-4 text-orange-700 shrink-0"
+  }), /*#__PURE__*/React.createElement("span", null, "Judgment-Free Doubt Solving")), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-center gap-2"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "check",
+    className: "w-4 h-4 text-orange-700 shrink-0"
+  }), /*#__PURE__*/React.createElement("span", null, "Student Confidence Building"))))), /*#__PURE__*/React.createElement("div", {
+    className: "mt-12 p-6 rounded-3xl bg-brand-mint/40 border border-emerald-200/60 shadow-soft flex flex-col sm:flex-row items-center gap-4 text-left"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "w-12 h-12 rounded-2xl bg-white shadow-soft flex items-center justify-center shrink-0"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "award",
+    className: "w-6 h-6 text-emerald-700"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "space-y-0.5"
+  }, /*#__PURE__*/React.createElement("h4", {
+    className: "font-heading font-bold text-sm text-emerald-950"
+  }, "Inaugurated by Distinguished Academic Leaders"), /*#__PURE__*/React.createElement("p", {
+    className: "text-xs text-emerald-900/80 leading-relaxed"
+  }, "Two Wise Academy was inaugurated in the presence of esteemed chief guest ", /*#__PURE__*/React.createElement("strong", null, "Mr. Frank Freese"), " (former Principal of The Bishop's School, Pune) and ", /*#__PURE__*/React.createElement("strong", null, "Hon. Mrs. Siddhi Avinash Shilimkar"), " (Corporator), commending the founders' progressive vision for conceptual, student-centric coaching."))))), /*#__PURE__*/React.createElement("section", {
     className: "py-20 bg-gray-50/50 relative border-t border-gray-100"
   }, /*#__PURE__*/React.createElement("div", {
     className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -2073,6 +2233,9 @@ function App() {
     href: "#why-us",
     className: "hover:text-brand-charcoal hover:underline"
   }, "Why Two Wise")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
+    href: "#faculty",
+    className: "hover:text-brand-charcoal hover:underline"
+  }, "Faculty & Mentors")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
     href: "#contact",
     className: "hover:text-brand-charcoal hover:underline"
   }, "Contact")))), /*#__PURE__*/React.createElement("div", {
