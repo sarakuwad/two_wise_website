@@ -2028,8 +2028,8 @@ function App() {
     alt: "Two Wise Academy",
     className: "h-14 sm:h-16 w-auto object-contain"
   })), /*#__PURE__*/React.createElement("p", {
-    className: "font-heading font-semibold text-sm text-brand-charcoal"
-  }, "Tagline: \"Learn Smart. Think Wise.\""), /*#__PURE__*/React.createElement("p", {
+    className: "font-heading font-semibold text-sm text-brand-charcoal tracking-wide"
+  }, "\"Learn Smart. Think Wise.\""), /*#__PURE__*/React.createElement("p", {
     className: "text-xs text-gray-600 max-w-sm leading-relaxed"
   }, "Two Wise Academy is a contemporary offline classroom coaching academy based in Pune, Maharashtra. Empowering students across ICSE, CBSE, IB, and IGCSE curricula (Grades 1–10) with conceptual clarity, individual attention, and academic confidence."), /*#__PURE__*/React.createElement("div", {
     className: "flex items-center gap-3 pt-2"

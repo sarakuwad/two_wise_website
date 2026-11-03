@@ -1891,8 +1891,8 @@ function App() {
                 />
               </div>
 
-              <p className="font-heading font-semibold text-sm text-brand-charcoal">
-                Tagline: "Learn Smart. Think Wise."
+              <p className="font-heading font-semibold text-sm text-brand-charcoal tracking-wide">
+                "Learn Smart. Think Wise."
               </p>
 
               <p className="text-xs text-gray-600 max-w-sm leading-relaxed">
