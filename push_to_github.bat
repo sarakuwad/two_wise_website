@@ -8,12 +8,17 @@ echo.
 
 set PATH=C:\Users\%USERNAME%\AppData\Local\Programs\MinGit\cmd;C:\Users\%USERNAME%\AppData\Local\Programs\MinGit\ucrt64\bin;%PATH%
 
-echo Staging and verifying repository status...
-git status
+set /p TOKEN="Enter your GitHub Personal Access Token (or press Enter to use default prompt): "
 
-echo.
-echo Pushing branch 'main' to origin...
-git push -u origin main
+if "%TOKEN%"=="" (
+    echo.
+    echo Pushing with standard git prompt...
+    git push -u origin main
+) else (
+    echo.
+    echo Pushing with provided token...
+    git push -u https://sarakuwad:%TOKEN%@github.com/sarakuwad/two_wise_website.git main
+)
 
 if %errorlevel% equ 0 (
     echo.
@@ -23,11 +28,7 @@ if %errorlevel% equ 0 (
     echo ========================================================
 ) else (
     echo.
-    echo ========================================================
-    echo   If prompted for password, enter a GitHub Personal
-    echo   Access Token (PAT) with 'repo' scope.
-    echo   Create one at: https://github.com/settings/tokens
-    echo ========================================================
+    echo Push failed. Please verify your token has 'repo' scope.
 )
 
 echo.
