@@ -593,7 +593,7 @@ function App() {
     className: "bg-brand-lavender/60 border-b border-brand-lavender/80 px-4 py-2 text-xs font-medium text-brand-charcoal text-center flex items-center justify-center gap-2"
   }, /*#__PURE__*/React.createElement("span", {
     className: "inline-block w-2 h-2 rounded-full bg-brand-mintDark animate-pulse"
-  }), /*#__PURE__*/React.createElement("span", null, "Admissions Open for 2026–27 • Offline Classroom Coaching in Pune • Grades 1 to 10 (ICSE, CBSE, IB, IGCSE)"), /*#__PURE__*/React.createElement("button", {
+  }), /*#__PURE__*/React.createElement("span", null, "Admissions Open for 2026–27 • Offline Classroom Coaching in Pune • Grades 4 to 12 (ICSE, CBSE, IB, IGCSE)"), /*#__PURE__*/React.createElement("button", {
     onClick: () => scrollToSection('contact'),
     className: "ml-2 underline font-semibold hover:text-brand-lavenderDark hidden sm:inline"
   }, "Book a Consultation →")), /*#__PURE__*/React.createElement("header", {
@@ -732,7 +732,7 @@ function App() {
     className: "text-base sm:text-lg text-gray-600 max-w-xl leading-relaxed"
   }, "Personalised classroom learning for students from ", /*#__PURE__*/React.createElement("strong", {
     className: "text-brand-charcoal font-semibold"
-  }, "Grades 1–10"), " across ", /*#__PURE__*/React.createElement("span", {
+  }, "Grades 4–12"), " across ", /*#__PURE__*/React.createElement("span", {
     className: "font-semibold text-brand-charcoal"
   }, "ICSE, CBSE, IB"), " and ", /*#__PURE__*/React.createElement("span", {
     className: "font-semibold text-brand-charcoal"
@@ -759,7 +759,7 @@ function App() {
     className: "space-y-0.5"
   }, /*#__PURE__*/React.createElement("span", {
     className: "font-heading font-bold text-lg text-brand-charcoal block"
-  }, "Grades 1–10"), /*#__PURE__*/React.createElement("span", {
+  }, "Grades 4–12"), /*#__PURE__*/React.createElement("span", {
     className: "text-xs text-gray-500"
   }, "All Subjects Covered")), /*#__PURE__*/React.createElement("div", {
     className: "space-y-0.5"
@@ -1086,11 +1086,11 @@ function App() {
     className: "w-12 h-12 rounded-2xl bg-white shadow-soft flex items-center justify-center font-heading font-black text-lg text-purple-700"
   }, "ICSE"), /*#__PURE__*/React.createElement("span", {
     className: "px-3 py-1 rounded-full text-xs font-bold bg-white text-brand-charcoal shadow-sm"
-  }, "Grades 1–10")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
+  }, "Grades 4–12")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
     className: "font-heading text-xl font-bold text-brand-charcoal"
   }, "ICSE Board"), /*#__PURE__*/React.createElement("p", {
     className: "text-xs text-purple-900/70 font-medium"
-  }, "Council for the Indian School Certificate")), /*#__PURE__*/React.createElement("p", {
+  }, "CISCE — ICSE (Grades 4–10) & ISC (Grades 11–12)")), /*#__PURE__*/React.createElement("p", {
     className: "text-gray-600 text-sm leading-relaxed"
   }, "In-depth subject mastery with strong emphasis on English language precision, descriptive scientific reasoning, and analytical Mathematics."), /*#__PURE__*/React.createElement("div", {
     className: "space-y-1.5 pt-2 text-xs text-gray-700"
@@ -1123,7 +1123,7 @@ function App() {
     className: "w-12 h-12 rounded-2xl bg-white shadow-soft flex items-center justify-center font-heading font-black text-lg text-blue-700"
   }, "CBSE"), /*#__PURE__*/React.createElement("span", {
     className: "px-3 py-1 rounded-full text-xs font-bold bg-white text-brand-charcoal shadow-sm"
-  }, "Grades 1–10")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
+  }, "Grades 4–12")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
     className: "font-heading text-xl font-bold text-brand-charcoal"
   }, "CBSE Board"), /*#__PURE__*/React.createElement("p", {
     className: "text-xs text-blue-900/70 font-medium"
@@ -1160,9 +1160,9 @@ function App() {
     className: "w-12 h-12 rounded-2xl bg-white shadow-soft flex items-center justify-center font-heading font-black text-lg text-orange-600"
   }, "IB"), /*#__PURE__*/React.createElement("span", {
     className: "px-3 py-1 rounded-full text-xs font-bold bg-white text-brand-charcoal shadow-sm"
-  }, "Grades 1–10")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
+  }, "Grades 4–12")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
     className: "font-heading text-xl font-bold text-brand-charcoal"
-  }, "IB (PYP & MYP)"), /*#__PURE__*/React.createElement("p", {
+  }, "IB (MYP & DP)"), /*#__PURE__*/React.createElement("p", {
     className: "text-xs text-orange-900/70 font-medium"
   }, "International Baccalaureate")), /*#__PURE__*/React.createElement("p", {
     className: "text-gray-600 text-sm leading-relaxed"
@@ -1197,11 +1197,11 @@ function App() {
     className: "w-12 h-12 rounded-2xl bg-white shadow-soft flex items-center justify-center font-heading font-black text-lg text-emerald-700"
   }, "IGCSE"), /*#__PURE__*/React.createElement("span", {
     className: "px-3 py-1 rounded-full text-xs font-bold bg-white text-brand-charcoal shadow-sm"
-  }, "Grades 1–10")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
+  }, "Grades 4–12")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
     className: "font-heading text-xl font-bold text-brand-charcoal"
   }, "Cambridge IGCSE"), /*#__PURE__*/React.createElement("p", {
     className: "text-xs text-emerald-900/70 font-medium"
-  }, "Cambridge Assessment International")), /*#__PURE__*/React.createElement("p", {
+  }, "Cambridge — IGCSE & A-Levels (Grades 4–12)")), /*#__PURE__*/React.createElement("p", {
     className: "text-gray-600 text-sm leading-relaxed"
   }, "Practical comprehension, structured past paper mastery, mark-scheme precision, and deep command-term understanding for Cambridge assessments."), /*#__PURE__*/React.createElement("div", {
     className: "space-y-1.5 pt-2 text-xs text-gray-700"
@@ -1256,7 +1256,7 @@ function App() {
     className: "font-heading font-bold text-lg text-brand-charcoal"
   }, "Mathematics"), /*#__PURE__*/React.createElement("span", {
     className: "text-xs text-gray-500 font-medium"
-  }, "Grades 1 to 10"))), /*#__PURE__*/React.createElement("p", {
+  }, "Grades 4 to 12"))), /*#__PURE__*/React.createElement("p", {
     className: "text-xs text-gray-600 leading-relaxed mb-4"
   }, "Arithmetic, Pre-Algebra, Geometry, Trigonometry, Statistics, Mensuration, and Word Problems deconstructed through step-by-step logic."), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-wrap gap-1.5"
@@ -1881,7 +1881,7 @@ function App() {
     className: "font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-charcoal tracking-tight"
   }, "Ready to Make Learning Smarter?"), /*#__PURE__*/React.createElement("p", {
     className: "text-base sm:text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed"
-  }, "Give your child the academic support, guidance and confidence to reach their potential. Offline classroom coaching in Pune for Grades 1–10."), /*#__PURE__*/React.createElement("div", {
+  }, "Give your child the academic support, guidance and confidence to reach their potential. Offline classroom coaching in Pune for Grades 4–12."), /*#__PURE__*/React.createElement("div", {
     className: "pt-4 flex flex-col sm:flex-row items-center justify-center gap-4"
   }, /*#__PURE__*/React.createElement("button", {
     onClick: () => scrollToSection('contact'),
@@ -2030,7 +2030,7 @@ function App() {
       grade: e.target.value
     }),
     className: "w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-lavenderDark/30 text-sm text-gray-800"
-  }, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(g => /*#__PURE__*/React.createElement("option", {
+  }, [4, 5, 6, 7, 8, 9, 10, 11, 12].map(g => /*#__PURE__*/React.createElement("option", {
     key: g,
     value: `Grade ${g}`
   }, "Grade ", g))))), /*#__PURE__*/React.createElement("div", {
@@ -2191,7 +2191,7 @@ function App() {
     className: "font-heading font-semibold text-sm text-brand-charcoal tracking-wide"
   }, "\"Learn Smart. Think Wise.\""), /*#__PURE__*/React.createElement("p", {
     className: "text-xs text-gray-600 max-w-sm leading-relaxed"
-  }, "Two Wise Academy is a contemporary offline classroom coaching academy based in Pune, Maharashtra. Empowering students across ICSE, CBSE, IB, and IGCSE curricula (Grades 1–10) with conceptual clarity, individual attention, and academic confidence."), /*#__PURE__*/React.createElement("div", {
+  }, "Two Wise Academy is a contemporary offline classroom coaching academy based in Pune, Maharashtra. Empowering students across ICSE, CBSE, IB, and IGCSE curricula (Grades 4–12) with conceptual clarity, individual attention, and academic confidence."), /*#__PURE__*/React.createElement("div", {
     className: "flex items-center gap-3 pt-2"
   }, /*#__PURE__*/React.createElement("a", {
     href: whatsappUrl,
@@ -2244,7 +2244,7 @@ function App() {
     className: "font-heading font-bold text-xs uppercase tracking-wider text-brand-charcoal"
   }, "Curricula & Grades"), /*#__PURE__*/React.createElement("ul", {
     className: "space-y-2 text-xs text-gray-600"
-  }, /*#__PURE__*/React.createElement("li", null, "ICSE Board (Grades 1–10)"), /*#__PURE__*/React.createElement("li", null, "CBSE Board (Grades 1–10)"), /*#__PURE__*/React.createElement("li", null, "IB Curriculum (Grades 1–10)"), /*#__PURE__*/React.createElement("li", null, "IGCSE Board (Grades 1–10)"), /*#__PURE__*/React.createElement("li", null, "All Core & Elective Subjects"))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("li", null, "ICSE & ISC Board (Grades 4–12)"), /*#__PURE__*/React.createElement("li", null, "CBSE Board (Grades 4–12)"), /*#__PURE__*/React.createElement("li", null, "IB Curriculum (Grades 4–12)"), /*#__PURE__*/React.createElement("li", null, "IGCSE & Cambridge A-Levels (Grades 4–12)"), /*#__PURE__*/React.createElement("li", null, "All Core & Elective Subjects"))), /*#__PURE__*/React.createElement("div", {
     className: "lg:col-span-3 space-y-3"
   }, /*#__PURE__*/React.createElement("h4", {
     className: "font-heading font-bold text-xs uppercase tracking-wider text-brand-charcoal"

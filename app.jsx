@@ -298,7 +298,7 @@ function App() {
       {/* TOP ANNOUNCEMENT BAR */}
       <div className="bg-brand-lavender/60 border-b border-brand-lavender/80 px-4 py-2 text-xs font-medium text-brand-charcoal text-center flex items-center justify-center gap-2">
         <span className="inline-block w-2 h-2 rounded-full bg-brand-mintDark animate-pulse"></span>
-        <span>Admissions Open for 2026–27 • Offline Classroom Coaching in Pune • Grades 1 to 10 (ICSE, CBSE, IB, IGCSE)</span>
+        <span>Admissions Open for 2026–27 • Offline Classroom Coaching in Pune • Grades 4 to 12 (ICSE, CBSE, IB, IGCSE)</span>
         <button 
           onClick={() => scrollToSection('contact')}
           className="ml-2 underline font-semibold hover:text-brand-lavenderDark hidden sm:inline"
@@ -497,7 +497,7 @@ function App() {
 
               {/* Description */}
               <p className="text-base sm:text-lg text-gray-600 max-w-xl leading-relaxed">
-                Personalised classroom learning for students from <strong className="text-brand-charcoal font-semibold">Grades 1–10</strong> across <span className="font-semibold text-brand-charcoal">ICSE, CBSE, IB</span> and <span className="font-semibold text-brand-charcoal">IGCSE</span> boards.
+                Personalised classroom learning for students from <strong className="text-brand-charcoal font-semibold">Grades 4–12</strong> across <span className="font-semibold text-brand-charcoal">ICSE, CBSE, IB</span> and <span className="font-semibold text-brand-charcoal">IGCSE</span> boards.
               </p>
 
               {/* CTAs */}
@@ -525,7 +525,7 @@ function App() {
                   <span className="text-xs text-gray-500">ICSE, CBSE, IB, IGCSE</span>
                 </div>
                 <div className="space-y-0.5">
-                  <span className="font-heading font-bold text-lg text-brand-charcoal block">Grades 1–10</span>
+                  <span className="font-heading font-bold text-lg text-brand-charcoal block">Grades 4–12</span>
                   <span className="text-xs text-gray-500">All Subjects Covered</span>
                 </div>
                 <div className="space-y-0.5">
@@ -775,14 +775,14 @@ function App() {
                     ICSE
                   </span>
                   <span className="px-3 py-1 rounded-full text-xs font-bold bg-white text-brand-charcoal shadow-sm">
-                    Grades 1–10
+                    Grades 4–12
                   </span>
                 </div>
                 <div>
                   <h3 className="font-heading text-xl font-bold text-brand-charcoal">
                     ICSE Board
                   </h3>
-                  <p className="text-xs text-purple-900/70 font-medium">Council for the Indian School Certificate</p>
+                  <p className="text-xs text-purple-900/70 font-medium">CISCE — ICSE (Grades 4–10) & ISC (Grades 11–12)</p>
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed">
                   In-depth subject mastery with strong emphasis on English language precision, descriptive scientific reasoning, and analytical Mathematics.
@@ -819,7 +819,7 @@ function App() {
                     CBSE
                   </span>
                   <span className="px-3 py-1 rounded-full text-xs font-bold bg-white text-brand-charcoal shadow-sm">
-                    Grades 1–10
+                    Grades 4–12
                   </span>
                 </div>
                 <div>
@@ -863,12 +863,12 @@ function App() {
                     IB
                   </span>
                   <span className="px-3 py-1 rounded-full text-xs font-bold bg-white text-brand-charcoal shadow-sm">
-                    Grades 1–10
+                    Grades 4–12
                   </span>
                 </div>
                 <div>
                   <h3 className="font-heading text-xl font-bold text-brand-charcoal">
-                    IB (PYP & MYP)
+                    IB (MYP & DP)
                   </h3>
                   <p className="text-xs text-orange-900/70 font-medium">International Baccalaureate</p>
                 </div>
@@ -907,14 +907,14 @@ function App() {
                     IGCSE
                   </span>
                   <span className="px-3 py-1 rounded-full text-xs font-bold bg-white text-brand-charcoal shadow-sm">
-                    Grades 1–10
+                    Grades 4–12
                   </span>
                 </div>
                 <div>
                   <h3 className="font-heading text-xl font-bold text-brand-charcoal">
                     Cambridge IGCSE
                   </h3>
-                  <p className="text-xs text-emerald-900/70 font-medium">Cambridge Assessment International</p>
+                  <p className="text-xs text-emerald-900/70 font-medium">Cambridge — IGCSE & A-Levels (Grades 4–12)</p>
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed">
                   Practical comprehension, structured past paper mastery, mark-scheme precision, and deep command-term understanding for Cambridge assessments.
@@ -982,7 +982,7 @@ function App() {
                 </div>
                 <div>
                   <h3 className="font-heading font-bold text-lg text-brand-charcoal">Mathematics</h3>
-                  <span className="text-xs text-gray-500 font-medium">Grades 1 to 10</span>
+                  <span className="text-xs text-gray-500 font-medium">Grades 4 to 12</span>
                 </div>
               </div>
               <p className="text-xs text-gray-600 leading-relaxed mb-4">
@@ -1706,7 +1706,7 @@ function App() {
           </h2>
 
           <p className="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
-            Give your child the academic support, guidance and confidence to reach their potential. Offline classroom coaching in Pune for Grades 1–10.
+            Give your child the academic support, guidance and confidence to reach their potential. Offline classroom coaching in Pune for Grades 4–12.
           </p>
 
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -1873,7 +1873,7 @@ function App() {
                         onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-lavenderDark/30 text-sm text-gray-800"
                       >
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(g => (
+                        {[4, 5, 6, 7, 8, 9, 10, 11, 12].map(g => (
                           <option key={g} value={`Grade ${g}`}>Grade {g}</option>
                         ))}
                       </select>
@@ -2092,7 +2092,7 @@ function App() {
               </p>
 
               <p className="text-xs text-gray-600 max-w-sm leading-relaxed">
-                Two Wise Academy is a contemporary offline classroom coaching academy based in Pune, Maharashtra. Empowering students across ICSE, CBSE, IB, and IGCSE curricula (Grades 1–10) with conceptual clarity, individual attention, and academic confidence.
+                Two Wise Academy is a contemporary offline classroom coaching academy based in Pune, Maharashtra. Empowering students across ICSE, CBSE, IB, and IGCSE curricula (Grades 4–12) with conceptual clarity, individual attention, and academic confidence.
               </p>
 
               <div className="flex items-center gap-3 pt-2">
@@ -2139,10 +2139,10 @@ function App() {
                 Curricula & Grades
               </h4>
               <ul className="space-y-2 text-xs text-gray-600">
-                <li>ICSE Board (Grades 1–10)</li>
-                <li>CBSE Board (Grades 1–10)</li>
-                <li>IB Curriculum (Grades 1–10)</li>
-                <li>IGCSE Board (Grades 1–10)</li>
+                <li>ICSE & ISC Board (Grades 4–12)</li>
+                <li>CBSE Board (Grades 4–12)</li>
+                <li>IB Curriculum (Grades 4–12)</li>
+                <li>IGCSE & Cambridge A-Levels (Grades 4–12)</li>
                 <li>All Core & Elective Subjects</li>
               </ul>
             </div>
