@@ -1973,10 +1973,18 @@ function App() {
   }, "Offline Classroom Coaching"))), /*#__PURE__*/React.createElement("div", {
     className: "space-y-2 text-sm text-gray-700"
   }, /*#__PURE__*/React.createElement("p", {
-    className: "font-semibold text-brand-charcoal"
-  }, "Pune, Maharashtra, India."), /*#__PURE__*/React.createElement("p", {
+    className: "font-semibold text-brand-charcoal leading-snug"
+  }, "Two Wise Academy, Prasad Apartments, T.M.V. Colony, Gultekdi, Pune-411037"), /*#__PURE__*/React.createElement("p", {
     className: "text-xs text-gray-500 leading-relaxed"
-  }, "Centrally accessible offline classroom setup designed for modern, student-friendly interactive coaching.")), /*#__PURE__*/React.createElement("div", {
+  }, "Centrally accessible offline classroom setup designed for modern, student-friendly interactive coaching."), /*#__PURE__*/React.createElement("a", {
+    href: "https://www.google.com/maps/search/?api=1&query=Two+Wise+Academy+Prasad+Apartments+TMV+Colony+Gultekdi+Pune+411037",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    className: "inline-flex items-center gap-1.5 text-xs font-semibold text-brand-charcoal hover:underline pt-1 text-purple-700"
+  }, /*#__PURE__*/React.createElement("span", null, "Get Directions on Google Maps"), /*#__PURE__*/React.createElement(Icon, {
+    name: "arrowRight",
+    className: "w-3.5 h-3.5"
+  }))), /*#__PURE__*/React.createElement("div", {
     className: "pt-2 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500"
   }, /*#__PURE__*/React.createElement("span", null, "Classroom Mode:"), /*#__PURE__*/React.createElement("span", {
     className: "font-semibold text-brand-charcoal"
@@ -2112,7 +2120,7 @@ function App() {
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "mapPin",
     className: "w-4 h-4 text-gray-400 shrink-0 mt-0.5"
-  }), /*#__PURE__*/React.createElement("span", null, "Pune, Maharashtra, India."))))), /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/React.createElement("span", null, "Two Wise Academy, Prasad Apartments, T.M.V. Colony, Gultekdi, Pune-411037"))))), /*#__PURE__*/React.createElement("div", {
     className: "pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4"
   }, /*#__PURE__*/React.createElement("p", null, "© 2026 Two Wise Academy. All Rights Reserved."), /*#__PURE__*/React.createElement("p", {
     className: "flex items-center gap-3"

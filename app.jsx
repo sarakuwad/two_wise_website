@@ -1814,12 +1814,21 @@ function App() {
                 </div>
 
                 <div className="space-y-2 text-sm text-gray-700">
-                  <p className="font-semibold text-brand-charcoal">
-                    Pune, Maharashtra, India.
+                  <p className="font-semibold text-brand-charcoal leading-snug">
+                    Two Wise Academy, Prasad Apartments, T.M.V. Colony, Gultekdi, Pune-411037
                   </p>
                   <p className="text-xs text-gray-500 leading-relaxed">
                     Centrally accessible offline classroom setup designed for modern, student-friendly interactive coaching.
                   </p>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Two+Wise+Academy+Prasad+Apartments+TMV+Colony+Gultekdi+Pune+411037"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-charcoal hover:underline pt-1 text-purple-700"
+                  >
+                    <span>Get Directions on Google Maps</span>
+                    <Icon name="arrowRight" className="w-3.5 h-3.5" />
+                  </a>
                 </div>
 
                 <div className="pt-2 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
@@ -1961,7 +1970,7 @@ function App() {
                 </li>
                 <li className="flex items-start gap-2 pt-1">
                   <Icon name="mapPin" className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
-                  <span>Pune, Maharashtra, India.</span>
+                  <span>Two Wise Academy, Prasad Apartments, T.M.V. Colony, Gultekdi, Pune-411037</span>
                 </li>
               </ul>
             </div>
