@@ -4,66 +4,15 @@ const {
   useMemo
 } = React;
 
-// --- SVG Icons & Brand Symbols ---
+// --- Official Logo Component ---
 const WiseOwlLogo = ({
-  className = "w-10 h-10"
-}) => /*#__PURE__*/React.createElement("svg", {
-  className: className,
-  viewBox: "0 0 48 48",
-  fill: "none",
-  xmlns: "http://www.w3.org/2000/svg"
-}, /*#__PURE__*/React.createElement("rect", {
-  width: "48",
-  height: "48",
-  rx: "14",
-  fill: "#EAE5FA"
-}), /*#__PURE__*/React.createElement("circle", {
-  cx: "18",
-  cy: "22",
-  r: "7.5",
-  fill: "#252525"
-}), /*#__PURE__*/React.createElement("circle", {
-  cx: "30",
-  cy: "22",
-  r: "7.5",
-  fill: "#252525"
-}), /*#__PURE__*/React.createElement("circle", {
-  cx: "19",
-  cy: "20.5",
-  r: "2.8",
-  fill: "#FFFFFF"
-}), /*#__PURE__*/React.createElement("circle", {
-  cx: "31",
-  cy: "20.5",
-  r: "2.8",
-  fill: "#FFFFFF"
-}), /*#__PURE__*/React.createElement("circle", {
-  cx: "16.5",
-  cy: "23.5",
-  r: "1.2",
-  fill: "#EAE5FA"
-}), /*#__PURE__*/React.createElement("circle", {
-  cx: "28.5",
-  cy: "23.5",
-  r: "1.2",
-  fill: "#EAE5FA"
-}), /*#__PURE__*/React.createElement("path", {
-  d: "M24 8L36 14L24 20L12 14L24 8Z",
-  fill: "#6C5CE7"
-}), /*#__PURE__*/React.createElement("path", {
-  d: "M36 14V19.5",
-  stroke: "#6C5CE7",
-  strokeWidth: "1.8",
-  strokeLinecap: "round"
-}), /*#__PURE__*/React.createElement("path", {
-  d: "M24 25L26.5 30.5L21.5 30.5Z",
-  fill: "#F7B731"
-}), /*#__PURE__*/React.createElement("path", {
-  d: "M14 34.5C18 36.5 22 35 24 34.5C26 35 30 36.5 34 34.5",
-  stroke: "#252525",
-  strokeWidth: "2.5",
-  strokeLinecap: "round"
-}));
+  className = "h-10 w-auto",
+  full = false
+}) => /*#__PURE__*/React.createElement("img", {
+  src: full ? "./logo.png" : "./logo-owl.png",
+  alt: "Two Wise Academy",
+  className: `${className} object-contain`
+});
 
 // Lucide icon helper component using lucide-react or SVG equivalents
 const Icon = ({
@@ -656,13 +605,11 @@ function App() {
   }, /*#__PURE__*/React.createElement("a", {
     href: "#",
     className: "flex items-center gap-3 group focus:outline-none"
-  }, /*#__PURE__*/React.createElement(WiseOwlLogo, {
-    className: "w-10 h-10 transition-transform duration-300 group-hover:scale-105"
-  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    className: "font-heading font-extrabold text-xl tracking-tight text-brand-charcoal block leading-none"
-  }, "TWO WISE"), /*#__PURE__*/React.createElement("span", {
-    className: "text-[10px] uppercase font-bold tracking-[0.2em] text-gray-500 block mt-0.5"
-  }, "ACADEMY"))), /*#__PURE__*/React.createElement("nav", {
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "./logo.png",
+    alt: "Two Wise Academy",
+    className: "h-11 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+  })), /*#__PURE__*/React.createElement("nav", {
     className: "hidden md:flex items-center space-x-1 lg:space-x-2"
   }, /*#__PURE__*/React.createElement("a", {
     href: "#hero",
@@ -2068,13 +2015,11 @@ function App() {
     className: "lg:col-span-5 space-y-4"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex items-center gap-3"
-  }, /*#__PURE__*/React.createElement(WiseOwlLogo, {
-    className: "w-10 h-10"
-  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
-    className: "font-heading font-extrabold text-xl tracking-tight text-brand-charcoal block leading-none"
-  }, "TWO WISE"), /*#__PURE__*/React.createElement("span", {
-    className: "text-[10px] uppercase font-bold tracking-[0.2em] text-gray-500 block mt-0.5"
-  }, "ACADEMY"))), /*#__PURE__*/React.createElement("p", {
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "./logo.png",
+    alt: "Two Wise Academy",
+    className: "h-14 sm:h-16 w-auto object-contain"
+  })), /*#__PURE__*/React.createElement("p", {
     className: "font-heading font-semibold text-sm text-brand-charcoal"
   }, "Tagline: \"Learn Smart. Think Wise.\""), /*#__PURE__*/React.createElement("p", {
     className: "text-xs text-gray-600 max-w-sm leading-relaxed"
