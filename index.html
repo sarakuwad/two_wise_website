@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Two Wise Academy | Learn Smart. Think Wise. | Pune</title>
+  <meta name="description" content="Personalised offline classroom coaching in Pune for Grades 1–10 across ICSE, CBSE, IB, and IGCSE boards. Conceptual clarity, individual attention, and smart learning." />
+  <meta name="keywords" content="Two Wise Academy, coaching classes Pune, ICSE tuition Pune, CBSE coaching Pune, IB tutoring Pune, IGCSE tuition Pune, offline coaching Pune, grades 1 to 10" />
+  <meta name="author" content="Two Wise Academy" />
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Two Wise Academy | Learn Smart. Think Wise." />
+  <meta property="og:description" content="Personalised offline classroom learning for students from Grades 1–10 across ICSE, CBSE, IB, and IGCSE boards in Pune." />
+  <meta property="og:locale" content="en_IN" />
+
+  <!-- Google Fonts: Plus Jakarta Sans (Headings) and Inter (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            heading: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              charcoal: '#252525',
+              lavender: '#EAE5FA',
+              blue: '#DFEDFA',
+              peach: '#FCE8DD',
+              mint: '#E2F0E8',
+              yellow: '#FFF3D6',
+              lavenderDark: '#6C5CE7',
+              blueDark: '#2D7FF9',
+              mintDark: '#20BF6B',
+              peachDark: '#FA8231',
+              yellowDark: '#F7B731',
+            }
+          },
+          borderRadius: {
+            '2xl': '1rem',
+            '3xl': '1.5rem',
+            '4xl': '2rem',
+          },
+          boxShadow: {
+            'soft': '0 10px 30px -10px rgba(0, 0, 0, 0.05)',
+            'soft-lg': '0 20px 40px -15px rgba(37, 37, 37, 0.07)',
+            'pastel-lavender': '0 12px 30px -8px rgba(108, 92, 231, 0.15)',
+            'pastel-blue': '0 12px 30px -8px rgba(45, 127, 249, 0.15)',
+            'pastel-mint': '0 12px 30px -8px rgba(32, 191, 107, 0.15)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- React 18 and ReactDOM 18 -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="./styles.css" />
+
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23EAE5FA'/%3E%3Ccircle cx='15' cy='18' r='5' fill='%23252525'/%3E%3Ccircle cx='25' cy='18' r='5' fill='%23252525'/%3E%3Ccircle cx='16' cy='17' r='1.5' fill='%23FFFFFF'/%3E%3Ccircle cx='26' cy='17' r='1.5' fill='%23FFFFFF'/%3E%3Cpath d='M20 22 L22 26 L18 26 Z' fill='%23FA8231'/%3E%3Cpath d='M12 28 C15 31, 25 31, 28 28' stroke='%23252525' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E" />
+</head>
+<body class="bg-white text-brand-charcoal antialiased selection:bg-brand-lavender selection:text-brand-charcoal overflow-x-hidden">
+  <div id="root">
+    <!-- Instant Fallback Shell rendered while scripts load -->
+    <div class="min-h-screen flex items-center justify-center bg-white">
+      <div class="text-center space-y-4">
+        <div class="w-12 h-12 mx-auto rounded-2xl bg-[#EAE5FA] flex items-center justify-center animate-pulse">
+          <span class="text-xl font-bold font-heading text-[#252525]">W</span>
+        </div>
+        <p class="text-sm font-semibold text-gray-600 font-heading">Two Wise Academy</p>
+        <p class="text-xs text-gray-400">Learn Smart. Think Wise.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pre-compiled instant React application (Zero runtime Babel overhead) -->
+  <script src="./app.compiled.js"></script>
+</body>
+</html>
