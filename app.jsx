@@ -1236,7 +1236,7 @@ function App() {
                 Honoured to be Inaugurated by Mr. Frank Freese
               </h4>
               <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                Former Principal of <strong>The Bishop\'s School, Pune</strong>, Mr. Frank Freese personally inaugurated Two Wise Academy, recognizing our focus on character, intellectual discipline, and student-centered mentorship.
+                Former Principal of <strong>The Bishop's School, Pune</strong>, Mr. Frank Freese personally inaugurated Two Wise Academy, recognizing our focus on character, intellectual discipline, and student-centered mentorship.
               </p>
             </div>
           </div>
@@ -1260,11 +1260,11 @@ function App() {
               </div>
 
               <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-[#12261B]">
-                Let\'s Start Their Learning Journey.
+                Let's Start Their Learning Journey.
               </h2>
 
               <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                Schedule a diagnostic evaluation or visit our classroom setup at Gultekdi to discuss your child\'s academic roadmap with founders Reva Mehta and Diya Shah.
+                Schedule a diagnostic evaluation or visit our classroom setup at Gultekdi to discuss your child's academic roadmap with founders Reva Mehta and Diya Shah.
               </p>
 
               {/* Location Card */}
@@ -1354,7 +1354,7 @@ function App() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-bold text-gray-700 mb-1">Parent\'s Name *</label>
+                        <label className="block text-xs font-bold text-gray-700 mb-1">Parent's Name *</label>
                         <input
                           type="text"
                           value={formData.parentName}
@@ -1366,7 +1366,7 @@ function App() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-bold text-gray-700 mb-1">Student\'s Name *</label>
+                        <label className="block text-xs font-bold text-gray-700 mb-1">Student's Name *</label>
                         <input
                           type="text"
                           value={formData.studentName}

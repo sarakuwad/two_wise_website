@@ -1390,7 +1390,7 @@ function App() {
     className: "font-heading font-bold text-lg text-[#12261B]"
   }, "Honoured to be Inaugurated by Mr. Frank Freese"), /*#__PURE__*/React.createElement("p", {
     className: "text-xs sm:text-sm text-gray-700 leading-relaxed"
-  }, "Former Principal of ", /*#__PURE__*/React.createElement("strong", null, "The Bishop\\'s School, Pune"), ", Mr. Frank Freese personally inaugurated Two Wise Academy, recognizing our focus on character, intellectual discipline, and student-centered mentorship."))))), /*#__PURE__*/React.createElement("section", {
+  }, "Former Principal of ", /*#__PURE__*/React.createElement("strong", null, "The Bishop's School, Pune"), ", Mr. Frank Freese personally inaugurated Two Wise Academy, recognizing our focus on character, intellectual discipline, and student-centered mentorship."))))), /*#__PURE__*/React.createElement("section", {
     id: "contact",
     className: "py-20 bg-[#F8F5EE] relative border-t border-[#E6DFD1] z-10"
   }, /*#__PURE__*/React.createElement("div", {
@@ -1406,9 +1406,9 @@ function App() {
     className: "w-3.5 h-3.5 text-[#123C24]"
   }), /*#__PURE__*/React.createElement("span", null, "Visit Our Offline Center")), /*#__PURE__*/React.createElement("h2", {
     className: "font-heading text-3xl sm:text-4xl font-extrabold text-[#12261B]"
-  }, "Let\\'s Start Their Learning Journey."), /*#__PURE__*/React.createElement("p", {
+  }, "Let's Start Their Learning Journey."), /*#__PURE__*/React.createElement("p", {
     className: "text-gray-700 text-sm sm:text-base leading-relaxed"
-  }, "Schedule a diagnostic evaluation or visit our classroom setup at Gultekdi to discuss your child\\'s academic roadmap with founders Reva Mehta and Diya Shah."), /*#__PURE__*/React.createElement("div", {
+  }, "Schedule a diagnostic evaluation or visit our classroom setup at Gultekdi to discuss your child's academic roadmap with founders Reva Mehta and Diya Shah."), /*#__PURE__*/React.createElement("div", {
     className: "p-6 rounded-3xl bg-white border border-[#E6DFD1] shadow-beige-card space-y-4"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex items-start gap-3"
@@ -1496,7 +1496,7 @@ function App() {
     className: "grid grid-cols-1 sm:grid-cols-2 gap-4"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
     className: "block text-xs font-bold text-gray-700 mb-1"
-  }, "Parent\\'s Name *"), /*#__PURE__*/React.createElement("input", {
+  }, "Parent's Name *"), /*#__PURE__*/React.createElement("input", {
     type: "text",
     value: formData.parentName,
     onChange: e => setFormData({
@@ -1509,7 +1509,7 @@ function App() {
     className: "text-[11px] text-rose-600 mt-1"
   }, formErrors.parentName)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
     className: "block text-xs font-bold text-gray-700 mb-1"
-  }, "Student\\'s Name *"), /*#__PURE__*/React.createElement("input", {
+  }, "Student's Name *"), /*#__PURE__*/React.createElement("input", {
     type: "text",
     value: formData.studentName,
     onChange: e => setFormData({
