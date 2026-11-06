@@ -1503,7 +1503,7 @@ function App() {
       ...formData,
       parentName: e.target.value
     }),
-    placeholder: "e.g. Arjun Mehta",
+    placeholder: "e.g. Arjun Akash Mehta",
     className: "w-full px-4 py-2.5 rounded-xl bg-[#FAF8F5] border border-[#D8D2C4] text-gray-900 text-xs sm:text-sm focus:outline-none focus:border-[#123C24] focus:bg-white"
   }), formErrors.parentName && /*#__PURE__*/React.createElement("p", {
     className: "text-[11px] text-rose-600 mt-1"
@@ -1516,7 +1516,7 @@ function App() {
       ...formData,
       studentName: e.target.value
     }),
-    placeholder: "e.g. Harshwardhan Mehta",
+    placeholder: "e.g. Harshwardhan Arjun Mehta",
     className: "w-full px-4 py-2.5 rounded-xl bg-[#FAF8F5] border border-[#D8D2C4] text-gray-900 text-xs sm:text-sm focus:outline-none focus:border-[#123C24] focus:bg-white"
   }), formErrors.studentName && /*#__PURE__*/React.createElement("p", {
     className: "text-[11px] text-rose-600 mt-1"
