@@ -575,6 +575,7 @@ function App() {
   const whatsappUrl = "https://wa.me/919049650666?text=Hi%20Two%20Wise%20Academy!%20I%20would%20like%20to%20enquire%20about%20academic%20coaching%20for%20my%20child.";
   const officialInstagramUrl = "https://www.instagram.com/twowise_academy/";
   const academyEmail = "twowiseacademy@gmail.com";
+  const googleMapsUrl = "https://maps.app.goo.gl/HvenKbG7o9DSE5Md7";
 
   // Form subject toggle
   const toggleSubject = subject => {
@@ -1440,7 +1441,7 @@ function App() {
   }, "Academy Location"), /*#__PURE__*/React.createElement("p", {
     className: "text-xs text-gray-700 font-medium mt-1"
   }, "Two Wise Academy, Prasad Apartments, T.M.V. Colony, Gultekdi, Pune-411037"), /*#__PURE__*/React.createElement("a", {
-    href: "https://maps.google.com/?q=Prasad+Apartments+TMV+Colony+Gultekdi+Pune",
+    href: googleMapsUrl,
     target: "_blank",
     rel: "noopener noreferrer",
     className: "inline-flex items-center gap-1 text-xs text-[#123C24] hover:underline font-bold mt-2"
@@ -1670,7 +1671,12 @@ function App() {
     className: "font-heading font-bold text-[#12261B] text-sm"
   }, "Center Information"), /*#__PURE__*/React.createElement("p", {
     className: "text-gray-700"
-  }, /*#__PURE__*/React.createElement("strong", null, "Two Wise Academy"), /*#__PURE__*/React.createElement("br", null), "Prasad Apartments, T.M.V. Colony,", /*#__PURE__*/React.createElement("br", null), "Gultekdi, Pune-411037, Maharashtra."), /*#__PURE__*/React.createElement("p", {
+  }, /*#__PURE__*/React.createElement("strong", null, "Two Wise Academy"), /*#__PURE__*/React.createElement("br", null), "Prasad Apartments, T.M.V. Colony,", /*#__PURE__*/React.createElement("br", null), "Gultekdi, Pune-411037, Maharashtra.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("a", {
+    href: googleMapsUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    className: "text-[#123C24] font-bold hover:underline inline-flex items-center gap-1 mt-1 text-[11px]"
+  }, /*#__PURE__*/React.createElement("span", null, "Get Directions on Google Maps ↗"))), /*#__PURE__*/React.createElement("p", {
     className: "text-gray-700 pt-1"
   }, "WhatsApp / Call: ", /*#__PURE__*/React.createElement("a", {
     href: "tel:+919049650666",
