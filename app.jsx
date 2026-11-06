@@ -9,7 +9,7 @@ const WiseOwlLogo = ({ className = "h-10 w-auto", full = false }) => (
   />
 );
 
-// Lucide icon helper component using SVG equivalents
+// Comprehensive Icon Component
 const Icon = ({ name, className = "w-5 h-5" }) => {
   const icons = {
     check: (
@@ -33,6 +33,59 @@ const Icon = ({ name, className = "w-5 h-5" }) => {
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
         <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+      </svg>
+    ),
+    play: (
+      <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+      </svg>
+    ),
+    pause: (
+      <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <rect x="6" y="4" width="4" height="16"></rect>
+        <rect x="14" y="4" width="4" height="16"></rect>
+      </svg>
+    ),
+    video: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="23 7 16 12 23 17 23 7"></polygon>
+        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+      </svg>
+    ),
+    image: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+        <polyline points="21 15 16 10 5 21"></polyline>
+      </svg>
+    ),
+    heart: (
+      <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+    ),
+    share2: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+    ),
+    externalLink: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+      </svg>
+    ),
+    calendar: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
       </svg>
     ),
     mapPin: (
@@ -207,15 +260,31 @@ function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   
+  // Board & division tabs
+  const [activeBoard, setActiveBoard] = useState('icse');
+  const [activeSubjectTab, setActiveSubjectTab] = useState('math');
+  const [activeApproachStep, setActiveApproachStep] = useState(0);
+
+  // Social Feed & Instagram state
+  const [activeSocialFilter, setActiveSocialFilter] = useState('all');
+  const [selectedInstagramPost, setSelectedInstagramPost] = useState(null);
+  const [isPlayingReel, setIsPlayingReel] = useState(true);
+
   // Enquiry form state
   const [formData, setFormData] = useState({
-    parentName: '',
-    studentName: '',
-    phone: '',
-    grade: 'Grade 8',
-    board: 'ICSE',
+    parentName: "",
+
+    studentName: "",
+
+    phone: "",
+
+    grade: "Grade 8",
+
+    board: "ICSE",
+
     subjects: ['Mathematics', 'Science'],
-    message: ''
+    message: ""
+
   });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -231,6 +300,8 @@ function App() {
 
   const whatsappNumber = "9049650666";
   const whatsappUrl = "https://wa.me/919049650666?text=Hi%20Two%20Wise%20Academy!%20I%20would%20like%20to%20enquire%20about%20academic%20coaching%20for%20my%20child.";
+  const officialInstagramUrl = "https://www.instagram.com/twowise_academy/";
+  const frankFreeseReelUrl = "https://www.instagram.com/reel/DcsV0ffIVuF/?mdxt=MW81YjljcHlrYnFjYw==";
 
   // Form subject toggle
   const toggleSubject = (subject) => {
@@ -270,12 +341,19 @@ function App() {
   };
 
   const generatedWhatsAppLink = useMemo(() => {
-    const text = `Hi Two Wise Academy! I would like to enquire about classroom coaching in Pune.\n\n` +
-      `Parent Name: ${formData.parentName}\n` +
-      `Student Name: ${formData.studentName}\n` +
-      `Grade: ${formData.grade}\n` +
-      `Board: ${formData.board}\n` +
-      `Subjects: ${formData.subjects.join(', ')}\n` +
+    const text = `Hi Two Wise Academy! I would like to enquire about classroom coaching in Pune.
+
+` +
+      `Parent Name: ${formData.parentName}
+` +
+      `Student Name: ${formData.studentName}
+` +
+      `Grade: ${formData.grade}
+` +
+      `Board: ${formData.board}
+` +
+      `Subjects: ${formData.subjects.join(', ')}
+` +
       (formData.message ? `Notes: ${formData.message}` : '');
     return `https://wa.me/919049650666?text=${encodeURIComponent(text)}`;
   }, [formData]);
@@ -288,23 +366,351 @@ function App() {
     }
   };
 
+  // ASH-Style Divisions Data (Grades 4 to 12)
+  const schoolDivisions = [
+    {
+      id: "foundation",
+
+      title: "Foundation Stage",
+
+      badge: "Grades 4–5",
+
+      badgeColor: "border-emerald-500/30 text-emerald-300 bg-emerald-950/60",
+
+      tagline: "Curiosity & Conceptual Roots",
+
+      description: "Joyful, hands-on learning building reading intuition, number sense, and the confidence to ask “why?”.",
+
+      boards: "ICSE • CBSE • Cambridge Primary",
+
+      targetBoard: "cbse",
+
+      gradient: "from-emerald-950/40 via-[#131D18] to-[#101713]",
+
+      accentBorder: "hover:border-emerald-400/50",
+
+      glow: "shadow-glow-green",
+
+      icon: "smile"
+
+    },
+    {
+      id: "middle",
+
+      title: "Middle School",
+
+      badge: "Grades 6–8",
+
+      badgeColor: "border-rose-400/30 text-rose-300 bg-rose-950/60",
+
+      tagline: "Logic & Subject Mastery",
+
+      description: "Transitioning from memorisation to analytical logic, scientific inquiry, and structured problem-solving.",
+
+      boards: "ICSE • CBSE • IB MYP • Cambridge",
+
+      targetBoard: "icse",
+
+      gradient: "from-rose-950/30 via-[#161719] to-[#121614]",
+
+      accentBorder: "hover:border-rose-400/50",
+
+      glow: "shadow-glow-red",
+
+      icon: "lightbulb"
+
+    },
+    {
+      id: "secondary",
+
+      title: "Secondary Boards",
+
+      badge: "Grades 9–10",
+
+      badgeColor: "border-emerald-500/30 text-emerald-300 bg-emerald-950/60",
+
+      tagline: "Board Distinction & Rigour",
+
+      description: "Comprehensive syllabus mastery, timed question bank drills, and personalised 1-on-1 doubt clearance.",
+
+      boards: "ICSE Board • CBSE Board • IGCSE",
+
+      targetBoard: "icse",
+
+      gradient: "from-emerald-950/40 via-[#141E19] to-[#111714]",
+
+      accentBorder: "hover:border-emerald-400/50",
+
+      glow: "shadow-glow-green",
+
+      icon: "target"
+
+    },
+    {
+      id: "senior",
+
+      title: "Senior Secondary",
+
+      badge: "Grades 11–12",
+
+      badgeColor: "border-rose-400/30 text-rose-300 bg-rose-950/60",
+
+      tagline: "Advanced Analytical Rigour",
+
+      description: "Deep subject immersion in Science & Commerce with integrated competitive test and higher-ed preparation.",
+
+      boards: "ISC • CBSE • IB DP • A-Levels",
+
+      targetBoard: "ib",
+
+      gradient: "from-rose-950/30 via-[#17181A] to-[#121514]",
+
+      accentBorder: "hover:border-rose-400/50",
+
+      glow: "shadow-glow-red",
+
+      icon: "graduationCap"
+
+    }
+  ];
+
+  // Instagram Social Posts & Reels (ASH-Style Social Feed)
+  const instagramFeed = [
+    {
+      id: "reel-frank-freese",
+
+      type: "reel",
+
+      duration: "0:48",
+
+      views: "4.2k",
+
+      likes: 384,
+      comments: 52,
+      date: "Inauguration Reel",
+
+      title: "Historic Inauguration with Mr. Frank Freese",
+
+      caption: "A truly historic day for Two Wise Academy! Honoured to have Mr. Frank Freese, legendary former Principal of The Bishop's School, Pune, inaugurate our learning spaces at Prasad Apartments, Gultekdi. Inspiring our faculty and students to learn smart and think wise! 🦉✨",
+      hashtags: ['#TwoWiseAcademy', '#FrankFreese', '#BishopsPune', '#Inauguration', '#PuneTuitions', '#LearnSmartThinkWise'],
+      link: frankFreeseReelUrl,
+      isOfficialReel: true,
+      tag: "Key Milestone",
+
+      tagColor: "bg-emerald-950/70 text-emerald-300 border-emerald-500/30"
+
+    },
+    {
+      id: "reel-reva-math",
+
+      type: "reel",
+
+      duration: "1:12",
+
+      views: "3.1k",
+
+      likes: 295,
+      comments: 38,
+      date: "Classroom Insight",
+
+      title: "Math Conceptual Breakdown with Reva Mehta",
+
+      caption: "Formulas should never be memorised blindly when their visual geometry makes total sense! Watch Founder Reva Mehta (MBA SIBM Pune) break down tough ICSE & CBSE algebraic identities with intuitive sketches. 📐💡",
+
+      hashtags: ['#MathMadeSimple', '#RevaMehta', '#ConceptFirst', '#ICSEMath', '#CBSEMath', '#TwoWiseWay'],
+      link: frankFreeseReelUrl,
+      isOfficialReel: false,
+      tag: "Faculty Masterclass",
+
+      tagColor: "bg-rose-950/70 text-rose-300 border-rose-500/30"
+
+    },
+    {
+      id: "photo-campus-tour",
+
+      type: "photo",
+
+      likes: 242,
+      comments: 21,
+      date: "Gultekdi Center",
+
+      title: "Inside Our Modern Classrooms at Prasad Apartments",
+
+      caption: "Distraction-free, air-conditioned, and ergonomically designed for small-group coaching (under 12 students per batch). Centrally located at Prasad Apartments, T.M.V. Colony, Gultekdi, Pune. 📚🌿",
+
+      hashtags: ['#PuneClassrooms', '#Gultekdi', '#SmallBatches', '#StudyInPune', '#TwoWiseCampus'],
+      link: officialInstagramUrl,
+      isOfficialReel: false,
+      tag: "Campus Life",
+
+      tagColor: "bg-emerald-950/70 text-emerald-300 border-emerald-500/30"
+
+    },
+    {
+      id: "reel-diya-finance",
+
+      type: "reel",
+
+      duration: "0:56",
+
+      views: "2.6k",
+
+      likes: 218,
+      comments: 29,
+      date: "Foundation Spotlight",
+
+      title: "Financial & Logical Intuition with Diya Shah",
+
+      caption: "Co-Founder Diya Shah (BBA Finance) engaging Grades 4–8 students in commercial math and logic puzzles. Developing quantitative intuition early builds fearless learners! 🧠🔢",
+
+      hashtags: ['#CriticalThinking', '#DiyaShah', '#FoundationYears', '#MiddleSchoolMath', '#SmartKids'],
+      link: frankFreeseReelUrl,
+      isOfficialReel: false,
+      tag: "Faculty Masterclass",
+
+      tagColor: "bg-rose-950/70 text-rose-300 border-rose-500/30"
+
+    },
+    {
+      id: "photo-diagnostic-camp",
+
+      type: "photo",
+
+      likes: 188,
+      comments: 16,
+      date: "Academic Assessment",
+
+      title: "Personalised Diagnostic Mocks & 1-on-1 Feedback",
+
+      caption: "Every learner has unique strengths and hidden bottlenecks. Our weekend diagnostic evaluations give parents a crystal-clear roadmap before school exams arrive. 🎯📊",
+
+      hashtags: ['#PersonalisedLearning', '#BoardExamPrep', '#DiagnosticAssessment', '#Grades4to12'],
+      link: officialInstagramUrl,
+      isOfficialReel: false,
+      tag: "Assessment Camp",
+
+      tagColor: "bg-emerald-950/70 text-emerald-300 border-emerald-500/30"
+
+    },
+    {
+      id: "photo-doubt-clearing",
+
+      type: "photo",
+
+      likes: 265,
+      comments: 34,
+      date: "Student Culture",
+
+      title: "The Confidence to Ask “Why?”: Doubt Clearing Sessions",
+
+      caption: "In small batches of under 12, no student ever gets overlooked. Safe, supportive classrooms where questions are celebrated and answered completely. 🦉💚",
+
+      hashtags: ['#DoubtClearing', '#StudentCare', '#InteractiveLearning', '#PuneTuitionCenter'],
+      link: officialInstagramUrl,
+      isOfficialReel: false,
+      tag: "Student Culture",
+
+      tagColor: "bg-emerald-950/70 text-emerald-300 border-emerald-500/30"
+
+    }
+  ];
+
+  // News & School Stories (ASH-Style News Column)
+  const newsStories = [
+    {
+      id: "news-1",
+
+      tag: "Special Inauguration",
+
+      tagColor: "bg-emerald-950/80 text-emerald-300 border-emerald-500/30",
+
+      date: "October 2026",
+
+      title: "Inauguration by Mr. Frank Freese: A Proud Milestone for Two Wise Academy",
+
+      summary: "Legendary former Principal of The Bishop's School, Pune, Mr. Frank Freese, graced Two Wise Academy to officially inaugurate our center in Gultekdi. He highlighted the transformative value of dedicated mentorship, concept clarity, and small-batch accountability.",
+
+      author: "Two Wise Academy News Desk",
+
+      linkAction: () => setSelectedInstagramPost(instagramFeed[0])
+    },
+    {
+      id: "news-2",
+
+      tag: "Academic Insight",
+
+      tagColor: "bg-rose-950/80 text-rose-300 border-rose-500/30",
+
+      date: "Faculty Editorial",
+
+      title: "Why Capping Batches Under 12 Unlocks Rapid Conceptual Breakthroughs",
+
+      summary: "Reva Mehta (MBA SIBM Pune) shares pedagogical findings from 6+ years of classroom teaching: when teachers can observe every pen-stroke, student hesitations disappear in days instead of months.",
+
+      author: "Reva Mehta, Co-Founder",
+
+      linkAction: () => scrollToSection('faculty')
+    },
+    {
+      id: "news-3",
+
+      tag: "Foundation Pedagogy",
+
+      tagColor: "bg-emerald-950/80 text-emerald-300 border-emerald-500/30",
+
+      date: "Methodology",
+
+      title: "Connecting Classroom Numbers to Real-World Economics for Grades 4–8",
+
+      summary: "Diya Shah (BBA Finance) explains how practical financial reasoning and puzzle-based arithmetic transform early middle school math from an intimidating chore into an exciting game.",
+
+      author: "Diya Shah, Co-Founder",
+
+      linkAction: () => scrollToSection('faculty')
+    },
+    {
+      id: "news-4",
+
+      tag: "Enrollment Notice",
+
+      tagColor: "bg-rose-950/80 text-rose-300 border-rose-500/30",
+
+      date: "Admissions 2026–27",
+
+      title: "Admissions Open for Grades 4–12: Book Your Free Diagnostic Assessment",
+
+      summary: "Parents across Pune can now book an in-person diagnostic test and academic strategy session at Prasad Apartments, T.M.V. Colony, Gultekdi.",
+
+      author: "Admissions Office",
+
+      linkAction: () => scrollToSection('contact')
+    }
+  ];
+
+  // Filtered Social Posts
+  const filteredSocialPosts = useMemo(() => {
+    if (activeSocialFilter === 'reels') return instagramFeed.filter(p => p.type === 'reel');
+    if (activeSocialFilter === 'photos') return instagramFeed.filter(p => p.type === 'photo');
+    return instagramFeed;
+  }, [activeSocialFilter]);
+
   return (
     <div className="min-h-screen flex flex-col bg-[#0A0E0C] text-gray-100 selection:bg-emerald-500/30 selection:text-emerald-200 font-sans relative overflow-x-hidden">
 
       {/* TOP ANNOUNCEMENT BAR */}
-      <div className="bg-[#0D1511] border-b border-emerald-900/40 px-4 py-2.5 text-xs font-medium text-emerald-200/90 text-center flex items-center justify-center gap-2 relative z-50">
+      <div className="bg-[#0D1511] border-b border-emerald-900/40 px-4 py-2 text-xs font-medium text-emerald-200/90 text-center flex items-center justify-center gap-2 relative z-50">
         <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
-        <span>Admissions Open for 2026–27 • Offline Classroom Coaching in Pune • Grades 4 to 12 (ICSE, CBSE, IB, IGCSE)</span>
+        <span>Admissions Open for 2026–27 • Offline Classroom Coaching in Gultekdi, Pune • Grades 4 to 12 (ICSE, CBSE, IB, IGCSE)</span>
         <button 
           onClick={() => scrollToSection('contact')}
           className="ml-2 underline font-semibold text-emerald-300 hover:text-emerald-200 hidden sm:inline"
         >
-          Book a Consultation →
+          Book Consultation →
         </button>
       </div>
 
       {/* ========================================================================= */}
-      {/* SECTION 1: HEADER & NAVIGATION */}
+      {/* HEADER & NAVIGATION */}
       {/* ========================================================================= */}
       <header className={`sticky top-0 z-40 transition-all duration-300 ${scrolled ? 'nav-glass-dark border-b border-white/5 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)]' : 'bg-[#0A0E0C]/90 py-4'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -322,24 +728,25 @@ function App() {
             </a>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-1 lg:space-x-1.5">
+            <nav className="hidden lg:flex items-center space-x-1">
               <a href="#hero" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
                 Home
               </a>
-              <a href="#about" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
-                About Us
+              <a href="#divisions" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
+                Divisions (4–12)
               </a>
               <a href="#boards" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
-                Programs
-              </a>
-              <a href="#approach" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
-                Our Approach
-              </a>
-              <a href="#why-us" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
-                Why Two Wise
+                Curricula
               </a>
               <a href="#faculty" className="px-3 py-2 text-sm font-medium text-emerald-300 hover:text-emerald-200 hover:bg-emerald-950/40 rounded-xl transition-colors">
                 Faculty
+              </a>
+              <a href="#happenings" className="px-3 py-2 text-sm font-medium text-rose-300 hover:text-rose-200 hover:bg-rose-950/40 rounded-xl transition-colors flex items-center gap-1.5">
+                <Icon name="instagram" className="w-3.5 h-3.5 text-rose-400" />
+                <span>Happenings & Reels</span>
+              </a>
+              <a href="#why-us" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
+                Why Us
               </a>
               <a href="#contact" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
                 Contact
@@ -347,7 +754,7 @@ function App() {
             </nav>
 
             {/* Right Action Buttons */}
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden sm:flex items-center gap-2.5">
               <a
                 href={whatsappUrl}
                 target="_blank"
@@ -369,7 +776,7 @@ function App() {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="flex md:hidden items-center gap-2">
+            <div className="flex lg:hidden items-center gap-2">
               <button
                 onClick={() => scrollToSection('contact')}
                 className="px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-400 text-gray-950"
@@ -390,7 +797,7 @@ function App() {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-b border-white/10 bg-[#0A0E0C]/98 px-4 pt-3 pb-6 space-y-3">
+          <div className="lg:hidden border-b border-white/10 bg-[#0A0E0C]/98 px-4 pt-3 pb-6 space-y-3">
             <div className="flex flex-col space-y-1">
               <a 
                 onClick={() => scrollToSection('hero')} 
@@ -399,22 +806,29 @@ function App() {
                 Home
               </a>
               <a 
-                onClick={() => scrollToSection('about')} 
+                onClick={() => scrollToSection('divisions')} 
                 className="px-3 py-2.5 text-base font-medium text-gray-200 hover:bg-white/5 rounded-xl cursor-pointer"
               >
-                About Us
+                School Divisions (Grades 4–12)
               </a>
               <a 
                 onClick={() => scrollToSection('boards')} 
                 className="px-3 py-2.5 text-base font-medium text-gray-200 hover:bg-white/5 rounded-xl cursor-pointer"
               >
-                Programs (Boards)
+                Curricula (ICSE, CBSE, IB, IGCSE)
               </a>
               <a 
-                onClick={() => scrollToSection('approach')} 
-                className="px-3 py-2.5 text-base font-medium text-gray-200 hover:bg-white/5 rounded-xl cursor-pointer"
+                onClick={() => scrollToSection('faculty')} 
+                className="px-3 py-2.5 text-base font-medium text-emerald-300 hover:bg-emerald-950/30 rounded-xl cursor-pointer"
               >
-                Our Approach
+                Faculty & Mentors
+              </a>
+              <a 
+                onClick={() => scrollToSection('happenings')} 
+                className="px-3 py-2.5 text-base font-medium text-rose-300 hover:bg-rose-950/30 rounded-xl cursor-pointer flex items-center gap-2"
+              >
+                <Icon name="instagram" className="w-4 h-4 text-rose-400" />
+                <span>Happenings & Reels</span>
               </a>
               <a 
                 onClick={() => scrollToSection('why-us')} 
@@ -423,1640 +837,472 @@ function App() {
                 Why Two Wise
               </a>
               <a 
-                onClick={() => scrollToSection('faculty')} 
-                className="px-3 py-2.5 text-base font-medium text-emerald-300 hover:bg-white/5 rounded-xl cursor-pointer"
-              >
-                Faculty & Mentors
-              </a>
-              <a 
                 onClick={() => scrollToSection('contact')} 
                 className="px-3 py-2.5 text-base font-medium text-gray-200 hover:bg-white/5 rounded-xl cursor-pointer"
               >
-                Contact
+                Contact & Location
               </a>
             </div>
-
+            
             <div className="pt-2 border-t border-white/10 flex flex-col gap-2">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-950/80 border border-emerald-500/40 text-emerald-200 font-semibold text-sm"
+                className="flex items-center justify-center gap-2 py-3 text-sm font-semibold text-emerald-300 bg-emerald-950/80 border border-emerald-500/30 rounded-xl"
               >
-                <Icon name="whatsapp" className="w-5 h-5 text-emerald-400" />
-                <span>WhatsApp: +91 90496 50666</span>
+                <Icon name="whatsapp" className="w-4 h-4 text-emerald-400" />
+                <span>Chat on WhatsApp (9049650666)</span>
               </a>
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="w-full py-3 rounded-xl bg-emerald-400 text-gray-950 font-bold text-sm shadow-glow-green"
-              >
-                Enquire Now
-              </button>
             </div>
           </div>
         )}
       </header>
 
       {/* ========================================================================= */}
-      {/* SECTION 1: HERO SECTION */}
+      {/* SECTION 1: ASH.NL STYLE CINEMATIC OPENING (HERO BANNER) */}
       {/* ========================================================================= */}
-      <section id="hero" className="relative pt-10 pb-20 md:pt-16 md:pb-28 overflow-hidden bg-dark-grid">
-        {/* Rich Ambient Glowing Orbs (Pastel Green & Pastel Red/Rose) */}
-        <div className="absolute top-10 right-10 w-[480px] h-[480px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none -z-0"></div>
-        <div className="absolute bottom-10 left-5 w-[420px] h-[420px] bg-rose-500/8 rounded-full blur-[140px] pointer-events-none -z-0"></div>
-        <div className="absolute top-1/2 left-1/3 w-[360px] h-[360px] bg-teal-500/8 rounded-full blur-[150px] pointer-events-none -z-0"></div>
+      <section id="hero" className="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden bg-dark-grid">
+        {/* Luxury Radial Ambient Glowing Orbs */}
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[680px] h-[680px] bg-emerald-500/10 rounded-full blur-[170px] pointer-events-none -z-0"></div>
+        <div className="absolute top-40 right-4 w-[420px] h-[420px] bg-rose-500/8 rounded-full blur-[160px] pointer-events-none -z-0"></div>
+        <div className="absolute bottom-10 left-4 w-[460px] h-[460px] bg-teal-500/8 rounded-full blur-[160px] pointer-events-none -z-0"></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            
-            {/* Left Column: Headlines & CTAs */}
-            <div className="lg:col-span-7 space-y-6 text-left">
-              
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-semibold text-emerald-300 shadow-[0_0_20px_rgba(52,211,153,0.15)]">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]"></span>
-                <span>Offline Classroom Coaching • Gultekdi, Pune</span>
-              </div>
-
-              {/* Main Headline */}
-              <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12]">
-                Learn Smart. <br />
-                <span className="relative inline-block">
-                  <span className="bg-gradient-to-r from-emerald-300 via-teal-200 to-rose-300 bg-clip-text text-transparent">
-                    Think Wise.
-                  </span>
-                  {/* Subtle pastel underline glow */}
-                  <span className="absolute bottom-1 left-0 w-full h-1 bg-gradient-to-r from-emerald-400/60 via-teal-400/60 to-rose-400/60 rounded-full blur-[1px]"></span>
-                </span>
-              </h1>
-
-              {/* Supporting Headline */}
-              <h2 className="font-heading text-xl sm:text-2xl font-semibold text-gray-200">
-                Building brighter minds, one concept at a time.
-              </h2>
-
-              {/* Description */}
-              <p className="text-base sm:text-lg text-gray-300 max-w-xl leading-relaxed">
-                Personalised classroom learning for students from <strong className="text-emerald-300 font-semibold">Grades 4–12</strong> across <span className="font-semibold text-rose-300">ICSE</span>, <span className="font-semibold text-emerald-300">CBSE</span>, <span className="font-semibold text-amber-200">IB</span> and <span className="font-semibold text-teal-300">IGCSE</span> boards.
-              </p>
-
-              {/* CTAs */}
-              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
-                <button
-                  onClick={() => scrollToSection('boards')}
-                  className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl font-heading font-bold text-base bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-300 text-gray-950 hover:brightness-105 transition-all shadow-[0_0_30px_rgba(110,231,183,0.35)] hover:shadow-[0_0_40px_rgba(110,231,183,0.5)] active:scale-95"
-                >
-                  <span>Explore Our Programs</span>
-                  <Icon name="arrowRight" className="w-4 h-4" />
-                </button>
-
-                <button
-                  onClick={() => scrollToSection('contact')}
-                  className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl font-heading font-semibold text-base bg-white/5 hover:bg-white/10 text-white border border-rose-400/30 hover:border-rose-400/60 transition-all shadow-[0_0_20px_rgba(253,164,175,0.15)] active:scale-95"
-                >
-                  <span className="text-rose-200">Enquire Now</span>
-                </button>
-              </div>
-
-              {/* Quick Trust Highlights */}
-              <div className="pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div className="p-3 rounded-2xl bg-[#111714]/80 border border-white/5 space-y-0.5">
-                  <span className="font-heading font-bold text-lg text-emerald-300 block">4 Boards</span>
-                  <span className="text-xs text-gray-400">ICSE, CBSE, IB, IGCSE</span>
-                </div>
-                <div className="p-3 rounded-2xl bg-[#111714]/80 border border-white/5 space-y-0.5">
-                  <span className="font-heading font-bold text-lg text-rose-300 block">Grades 4–12</span>
-                  <span className="text-xs text-gray-400">All Subjects Covered</span>
-                </div>
-                <div className="p-3 rounded-2xl bg-[#111714]/80 border border-white/5 space-y-0.5">
-                  <span className="font-heading font-bold text-lg text-emerald-300 block">Small Batches</span>
-                  <span className="text-xs text-gray-400">Individual Attention</span>
-                </div>
-                <div className="p-3 rounded-2xl bg-[#111714]/80 border border-white/5 space-y-0.5">
-                  <span className="font-heading font-bold text-lg text-rose-300 block">Pune Center</span>
-                  <span className="text-xs text-gray-400">Gultekdi Classrooms</span>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Right Column: Visual Composition with floating academic elements */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative mx-auto max-w-md lg:max-w-none">
-                
-                {/* Main Classroom Illustration Card */}
-                <div className="relative rounded-3xl p-6 sm:p-8 bg-[#121915]/90 border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.7)] backdrop-blur-xl overflow-hidden">
-                  
-                  {/* Subtle top background inside card */}
-                  <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-emerald-500/10 to-transparent -z-0"></div>
-
-                  {/* Header inside card */}
-                  <div className="relative z-10 flex items-center justify-between pb-6 border-b border-white/10">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-glow-green">
-                        <Icon name="graduationCap" className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <h4 className="font-heading font-bold text-sm text-white">The Two Wise Classroom</h4>
-                        <p className="text-xs text-gray-400">Engaging • Offline • Gultekdi, Pune</p>
-                      </div>
-                    </div>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-950 border border-emerald-500/40 text-emerald-300">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                      Active Batches
-                    </span>
-                  </div>
-
-                  {/* Contemporary Dark Classroom Vector Graphic */}
-                  <div className="relative z-10 my-6 py-4">
-                    <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto drop-shadow-lg">
-                      {/* Classroom floor & wall */}
-                      <rect x="10" y="20" width="380" height="200" rx="16" fill="#0C120F" stroke="#1F2E25" strokeWidth="1.5" />
-                      <path d="M10 170L390 170" stroke="#1F2E25" strokeWidth="1.5" strokeDasharray="4 4" />
-                      
-                      {/* Modern Digital Whiteboard */}
-                      <rect x="70" y="35" width="260" height="90" rx="10" fill="#131D18" stroke="#34D399" strokeWidth="1.5" strokeOpacity="0.4" />
-                      <line x1="90" y1="55" x2="160" y2="55" stroke="#34D399" strokeWidth="3" strokeLinecap="round" />
-                      <line x1="90" y1="70" x2="230" y2="70" stroke="#FDA4AF" strokeWidth="3" strokeLinecap="round" strokeOpacity="0.8" />
-                      <line x1="90" y1="85" x2="190" y2="85" stroke="#6EE7B7" strokeWidth="3" strokeLinecap="round" strokeOpacity="0.6" />
-                      <circle cx="280" cy="80" r="22" fill="#1C2E24" stroke="#34D399" strokeWidth="1.5" />
-                      <path d="M272 80L278 86L290 74" stroke="#86EFAC" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                      <text x="90" y="105" fill="#86EFAC" fontSize="11" fontWeight="600" fontFamily="sans-serif">Concept Clarity &gt; Rote Learning</text>
-
-                      {/* Collaborative Classroom Desks */}
-                      <rect x="60" y="155" width="110" height="42" rx="8" fill="#18251E" stroke="#2D4235" strokeWidth="1" />
-                      <rect x="230" y="155" width="110" height="42" rx="8" fill="#241B1F" stroke="#4A2E38" strokeWidth="1" />
-
-                      {/* Student 1 (Desk Left) */}
-                      <circle cx="115" cy="140" r="14" fill="#34D399" />
-                      <circle cx="115" cy="136" r="6" fill="#0A0E0C" />
-                      {/* Notebook */}
-                      <rect x="95" y="162" width="24" height="16" rx="2" fill="#121D17" stroke="#34D399" strokeWidth="1" />
-
-                      {/* Student 2 (Desk Right) */}
-                      <circle cx="285" cy="140" r="14" fill="#FB7185" />
-                      <circle cx="285" cy="136" r="6" fill="#0A0E0C" />
-                      {/* Tablet / Book */}
-                      <rect x="265" y="162" width="26" height="16" rx="3" fill="#1E1418" stroke="#FB7185" strokeWidth="1" />
-
-                      {/* Teacher / Mentor */}
-                      <circle cx="200" cy="115" r="16" fill="#F3F4F6" />
-                      <circle cx="200" cy="110" r="7" fill="#0A0E0C" />
-                      <path d="M192 135C192 125 208 125 208 135" stroke="#F3F4F6" strokeWidth="3" />
-                      {/* Pointer / Light */}
-                      <path d="M210 120L230 100" stroke="#86EFAC" strokeWidth="2.5" strokeLinecap="round" />
-                    </svg>
-                  </div>
-
-                  {/* Micro Indicators / Pills inside */}
-                  <div className="relative z-10 grid grid-cols-2 gap-3 pt-2">
-                    <div className="flex items-center gap-2 p-2.5 rounded-xl bg-emerald-950/70 border border-emerald-500/30">
-                      <Icon name="users" className="w-4 h-4 text-emerald-400" />
-                      <span className="text-xs font-semibold text-emerald-200">8–10 Students Max</span>
-                    </div>
-                    <div className="flex items-center gap-2 p-2.5 rounded-xl bg-rose-950/70 border border-rose-500/30">
-                      <Icon name="sparkles" className="w-4 h-4 text-rose-400" />
-                      <span className="text-xs font-semibold text-rose-200">Zero Rote Learning</span>
-                    </div>
-                  </div>
-
-                </div>
-
-                {/* Floating Academic Element 1: Top Left */}
-                <div className="absolute -top-5 -left-4 sm:-left-6 p-3.5 rounded-2xl bg-[#141C18]/90 border border-emerald-500/30 shadow-glow-green backdrop-blur-xl animate-float flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-emerald-300">
-                    <Icon name="target" className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold text-white block leading-none">Concept First</span>
-                    <span className="text-[10px] text-emerald-300/80">Every Topic Understood</span>
-                  </div>
-                </div>
-
-                {/* Floating Academic Element 2: Bottom Right */}
-                <div className="absolute -bottom-5 -right-3 sm:-right-6 p-3.5 rounded-2xl bg-[#1A1417]/90 border border-rose-500/30 shadow-glow-red backdrop-blur-xl animate-float-reverse flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl bg-rose-950 border border-rose-500/40 flex items-center justify-center text-rose-300">
-                    <Icon name="compass" className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold text-white block leading-none">All 4 Curricula</span>
-                    <span className="text-[10px] text-rose-300/80">Grades 4–12 Support</span>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* SECTION 2: INTRODUCTION */}
-      {/* ========================================================================= */}
-      <section id="about" className="py-20 bg-[#0B100D] relative border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8">
           
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="px-4 py-1.5 rounded-full bg-rose-950/60 border border-rose-500/30 text-xs font-bold tracking-wide uppercase text-rose-300 shadow-[0_0_15px_rgba(253,164,175,0.15)]">
-              Our Educational Philosophy
-            </span>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              Education That Goes Beyond Textbooks.
-            </h2>
-            <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-              At Two Wise Academy, we believe every student learns differently. Our approach combines structured academic guidance, individual attention and conceptual learning to help students develop the confidence to excel.
+          {/* Pre-title Badge */}
+          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#111A15] border border-emerald-500/30 text-xs font-semibold text-emerald-300 shadow-[0_0_25px_rgba(52,211,153,0.15)]">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.9)]"></span>
+            <span>Admissions Open for Grades 4–12 • Offline Coaching in Gultekdi, Pune</span>
+          </div>
+
+          {/* ASH.nl Grand Statement Headline */}
+          <div className="space-y-4">
+            <h1 className="font-heading text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.08]">
+              Welcome to Two Wise Academy, <br />
+              <span className="bg-gradient-to-r from-emerald-300 via-teal-200 to-rose-300 bg-clip-text text-transparent">
+                where learning comes to life
+              </span>
+            </h1>
+
+            {/* Sub-tagline */}
+            <p className="font-heading text-xl sm:text-2xl font-semibold text-rose-200/90 tracking-wide">
+              “Learn Smart. Think Wise.”
             </p>
           </div>
 
-          {/* Three Visual Highlights */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            {/* Highlight 1: Understand Better */}
-            <div className="p-8 rounded-3xl bg-[#121915]/90 border border-emerald-500/20 shadow-glow-green hover:border-emerald-400/40 hover-card-lift space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-300 shadow-sm">
-                <Icon name="lightbulb" className="w-7 h-7" />
-              </div>
-              <h3 className="font-heading text-2xl font-bold text-white">
-                Understand Better
-              </h3>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                We break down complex formulas and theories into relatable everyday concepts. No blindly memorising steps without understanding why they work.
-              </p>
-              <ul className="space-y-2 pt-2 text-xs font-medium text-gray-300">
-                <li className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-emerald-400" />
-                  <span>First-principles conceptual foundation</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-emerald-400" />
-                  <span>Interactive question-and-answer dialogue</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Highlight 2: Learn Smarter */}
-            <div className="p-8 rounded-3xl bg-[#181316]/90 border border-rose-500/20 shadow-glow-red hover:border-rose-400/40 hover-card-lift space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300 shadow-sm">
-                <Icon name="target" className="w-7 h-7" />
-              </div>
-              <h3 className="font-heading text-2xl font-bold text-white">
-                Learn Smarter
-              </h3>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                Master active learning habits, effective revision pacing, and clear problem-solving frameworks that save hours of unproductive cramming.
-              </p>
-              <ul className="space-y-2 pt-2 text-xs font-medium text-gray-300">
-                <li className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-rose-400" />
-                  <span>Structured step-by-step study methods</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-rose-400" />
-                  <span>Targeted practice on high-yield questions</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Highlight 3: Grow Confidently */}
-            <div className="p-8 rounded-3xl bg-[#131917]/90 border border-teal-500/20 shadow-[0_0_30px_rgba(45,212,191,0.1)] hover:border-teal-400/40 hover-card-lift space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-teal-950/80 border border-teal-500/30 flex items-center justify-center text-teal-300 shadow-sm">
-                <Icon name="smile" className="w-7 h-7" />
-              </div>
-              <h3 className="font-heading text-2xl font-bold text-white">
-                Grow Confidently
-              </h3>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                When doubts are welcomed and mistakes become learning opportunities, students naturally develop self-reliance, curiosity, and examination poise.
-              </p>
-              <ul className="space-y-2 pt-2 text-xs font-medium text-gray-300">
-                <li className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-teal-400" />
-                  <span>Judgment-free doubt clarification</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-teal-400" />
-                  <span>Confidence to tackle unfamiliar problems</span>
-                </li>
-              </ul>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* SECTION 3: BOARDS WE CATER TO */}
-      {/* ========================================================================= */}
-      <section id="boards" className="py-20 bg-[#0A0E0C] relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="px-4 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-bold tracking-wide uppercase text-emerald-300 shadow-[0_0_15px_rgba(52,211,153,0.15)]">
-              Targeted Board Excellence
-            </span>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              One Academy. Multiple Curricula.
-            </h2>
-            <p className="text-base sm:text-lg text-gray-300">
-              Comprehensive academic support across leading educational boards for Grades 4 to 12.
-            </p>
-          </div>
-
-          {/* Four Board Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            
-            {/* Card 1: ICSE & ISC */}
-            <div className="p-7 rounded-3xl bg-[#121915]/90 border border-emerald-500/25 shadow-glow-green hover:border-emerald-400/50 hover-card-lift flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="w-12 h-12 rounded-2xl bg-emerald-950 border border-emerald-500/30 flex items-center justify-center font-heading font-black text-lg text-emerald-300">
-                    ICSE
-                  </span>
-                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#1A2520] text-emerald-200 border border-emerald-500/20">
-                    Grades 4–12
-                  </span>
-                </div>
-                <div>
-                  <h3 className="font-heading text-xl font-bold text-white">
-                    ICSE & ISC
-                  </h3>
-                  <p className="text-xs text-emerald-300/70 font-medium">CISCE — ICSE (Grades 4–10) & ISC (Grades 11–12)</p>
-                </div>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  In-depth subject mastery with strong emphasis on English language precision, descriptive scientific reasoning, and analytical Mathematics.
-                </p>
-                <div className="space-y-1.5 pt-2 text-xs text-gray-300">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                    <span>Detailed board exam answering techniques</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                    <span>Project & practical application guidance</span>
-                  </div>
-                </div>
-              </div>
-              <div className="pt-6">
-                <button 
-                  onClick={() => {
-                    setFormData(prev => ({ ...prev, board: 'ICSE' }));
-                    scrollToSection('contact');
-                  }}
-                  className="w-full py-2.5 rounded-xl bg-emerald-950/60 hover:bg-emerald-900/80 text-emerald-200 font-semibold text-xs border border-emerald-500/30 transition-colors"
-                >
-                  Enquire for ICSE / ISC →
-                </button>
-              </div>
-            </div>
-
-            {/* Card 2: CBSE */}
-            <div className="p-7 rounded-3xl bg-[#181316]/90 border border-rose-500/25 shadow-glow-red hover:border-rose-400/50 hover-card-lift flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="w-12 h-12 rounded-2xl bg-rose-950 border border-rose-500/30 flex items-center justify-center font-heading font-black text-lg text-rose-300">
-                    CBSE
-                  </span>
-                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#261A1E] text-rose-200 border border-rose-500/20">
-                    Grades 4–12
-                  </span>
-                </div>
-                <div>
-                  <h3 className="font-heading text-xl font-bold text-white">
-                    CBSE Board
-                  </h3>
-                  <p className="text-xs text-rose-300/70 font-medium">Central Board of Secondary Education</p>
-                </div>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  Solid NCERT foundation, competency-based question preparation, and critical conceptual clarity building strong fundamentals for higher grades.
-                </p>
-                <div className="space-y-1.5 pt-2 text-xs text-gray-300">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
-                    <span>NCERT line-by-line concept mastery</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
-                    <span>Exemplar & case-based questions practice</span>
-                  </div>
-                </div>
-              </div>
-              <div className="pt-6">
-                <button 
-                  onClick={() => {
-                    setFormData(prev => ({ ...prev, board: 'CBSE' }));
-                    scrollToSection('contact');
-                  }}
-                  className="w-full py-2.5 rounded-xl bg-rose-950/60 hover:bg-rose-900/80 text-rose-200 font-semibold text-xs border border-rose-500/30 transition-colors"
-                >
-                  Enquire for CBSE →
-                </button>
-              </div>
-            </div>
-
-            {/* Card 3: IB */}
-            <div className="p-7 rounded-3xl bg-[#151714]/90 border border-amber-500/20 hover:border-amber-400/40 hover-card-lift flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="w-12 h-12 rounded-2xl bg-amber-950 border border-amber-500/30 flex items-center justify-center font-heading font-black text-lg text-amber-300">
-                    IB
-                  </span>
-                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#262217] text-amber-200 border border-amber-500/20">
-                    Grades 4–12
-                  </span>
-                </div>
-                <div>
-                  <h3 className="font-heading text-xl font-bold text-white">
-                    IB (MYP & DP)
-                  </h3>
-                  <p className="text-xs text-amber-300/70 font-medium">International Baccalaureate</p>
-                </div>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  Inquiry-based learning tailored to IB criteria (A, B, C, D), global context integration, analytical writing, and independent research skills.
-                </p>
-                <div className="space-y-1.5 pt-2 text-xs text-gray-300">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-                    <span>Criterion-referenced assessment prep</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-                    <span>Interdisciplinary & MYP/DP readiness</span>
-                  </div>
-                </div>
-              </div>
-              <div className="pt-6">
-                <button 
-                  onClick={() => {
-                    setFormData(prev => ({ ...prev, board: 'IB' }));
-                    scrollToSection('contact');
-                  }}
-                  className="w-full py-2.5 rounded-xl bg-amber-950/60 hover:bg-amber-900/80 text-amber-200 font-semibold text-xs border border-amber-500/30 transition-colors"
-                >
-                  Enquire for IB →
-                </button>
-              </div>
-            </div>
-
-            {/* Card 4: IGCSE */}
-            <div className="p-7 rounded-3xl bg-[#121817]/90 border border-teal-500/20 hover:border-teal-400/40 hover-card-lift flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="w-12 h-12 rounded-2xl bg-teal-950 border border-teal-500/30 flex items-center justify-center font-heading font-black text-lg text-teal-300">
-                    IGCSE
-                  </span>
-                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#182522] text-teal-200 border border-teal-500/20">
-                    Grades 4–12
-                  </span>
-                </div>
-                <div>
-                  <h3 className="font-heading text-xl font-bold text-white">
-                    Cambridge IGCSE
-                  </h3>
-                  <p className="text-xs text-teal-300/70 font-medium">Cambridge — IGCSE & A-Levels (Grades 4–12)</p>
-                </div>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  Practical comprehension, structured past paper mastery, mark-scheme precision, and deep command-term understanding for Cambridge assessments.
-                </p>
-                <div className="space-y-1.5 pt-2 text-xs text-gray-300">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
-                    <span>Topic-wise past paper drill & examiner tips</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
-                    <span>Core & Extended curriculum support</span>
-                  </div>
-                </div>
-              </div>
-              <div className="pt-6">
-                <button 
-                  onClick={() => {
-                    setFormData(prev => ({ ...prev, board: 'IGCSE' }));
-                    scrollToSection('contact');
-                  }}
-                  className="w-full py-2.5 rounded-xl bg-teal-950/60 hover:bg-teal-900/80 text-teal-200 font-semibold text-xs border border-teal-500/30 transition-colors"
-                >
-                  Enquire for IGCSE →
-                </button>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* SECTION 4: SUBJECTS */}
-      {/* ========================================================================= */}
-      <section id="subjects" className="py-20 bg-[#0B100D] relative border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="px-4 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-bold tracking-wide uppercase text-emerald-300 shadow-[0_0_15px_rgba(52,211,153,0.15)]">
-              Holistic Academic Coverage
-            </span>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              All Subjects. One Learning Destination.
-            </h2>
-            <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-              From strengthening fundamentals to mastering advanced concepts, we provide academic support across all subjects and curriculum requirements for Grades 4–12.
-            </p>
-            
-            <div className="inline-block p-3 rounded-2xl bg-[#141C18] border border-emerald-500/25 text-xs font-medium text-emerald-200 mt-2 shadow-sm">
-              <strong className="font-semibold text-emerald-300">Note:</strong> We cater to <em>all subjects</em> across your child's syllabus. If a particular subject is not listed below, our faculty accommodates it within your board curriculum!
-            </div>
-          </div>
-
-          {/* Subject Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            
-            {/* Subject 1: Mathematics */}
-            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-emerald-500/30">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-300">
-                  <Icon name="calculator" className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="font-heading font-bold text-lg text-white">Mathematics</h3>
-                  <span className="text-xs text-emerald-400/80 font-medium">Grades 4 to 12</span>
-                </div>
-              </div>
-              <p className="text-xs text-gray-300 leading-relaxed mb-4">
-                Arithmetic, Pre-Algebra, Geometry, Trigonometry, Calculus, Statistics, Mensuration, and Applied Math deconstructed through step-by-step logic.
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Conceptual Clarity</span>
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Step-by-Step Proofs</span>
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Speed & Accuracy</span>
-              </div>
-            </div>
-
-            {/* Subject 2: Science */}
-            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-rose-500/30">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300">
-                  <Icon name="microscope" className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="font-heading font-bold text-lg text-white">Science</h3>
-                  <span className="text-xs text-rose-400/80 font-medium">Physics • Chemistry • Biology</span>
-                </div>
-              </div>
-              <p className="text-xs text-gray-300 leading-relaxed mb-4">
-                General Science for middle school; segregated Physics, Chemistry, Biology for secondary & senior secondary. Real-life demonstrations & clear diagrams.
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Visual Diagrams</span>
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Numerical Problem Solving</span>
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Scientific Reasoning</span>
-              </div>
-            </div>
-
-            {/* Subject 3: English */}
-            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-emerald-500/30">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-300">
-                  <Icon name="bookOpen" className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="font-heading font-bold text-lg text-white">English</h3>
-                  <span className="text-xs text-emerald-400/80 font-medium">Language & Literature</span>
-                </div>
-              </div>
-              <p className="text-xs text-gray-300 leading-relaxed mb-4">
-                Grammar mastery, comprehension synthesis, creative essay writing, letter/notice formats, Shakespearean drama & poetry analysis.
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Vocabulary Expansion</span>
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Creative Composition</span>
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Grammar Rules</span>
-              </div>
-            </div>
-
-            {/* Subject 4: Social Studies */}
-            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-rose-500/30">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300">
-                  <Icon name="globe" className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="font-heading font-bold text-lg text-white">Social Studies</h3>
-                  <span className="text-xs text-rose-400/80 font-medium">History • Civics • Geography</span>
-                </div>
-              </div>
-              <p className="text-xs text-gray-300 leading-relaxed mb-4">
-                Engaging narrative timelines, political systems, topographical map reading, weather systems, and environmental case studies.
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Timeline Mapping</span>
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Topo Map Skills</span>
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Structured Answers</span>
-              </div>
-            </div>
-
-            {/* Subject 5: Languages */}
-            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-emerald-500/30">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-300">
-                  <Icon name="languages" className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="font-heading font-bold text-lg text-white">Languages</h3>
-                  <span className="text-xs text-emerald-400/80 font-medium">Regional & Foreign Options</span>
-                </div>
-              </div>
-              <p className="text-xs text-gray-300 leading-relaxed mb-4">
-                Hindi, Marathi, Sanskrit, French, German, and Spanish. Emphasis on grammar, correct pronunciation, sentence framing, and literature.
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Hindi & Marathi</span>
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">French & German</span>
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Reading & Writing</span>
-              </div>
-            </div>
-
-            {/* Subject 6: Curriculum-Specific Subjects */}
-            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-rose-500/30">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300">
-                  <Icon name="cpu" className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="font-heading font-bold text-lg text-white">Curriculum-Specific</h3>
-                  <span className="text-xs text-rose-400/80 font-medium">Computers, Economics & More</span>
-                </div>
-              </div>
-              <p className="text-xs text-gray-300 leading-relaxed mb-4">
-                Computer Applications (Java, Python, ICT), Commercial Studies, Economics, Environmental Management, and senior secondary electives.
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Computer Apps</span>
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Economics</span>
-                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Commercial Studies</span>
-              </div>
-            </div>
-
-          </div>
-
-          {/* Quick Enquire CTA for subjects */}
-          <div className="mt-12 text-center">
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#16201A] hover:bg-[#1D2B23] text-emerald-200 border border-emerald-500/25 font-semibold text-sm transition-colors shadow-sm"
-            >
-              <span>Have a specific subject or textbook requirement? Ask us directly</span>
-              <Icon name="arrowRight" className="w-4 h-4" />
-            </button>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* SECTION 5: WHY CHOOSE TWO WISE? */}
-      {/* ========================================================================= */}
-      <section id="why-us" className="py-20 bg-[#0A0E0C] relative border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="px-4 py-1.5 rounded-full bg-rose-950/60 border border-rose-500/30 text-xs font-bold tracking-wide uppercase text-rose-300 shadow-[0_0_15px_rgba(253,164,175,0.15)]">
-              The Two Wise Advantage
-            </span>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              Because Every Student Deserves to Be Understood.
-            </h2>
-            <p className="text-base sm:text-lg text-gray-300">
-              We replace overwhelming tuition batches with personal mentorship, clarity and consistent academic growth.
-            </p>
-          </div>
-
-          {/* 8 Feature Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            
-            {/* 1. Individual Attention */}
-            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-emerald-500/30 space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-300">
-                <Icon name="heartHandshake" className="w-6 h-6" />
-              </div>
-              <h3 className="font-heading font-bold text-lg text-white">Individual Attention</h3>
-              <p className="text-xs text-gray-300 leading-relaxed">
-                Teaching that recognises every student's strengths and learning needs. No student is left behind in a sea of faces.
-              </p>
-            </div>
-
-            {/* 2. Small Batches */}
-            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-rose-500/30 space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300">
-                <Icon name="users" className="w-6 h-6" />
-              </div>
-              <h3 className="font-heading font-bold text-lg text-white">Small Batches</h3>
-              <p className="text-xs text-gray-300 leading-relaxed">
-                A more interactive classroom environment with meaningful student participation, discussions and personal mentoring.
-              </p>
-            </div>
-
-            {/* 3. Regular Tests & Assessments */}
-            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-emerald-500/30 space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-300">
-                <Icon name="clipboardCheck" className="w-6 h-6" />
-              </div>
-              <h3 className="font-heading font-bold text-lg text-white">Regular Tests & Assessments</h3>
-              <p className="text-xs text-gray-300 leading-relaxed">
-                Monitor academic progress and identify areas for improvement through structured, diagnostic chapter-wise tests.
-              </p>
-            </div>
-
-            {/* 4. Doubt-Solving Sessions */}
-            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-rose-500/30 space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300">
-                <Icon name="messageSquare" className="w-6 h-6" />
-              </div>
-              <h3 className="font-heading font-bold text-lg text-white">Doubt-Solving Sessions</h3>
-              <p className="text-xs text-gray-300 leading-relaxed">
-                Encourage students to ask questions freely and understand concepts thoroughly without hesitation or fear.
-              </p>
-            </div>
-
-            {/* 5. Personalised Study Plans */}
-            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-emerald-500/30 space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-300">
-                <Icon name="target" className="w-6 h-6" />
-              </div>
-              <h3 className="font-heading font-bold text-lg text-white">Personalised Study Plans</h3>
-              <p className="text-xs text-gray-300 leading-relaxed">
-                Structured academic guidance based on individual learning requirements, school timelines and revision milestones.
-              </p>
-            </div>
-
-            {/* 6. Parent-Teacher Feedback */}
-            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-rose-500/30 space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300">
-                <Icon name="sparkles" className="w-6 h-6" />
-              </div>
-              <h3 className="font-heading font-bold text-lg text-white">Parent-Teacher Feedback</h3>
-              <p className="text-xs text-gray-300 leading-relaxed">
-                Keep parents informed about their child's learning journey with timely, constructive and transparent communication.
-              </p>
-            </div>
-
-            {/* 7. Exam Preparation */}
-            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-emerald-500/30 space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-300">
-                <Icon name="award" className="w-6 h-6" />
-              </div>
-              <h3 className="font-heading font-bold text-lg text-white">Exam Preparation</h3>
-              <p className="text-xs text-gray-300 leading-relaxed">
-                Focused preparation to help students approach school exams and board examinations with confidence and clarity.
-              </p>
-            </div>
-
-            {/* 8. Experienced Faculty */}
-            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-rose-500/30 space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300">
-                <Icon name="graduationCap" className="w-6 h-6" />
-              </div>
-              <h3 className="font-heading font-bold text-lg text-white">Experienced Faculty</h3>
-              <p className="text-xs text-gray-300 leading-relaxed">
-                Learn under the direct mentorship of co-founders Reva Mehta (MBA, SIBM Pune) and Diya Shah (BBA Finance).
-              </p>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* SECTION 6: OUR LEARNING APPROACH */}
-      {/* ========================================================================= */}
-      <section id="approach" className="py-20 bg-[#0B100D] relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="px-4 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-bold tracking-wide uppercase text-emerald-300 shadow-[0_0_15px_rgba(52,211,153,0.15)]">
-              Pedagogical Framework
-            </span>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              Smart Learning. Step by Step.
-            </h2>
-            <p className="text-base sm:text-lg text-gray-300">
-              A structured four-phase methodology engineered for long-term retention and conceptual mastery.
-            </p>
-          </div>
-
-          {/* Desktop Horizontal Journey / Mobile Timeline */}
-          <div className="relative">
-            
-            {/* Connecting Line (Desktop) */}
-            <div className="hidden lg:block absolute top-1/2 left-10 right-10 h-0.5 bg-gradient-to-r from-emerald-500/40 via-rose-500/40 to-emerald-500/40 -translate-y-8 -z-0"></div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
-              
-              {/* STEP 01 */}
-              <div className="p-6 rounded-3xl bg-[#121915]/90 border border-emerald-500/25 shadow-glow-green hover-card-lift flex flex-col justify-between">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-extrabold font-heading bg-emerald-950 text-emerald-300 border border-emerald-500/30">
-                      STEP 01
-                    </span>
-                    <span className="w-8 h-8 rounded-full bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-xs font-bold text-emerald-300">
-                      1
-                    </span>
-                  </div>
-                  <h3 className="font-heading text-2xl font-bold text-white">
-                    Understand
-                  </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    Understand each student's academic requirements and learning style. We identify specific learning gaps before diving into syllabus topics.
-                  </p>
-                </div>
-                <div className="pt-6 border-t border-white/5 text-xs font-medium text-emerald-300 flex items-center gap-1.5">
-                  <Icon name="check" className="w-3.5 h-3.5" />
-                  <span>Diagnostic assessment & gap analysis</span>
-                </div>
-              </div>
-
-              {/* STEP 02 */}
-              <div className="p-6 rounded-3xl bg-[#181316]/90 border border-rose-500/25 shadow-glow-red hover-card-lift flex flex-col justify-between">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-extrabold font-heading bg-rose-950 text-rose-300 border border-rose-500/30">
-                      STEP 02
-                    </span>
-                    <span className="w-8 h-8 rounded-full bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-xs font-bold text-rose-300">
-                      2
-                    </span>
-                  </div>
-                  <h3 className="font-heading text-2xl font-bold text-white">
-                    Strengthen
-                  </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    Build a strong foundation through conceptual clarity. Complex principles are mapped to real-world examples with deep classroom discussions.
-                  </p>
-                </div>
-                <div className="pt-6 border-t border-white/5 text-xs font-medium text-rose-300 flex items-center gap-1.5">
-                  <Icon name="check" className="w-3.5 h-3.5" />
-                  <span>First-principles concept mastery</span>
-                </div>
-              </div>
-
-              {/* STEP 03 */}
-              <div className="p-6 rounded-3xl bg-[#121915]/90 border border-emerald-500/25 shadow-glow-green hover-card-lift flex flex-col justify-between">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-extrabold font-heading bg-emerald-950 text-emerald-300 border border-emerald-500/30">
-                      STEP 03
-                    </span>
-                    <span className="w-8 h-8 rounded-full bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-xs font-bold text-emerald-300">
-                      3
-                    </span>
-                  </div>
-                  <h3 className="font-heading text-2xl font-bold text-white">
-                    Practise
-                  </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    Reinforce understanding through regular practice, assignments and assessments. Students solve problems with increasing difficulty gradients.
-                  </p>
-                </div>
-                <div className="pt-6 border-t border-white/5 text-xs font-medium text-emerald-300 flex items-center gap-1.5">
-                  <Icon name="check" className="w-3.5 h-3.5" />
-                  <span>Curated question banks & drills</span>
-                </div>
-              </div>
-
-              {/* STEP 04 */}
-              <div className="p-6 rounded-3xl bg-[#181316]/90 border border-rose-500/25 shadow-glow-red hover-card-lift flex flex-col justify-between">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-extrabold font-heading bg-rose-950 text-rose-300 border border-rose-500/30">
-                      STEP 04
-                    </span>
-                    <span className="w-8 h-8 rounded-full bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-xs font-bold text-rose-300">
-                      4
-                    </span>
-                  </div>
-                  <h3 className="font-heading text-2xl font-bold text-white">
-                    Progress
-                  </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    Review progress, address challenges and continuously improve. Feedback loops with students and parents ensure consistent academic growth.
-                  </p>
-                </div>
-                <div className="pt-6 border-t border-white/5 text-xs font-medium text-rose-300 flex items-center gap-1.5">
-                  <Icon name="check" className="w-3.5 h-3.5" />
-                  <span>Continuous progress evaluation</span>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* SECTION: MEET OUR FOUNDERS & FACULTY */}
-      {/* ========================================================================= */}
-      <section id="faculty" className="py-20 bg-[#0A0E0C] relative border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="px-4 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-bold tracking-wide uppercase text-emerald-300 shadow-[0_0_15px_rgba(52,211,153,0.15)]">
-              Leadership & Educators
-            </span>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              Meet the Mentors Behind Two Wise.
-            </h2>
-            <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-              Founded by passionate, experienced educators dedicated to student-centric guidance, conceptual clarity, and building genuine academic confidence.
-            </p>
-          </div>
-
-          {/* Founders Profile Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-            
-            {/* 1. Reva Mehta */}
-            <div className="p-8 sm:p-10 rounded-4xl bg-[#121915]/95 border border-emerald-500/30 shadow-glow-green hover-card-lift flex flex-col justify-between space-y-6">
-              <div className="space-y-5">
-                
-                {/* Header Profile Info */}
-                <div className="flex items-start justify-between gap-4">
-                  <div className="space-y-1">
-                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-950 text-emerald-300 border border-emerald-500/40">
-                      Co-Founder & Director
-                    </span>
-                    <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white pt-1">
-                      Reva Mehta
-                    </h3>
-                    <p className="text-xs sm:text-sm font-semibold text-emerald-300/80">
-                      Senior-Secondary Educator & Academic Director
-                    </p>
-                  </div>
-
-                  <div className="w-16 h-16 rounded-3xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center shrink-0 shadow-sm">
-                    <span className="font-heading font-extrabold text-xl text-emerald-300">RM</span>
-                  </div>
-                </div>
-
-                {/* Badges / Credentials */}
-                <div className="flex flex-wrap gap-2 pt-1">
-                  <span className="px-3 py-1.5 rounded-xl bg-[#17231E] border border-emerald-500/30 text-xs font-semibold text-emerald-200 flex items-center gap-1.5">
-                    <Icon name="graduationCap" className="w-4 h-4 text-emerald-400" />
-                    <span>MBA, SIBM Pune</span>
-                  </span>
-                  <span className="px-3 py-1.5 rounded-xl bg-[#17231E] border border-emerald-500/30 text-xs font-semibold text-emerald-200 flex items-center gap-1.5">
-                    <Icon name="award" className="w-4 h-4 text-emerald-400" />
-                    <span>6+ Years Teaching Experience</span>
-                  </span>
-                  <span className="px-3 py-1.5 rounded-xl bg-[#17231E] border border-emerald-500/30 text-xs font-semibold text-emerald-200 flex items-center gap-1.5">
-                    <Icon name="bookOpen" className="w-4 h-4 text-emerald-400" />
-                    <span>Ex-Symbiosis International School</span>
-                  </span>
-                </div>
-
-                {/* Bio / Description */}
-                <p className="text-sm text-gray-300 leading-relaxed pt-2">
-                  An MBA graduate from the prestigious Symbiosis Institute of Business Management (SIBM), Pune, Reva brings over six years of senior-secondary teaching experience, including teaching at Symbiosis International School. She specializes in higher-grade analytical thinking, rigorous curriculum mastery, and examination strategy across ICSE, CBSE, IB, and IGCSE boards.
-                </p>
-
-                {/* Mentorship Ethos Quote */}
-                <div className="p-4 rounded-2xl bg-[#0C120F] border border-emerald-500/20">
-                  <p className="text-xs italic text-emerald-100/90 leading-relaxed">
-                    “True learning begins when students understand the 'why' behind every concept. We deconstruct complex theories into intuitive, relatable logic so students build permanent mastery.”
-                  </p>
-                </div>
-              </div>
-
-              {/* Core Strengths */}
-              <div className="pt-4 border-t border-emerald-500/20 grid grid-cols-2 gap-3 text-xs font-medium text-gray-300">
-                <div className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Senior-Secondary Strategy</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Analytical Problem Solving</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Board Exam Excellence</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>1-on-1 Concept Mentoring</span>
-                </div>
-              </div>
-            </div>
-
-            {/* 2. Diya Shah */}
-            <div className="p-8 sm:p-10 rounded-4xl bg-[#181316]/95 border border-rose-500/30 shadow-glow-red hover-card-lift flex flex-col justify-between space-y-6">
-              <div className="space-y-5">
-                
-                {/* Header Profile Info */}
-                <div className="flex items-start justify-between gap-4">
-                  <div className="space-y-1">
-                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-rose-950 text-rose-300 border border-rose-500/40">
-                      Co-Founder & Educator
-                    </span>
-                    <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white pt-1">
-                      Diya Shah
-                    </h3>
-                    <p className="text-xs sm:text-sm font-semibold text-rose-300/80">
-                      Foundational Stage & Upper-Primary Specialist
-                    </p>
-                  </div>
-
-                  <div className="w-16 h-16 rounded-3xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center shrink-0 shadow-sm">
-                    <span className="font-heading font-extrabold text-xl text-rose-300">DS</span>
-                  </div>
-                </div>
-
-                {/* Badges / Credentials */}
-                <div className="flex flex-wrap gap-2 pt-1">
-                  <span className="px-3 py-1.5 rounded-xl bg-[#261A1F] border border-rose-500/30 text-xs font-semibold text-rose-200 flex items-center gap-1.5">
-                    <Icon name="graduationCap" className="w-4 h-4 text-rose-400" />
-                    <span>BBA in Finance</span>
-                  </span>
-                  <span className="px-3 py-1.5 rounded-xl bg-[#261A1F] border border-rose-500/30 text-xs font-semibold text-rose-200 flex items-center gap-1.5">
-                    <Icon name="award" className="w-4 h-4 text-rose-400" />
-                    <span>6+ Years Teaching Experience</span>
-                  </span>
-                  <span className="px-3 py-1.5 rounded-xl bg-[#261A1F] border border-rose-500/30 text-xs font-semibold text-rose-200 flex items-center gap-1.5">
-                    <Icon name="smile" className="w-4 h-4 text-rose-400" />
-                    <span>Upper-Primary & Foundation Expert</span>
-                  </span>
-                </div>
-
-                {/* Bio / Description */}
-                <p className="text-sm text-gray-300 leading-relaxed pt-2">
-                  A BBA Finance graduate with over six years of dedicated teaching experience, Diya specializes in foundational learning for upper-primary and middle-school students. Her teaching methodology focuses on demystifying core concepts, igniting curiosity, and creating a supportive classroom where asking questions is always celebrated.
-                </p>
-
-                {/* Mentorship Ethos Quote */}
-                <div className="p-4 rounded-2xl bg-[#120B0E] border border-rose-500/20">
-                  <p className="text-xs italic text-rose-100/90 leading-relaxed">
-                    “When children feel heard and encouraged, learning naturally shifts from an intimidating chore to an exciting, joyful journey of discovery.”
-                  </p>
-                </div>
-              </div>
-
-              {/* Core Strengths */}
-              <div className="pt-4 border-t border-rose-500/20 grid grid-cols-2 gap-3 text-xs font-medium text-gray-300">
-                <div className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-rose-400 shrink-0" />
-                  <span>Foundational Concept Building</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-rose-400 shrink-0" />
-                  <span>Interactive Visual Teaching</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-rose-400 shrink-0" />
-                  <span>Judgment-Free Doubt Solving</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-rose-400 shrink-0" />
-                  <span>Student Confidence Building</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          {/* Recognition Banner: Inauguration by Frank Freese */}
-          <div className="mt-12 p-6 rounded-3xl bg-[#0E1712] border border-emerald-500/30 shadow-soft flex flex-col sm:flex-row items-center gap-4 text-left">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-950 border border-emerald-500/40 flex items-center justify-center shrink-0 text-emerald-300">
-              <Icon name="award" className="w-6 h-6" />
-            </div>
-            <div className="space-y-0.5">
-              <h4 className="font-heading font-bold text-sm text-emerald-200">
-                Inaugurated by Distinguished Academic Leaders
-              </h4>
-              <p className="text-xs text-gray-300 leading-relaxed">
-                Two Wise Academy was inaugurated in the presence of esteemed chief guest <strong>Mr. Frank Freese</strong> (former Principal of The Bishop's School, Pune) and <strong>Hon. Mrs. Siddhi Avinash Shilimkar</strong> (Corporator), commending the founders' progressive vision for conceptual, student-centric coaching.
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* SECTION 7: PARENT AND STUDENT SECTION */}
-      {/* ========================================================================= */}
-      <section className="py-20 bg-[#0B100D] relative border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="px-4 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-bold tracking-wide uppercase text-emerald-300 shadow-[0_0_15px_rgba(52,211,153,0.15)]">
-              A Partnership in Learning
-            </span>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              Designed for Parents. Built for Students.
-            </h2>
-          </div>
-
-          {/* Split Section with two contrasting dark cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-            
-            {/* For Parents */}
-            <div className="p-8 sm:p-10 rounded-4xl bg-[#101915]/90 border border-emerald-500/25 shadow-glow-green flex flex-col justify-between">
-              <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950 text-xs font-bold text-emerald-300 border border-emerald-500/30">
-                  <Icon name="shieldCheck" className="w-4 h-4 text-emerald-400" />
-                  <span>FOR PARENTS</span>
-                </div>
-
-                <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white leading-snug">
-                  Confidence That Comes from Knowing Your Child Is Supported.
-                </h3>
-
-                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                  As parents, watching your child struggle with heavy portions, homework battles, or exam stress is difficult. Two Wise Academy steps in as a dedicated academic partner you can rely on.
-                </p>
-
-                <div className="space-y-3.5 pt-2">
-                  <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-emerald-950 border border-emerald-500/40 flex items-center justify-center shrink-0 mt-0.5">
-                      <Icon name="check" className="w-3.5 h-3.5 text-emerald-400" />
-                    </div>
-                    <div>
-                      <strong className="text-xs sm:text-sm font-semibold text-white block">Transparent Academic Feedback</strong>
-                      <span className="text-xs text-gray-300">Regular updates on progress, test performance, and conceptual growth.</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-emerald-950 border border-emerald-500/40 flex items-center justify-center shrink-0 mt-0.5">
-                      <Icon name="check" className="w-3.5 h-3.5 text-emerald-400" />
-                    </div>
-                    <div>
-                      <strong className="text-xs sm:text-sm font-semibold text-white block">Reduced Homework Friction</strong>
-                      <span className="text-xs text-gray-300">Structured study discipline so learning happens effectively during coaching hours.</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-emerald-950 border border-emerald-500/40 flex items-center justify-center shrink-0 mt-0.5">
-                      <Icon name="check" className="w-3.5 h-3.5 text-emerald-400" />
-                    </div>
-                    <div>
-                      <strong className="text-xs sm:text-sm font-semibold text-white block">Safe, Modern Classroom Environment</strong>
-                      <span className="text-xs text-gray-300">Bright, comfortable offline classrooms at Gultekdi, Pune with respectful faculty.</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-8 mt-6 border-t border-emerald-500/20">
-                <button
-                  onClick={() => scrollToSection('contact')}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-heading font-semibold text-xs bg-emerald-950/80 hover:bg-emerald-900 text-emerald-200 border border-emerald-500/30 transition-colors shadow-sm"
-                >
-                  <span>Schedule a Parent Consultation</span>
-                  <Icon name="arrowRight" className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </div>
-
-            {/* For Students */}
-            <div className="p-8 sm:p-10 rounded-4xl bg-[#191216]/90 border border-rose-500/25 shadow-glow-red flex flex-col justify-between">
-              <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-950 text-xs font-bold text-rose-300 border border-rose-500/30">
-                  <Icon name="sparkles" className="w-4 h-4 text-rose-400" />
-                  <span>FOR STUDENTS</span>
-                </div>
-
-                <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white leading-snug">
-                  Learning Can Be Interesting. And We Make It So.
-                </h3>
-
-                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                  No boring lectures, no endless copying from boards, and absolutely no scolding for asking questions. We make complex concepts click with fun discussions and practical understanding.
-                </p>
-
-                <div className="space-y-3.5 pt-2">
-                  <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-rose-950 border border-rose-500/40 flex items-center justify-center shrink-0 mt-0.5">
-                      <Icon name="check" className="w-3.5 h-3.5 text-rose-400" />
-                    </div>
-                    <div>
-                      <strong className="text-xs sm:text-sm font-semibold text-white block">Zero Fear of Doubts</strong>
-                      <span className="text-xs text-gray-300">Ask the same question five times until it completely makes sense to you.</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-rose-950 border border-rose-500/40 flex items-center justify-center shrink-0 mt-0.5">
-                      <Icon name="check" className="w-3.5 h-3.5 text-rose-400" />
-                    </div>
-                    <div>
-                      <strong className="text-xs sm:text-sm font-semibold text-white block">Friendly Mentors, Not Stiff Tutors</strong>
-                      <span className="text-xs text-gray-300">Teachers who listen, cheer your improvements, and make learning enjoyable.</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-rose-950 border border-rose-500/40 flex items-center justify-center shrink-0 mt-0.5">
-                      <Icon name="check" className="w-3.5 h-3.5 text-rose-400" />
-                    </div>
-                    <div>
-                      <strong className="text-xs sm:text-sm font-semibold text-white block">Confidence for School & Board Exams</strong>
-                      <span className="text-xs text-gray-300">Know exactly how to approach tricky questions and write crisp answers.</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-8 mt-6 border-t border-rose-500/20">
-                <button
-                  onClick={() => scrollToSection('contact')}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-heading font-semibold text-xs bg-rose-950/80 hover:bg-rose-900 text-rose-200 border border-rose-500/30 transition-colors shadow-sm"
-                >
-                  <span>Experience a Classroom Session</span>
-                  <Icon name="arrowRight" className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* SECTION 8: CALL TO ACTION */}
-      {/* ========================================================================= */}
-      <section className="py-20 relative overflow-hidden bg-gradient-to-r from-[#0C1510] via-[#141014] to-[#0D1612] border-y border-white/10">
-        <div className="absolute top-0 right-1/4 w-80 h-80 bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none"></div>
-        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-rose-500/10 rounded-full blur-[140px] pointer-events-none"></div>
-
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
-          <div className="px-4 py-2 rounded-2xl bg-white/95 backdrop-blur-md shadow-glow-green border border-white/20 inline-flex items-center mx-auto">
-            <img src="./logo.png" alt="Two Wise" className="h-12 w-auto object-contain" />
-          </div>
-
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-            Ready to Make Learning Smarter?
-          </h2>
-
-          <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Give your child the academic support, guidance and confidence to reach their potential. Offline classroom coaching in Pune for Grades 4–12.
+          {/* Description */}
+          <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Personalised offline classroom coaching at <strong className="text-emerald-300 font-semibold">Prasad Apartments, T.M.V. Colony, Gultekdi, Pune-411037</strong> for students from <span className="font-semibold text-white">Grades 4–12</span> across <span className="font-semibold text-rose-300">ICSE</span>, <span className="font-semibold text-emerald-300">CBSE</span>, <span className="font-semibold text-teal-300">IB</span> and <span className="font-semibold text-amber-200">IGCSE</span> boards.
           </p>
 
-          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          {/* Primary Action Buttons */}
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={() => scrollToSection('contact')}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-heading font-bold text-base bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-300 text-gray-950 hover:brightness-105 transition-all shadow-[0_0_30px_rgba(110,231,183,0.35)] active:scale-95"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl font-heading font-bold text-base bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-300 text-gray-950 hover:brightness-105 transition-all shadow-[0_0_35px_rgba(110,231,183,0.4)] hover:shadow-[0_0_45px_rgba(110,231,183,0.6)] active:scale-95"
             >
-              <span>Enquire Now</span>
+              <span>Schedule Free Assessment</span>
               <Icon name="arrowRight" className="w-4 h-4" />
+            </button>
+
+            <button
+              onClick={() => setSelectedInstagramPost(instagramFeed[0])}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl font-heading font-semibold text-base bg-[#141B17] hover:bg-[#1A241F] text-white border border-rose-400/30 hover:border-rose-400/60 transition-all shadow-[0_0_25px_rgba(253,164,175,0.15)] active:scale-95 group"
+            >
+              <div className="w-6 h-6 rounded-full bg-rose-500/20 text-rose-300 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Icon name="play" className="w-3 h-3 text-rose-300 fill-rose-300" />
+              </div>
+              <span className="text-rose-200">Watch Inauguration Reel 🎬</span>
             </button>
 
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-heading font-semibold text-base bg-white/5 text-rose-200 border border-rose-400/40 hover:bg-white/10 transition-all shadow-glow-red active:scale-95"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl font-heading font-semibold text-sm bg-emerald-950/70 hover:bg-emerald-900/90 text-emerald-300 border border-emerald-500/30 transition-all active:scale-95"
             >
-              <Icon name="whatsapp" className="w-5 h-5 text-emerald-400" />
-              <span>Chat on WhatsApp</span>
+              <Icon name="whatsapp" className="w-4 h-4 text-emerald-400" />
+              <span>WhatsApp Direct</span>
             </a>
           </div>
+
+          {/* Quick Pillars Trust Bar */}
+          <div className="pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto">
+            <div className="p-3.5 rounded-2xl bg-[#111714]/90 border border-white/5 space-y-0.5">
+              <span className="font-heading font-bold text-lg text-emerald-300 block">4 Global Boards</span>
+              <span className="text-xs text-gray-400">ICSE, CBSE, IB, IGCSE</span>
+            </div>
+            <div className="p-3.5 rounded-2xl bg-[#111714]/90 border border-white/5 space-y-0.5">
+              <span className="font-heading font-bold text-lg text-rose-300 block">Grades 4–12</span>
+              <span className="text-xs text-gray-400">Comprehensive Coaching</span>
+            </div>
+            <div className="p-3.5 rounded-2xl bg-[#111714]/90 border border-white/5 space-y-0.5">
+              <span className="font-heading font-bold text-lg text-emerald-300 block">&lt; 12 Students</span>
+              <span className="text-xs text-gray-400">Personalised Small Batches</span>
+            </div>
+            <div className="p-3.5 rounded-2xl bg-[#111714]/90 border border-white/5 space-y-0.5">
+              <span className="font-heading font-bold text-lg text-rose-300 block">Gultekdi Center</span>
+              <span className="text-xs text-gray-400">Prasad Apts, Pune-411037</span>
+            </div>
+          </div>
+
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 9: CONTACT / ENQUIRY */}
+      {/* SECTION 2: ASH.NL STYLE SCHOOL DIVISIONS (GRADES 4 TO 12) */}
       {/* ========================================================================= */}
-      <section id="contact" className="py-20 bg-[#0A0E0C] relative">
+      <section id="divisions" className="py-20 bg-[#0B100D] relative border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="px-4 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-bold tracking-wide uppercase text-emerald-300 shadow-[0_0_15px_rgba(52,211,153,0.15)]">
-              Get In Touch
-            </span>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              Let's Start Their Learning Journey.
+          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-semibold text-emerald-300">
+              <Icon name="sparkles" className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Tailored Pathways for Every Stage</span>
+            </div>
+            <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white">
+              Structured for Every Milestone in a Student’s Journey
             </h2>
-            <p className="text-base sm:text-lg text-gray-300">
-              Fill out the enquiry form below or message us directly on WhatsApp. We look forward to welcoming you to Two Wise Academy.
+            <p className="text-gray-300 text-sm sm:text-base">
+              Inspired by premier international academies, our curriculum is partitioned into four distinct developmental divisions from Grades 4 through 12.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            
-            {/* Left Column: Functional Enquiry Form */}
-            <div className="lg:col-span-7 bg-[#121815]/95 p-6 sm:p-10 rounded-3xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
-              
-              {isSubmitted ? (
-                <div className="text-center py-10 space-y-6">
-                  <div className="w-16 h-16 mx-auto rounded-3xl bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-emerald-300 shadow-glow-green">
-                    <Icon name="check" className="w-8 h-8" />
-                  </div>
+          {/* 4 Division Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {schoolDivisions.map((division) => (
+              <div 
+                key={division.id}
+                className={`rounded-3xl p-6 bg-gradient-to-b ${division.gradient} border border-white/10 ${division.accentBorder} hover-card-lift transition-all duration-300 flex flex-col justify-between relative group`}
+              >
+                <div className="space-y-4">
                   
-                  <div className="space-y-2">
-                    <h3 className="font-heading text-2xl font-bold text-white">
-                      Thank You for Reaching Out!
+                  {/* Top Bar with Icon & Grade Badge */}
+                  <div className="flex items-center justify-between">
+                    <div className="w-11 h-11 rounded-2xl bg-[#16211B] border border-white/10 flex items-center justify-center text-emerald-300 group-hover:scale-110 transition-transform">
+                      <Icon name={division.icon} className="w-5 h-5" />
+                    </div>
+                    <span className={`px-3 py-1 rounded-full text-xs font-bold border ${division.badgeColor}`}>
+                      {division.badge}
+                    </span>
+                  </div>
+
+                  {/* Title & Tagline */}
+                  <div className="space-y-1">
+                    <h3 className="font-heading font-bold text-xl text-white group-hover:text-emerald-300 transition-colors">
+                      {division.title}
                     </h3>
-                    <p className="text-sm text-gray-300 max-w-md mx-auto">
-                      We have received your enquiry for <strong className="text-emerald-300">{formData.studentName}</strong> ({formData.grade}, {formData.board}). Our academic counselor will contact you shortly.
+                    <p className="text-xs font-semibold text-rose-300">
+                      {division.tagline}
                     </p>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-emerald-950/60 border border-emerald-500/30 max-w-md mx-auto space-y-3">
-                    <p className="text-xs font-medium text-emerald-200">
-                      Want an instant response? You can also forward these details directly to our WhatsApp:
-                    </p>
-                    <a
-                      href={generatedWhatsAppLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-300 text-gray-950 font-bold text-sm transition-all shadow-glow-green"
-                    >
-                      <Icon name="whatsapp" className="w-5 h-5 text-gray-950" />
-                      <span>Send Enquiry via WhatsApp Now</span>
-                    </a>
+                  {/* Description */}
+                  <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                    {division.description}
+                  </p>
+
+                </div>
+
+                {/* Bottom Curricula Tag & CTA */}
+                <div className="pt-6 mt-6 border-t border-white/10 space-y-3">
+                  <div className="text-[11px] font-medium text-emerald-200/70 bg-emerald-950/40 px-2.5 py-1 rounded-lg border border-emerald-500/20 text-center">
+                    {division.boards}
                   </div>
 
                   <button
                     onClick={() => {
-                      setIsSubmitted(false);
-                      setFormData({
-                        parentName: '',
-                        studentName: '',
-                        phone: '',
-                        grade: 'Grade 8',
-                        board: 'ICSE',
-                        subjects: ['Mathematics', 'Science'],
-                        message: ''
-                      });
+                      setActiveBoard(division.targetBoard);
+                      scrollToSection('boards');
                     }}
-                    className="text-xs text-gray-400 hover:text-white underline"
+                    className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl text-xs font-semibold bg-white/5 hover:bg-emerald-400 hover:text-gray-950 text-gray-200 transition-all border border-white/10 hover:border-emerald-400"
                   >
-                    Submit another enquiry
+                    <span>Explore Curriculum</span>
+                    <Icon name="arrowRight" className="w-3.5 h-3.5" />
                   </button>
                 </div>
-              ) : (
-                <form onSubmit={handleFormSubmit} className="space-y-6">
-                  
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Parent's Name */}
-                    <div className="space-y-1.5 text-left">
-                      <label className="text-xs font-bold uppercase tracking-wider text-gray-300">
-                        Parent's Name <span className="text-rose-400">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Rahul Sharma"
-                        value={formData.parentName}
-                        onChange={(e) => setFormData({ ...formData, parentName: e.target.value })}
-                        className={`w-full px-4 py-3 rounded-xl bg-[#0B100E] border ${formErrors.parentName ? 'border-rose-500 bg-rose-950/20' : 'border-white/10'} focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 text-sm text-white placeholder-gray-500`}
-                      />
-                      {formErrors.parentName && (
-                        <p className="text-xs text-rose-400">{formErrors.parentName}</p>
-                      )}
-                    </div>
 
-                    {/* Student's Name */}
-                    <div className="space-y-1.5 text-left">
-                      <label className="text-xs font-bold uppercase tracking-wider text-gray-300">
-                        Student's Name <span className="text-rose-400">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Aryan Sharma"
-                        value={formData.studentName}
-                        onChange={(e) => setFormData({ ...formData, studentName: e.target.value })}
-                        className={`w-full px-4 py-3 rounded-xl bg-[#0B100E] border ${formErrors.studentName ? 'border-rose-500 bg-rose-950/20' : 'border-white/10'} focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 text-sm text-white placeholder-gray-500`}
-                      />
-                      {formErrors.studentName && (
-                        <p className="text-xs text-rose-400">{formErrors.studentName}</p>
-                      )}
-                    </div>
-                  </div>
+              </div>
+            ))}
+          </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Phone Number */}
-                    <div className="space-y-1.5 text-left">
-                      <label className="text-xs font-bold uppercase tracking-wider text-gray-300">
-                        Phone Number (WhatsApp) <span className="text-rose-400">*</span>
-                      </label>
-                      <div className="relative">
-                        <span className="absolute left-3 top-3 text-sm text-gray-400 font-medium">+91</span>
-                        <input
-                          type="tel"
-                          placeholder="90496 50666"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className={`w-full pl-12 pr-4 py-3 rounded-xl bg-[#0B100E] border ${formErrors.phone ? 'border-rose-500 bg-rose-950/20' : 'border-white/10'} focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 text-sm text-white placeholder-gray-500`}
-                        />
-                      </div>
-                      {formErrors.phone && (
-                        <p className="text-xs text-rose-400">{formErrors.phone}</p>
-                      )}
-                    </div>
+        </div>
+      </section>
 
-                    {/* Grade / Standard */}
-                    <div className="space-y-1.5 text-left">
-                      <label className="text-xs font-bold uppercase tracking-wider text-gray-300">
-                        Grade / Standard <span className="text-rose-400">*</span>
-                      </label>
-                      <select
-                        value={formData.grade}
-                        onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-[#0B100E] border border-white/10 focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 text-sm text-white"
-                      >
-                        {[4, 5, 6, 7, 8, 9, 10, 11, 12].map(g => (
-                          <option key={g} value={`Grade ${g}`} className="bg-[#0A0E0C] text-white">Grade {g}</option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
+      {/* ========================================================================= */}
+      {/* SECTION 3: ASH.NL STYLE HAPPENINGS & SOCIAL COLUMN (INSTA PHOTOS & REELS) */}
+      {/* ========================================================================= */}
+      <section id="happenings" className="py-24 bg-[#0A0E0C] relative border-t border-white/5">
+        
+        {/* Subtle Ambient Orbs */}
+        <div className="absolute top-1/3 left-10 w-[500px] h-[500px] bg-rose-500/8 rounded-full blur-[170px] pointer-events-none -z-0"></div>
+        <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-emerald-500/8 rounded-full blur-[170px] pointer-events-none -z-0"></div>
 
-                  {/* Educational Board Selection */}
-                  <div className="space-y-2 text-left">
-                    <label className="text-xs font-bold uppercase tracking-wider text-gray-300 block">
-                      Educational Board <span className="text-rose-400">*</span>
-                    </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                      {['ICSE', 'CBSE', 'IB', 'IGCSE'].map(b => (
-                        <button
-                          key={b}
-                          type="button"
-                          onClick={() => setFormData({ ...formData, board: b })}
-                          className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all ${
-                            formData.board === b
-                              ? 'bg-gradient-to-r from-emerald-400 to-teal-300 text-gray-950 shadow-glow-green font-extrabold'
-                              : 'bg-[#0B100E] text-gray-300 border border-white/10 hover:border-white/20'
-                          }`}
-                        >
-                          {b}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          {/* Section Heading */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-white/10 gap-6">
+            <div className="space-y-3 max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-950/60 border border-rose-500/30 text-xs font-semibold text-rose-300">
+                <Icon name="instagram" className="w-3.5 h-3.5 text-rose-400" />
+                <span>Stay Connected with Two Wise</span>
+              </div>
+              <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white">
+                Recent Happenings at Two Wise Academy
+              </h2>
+              <p className="text-gray-300 text-sm sm:text-base">
+                Discover our latest campus milestones, faculty masterclasses, and daily classroom breakthroughs streamed directly from our Instagram feed.
+              </p>
+            </div>
 
-                  {/* Subjects Interested In */}
-                  <div className="space-y-2 text-left">
-                    <label className="text-xs font-bold uppercase tracking-wider text-gray-300 block">
-                      Subjects Interested In <span className="text-rose-400">*</span>
-                    </label>
-                    <div className="flex flex-wrap gap-2">
-                      {['Mathematics', 'Science', 'English', 'Social Studies', 'Languages', 'Computer Applications', 'All Subjects'].map(sub => {
-                        const active = formData.subjects.includes(sub);
-                        return (
-                          <button
-                            key={sub}
-                            type="button"
-                            onClick={() => toggleSubject(sub)}
-                            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 ${
-                              active
-                                ? 'bg-emerald-950 text-emerald-200 border border-emerald-500/40 shadow-glow-green'
-                                : 'bg-[#0B100E] text-gray-300 border border-white/10 hover:border-white/20'
-                            }`}
-                          >
-                            <span className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-emerald-400' : 'bg-gray-500'}`}></span>
-                            <span>{sub}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                    {formErrors.subjects && (
-                      <p className="text-xs text-rose-400">{formErrors.subjects}</p>
-                    )}
-                  </div>
+            {/* Profile Follow Card Quick Link */}
+            <a 
+              href={officialInstagramUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-[#141B17] hover:bg-[#1A251F] border border-white/10 hover:border-emerald-500/40 text-white transition-all shadow-glow-green self-start md:self-auto group"
+            >
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center shadow-sm">
+                <Icon name="instagram" className="w-5 h-5 text-white" />
+              </div>
+              <div className="text-left">
+                <p className="text-xs font-bold text-white group-hover:text-emerald-300 transition-colors">@twowise_academy</p>
+                <p className="text-[11px] text-gray-400">Follow on Instagram ↗</p>
+              </div>
+            </a>
+          </div>
 
-                  {/* Message */}
-                  <div className="space-y-1.5 text-left">
-                    <label className="text-xs font-bold uppercase tracking-wider text-gray-300">
-                      Message / Learning Goals (Optional)
-                    </label>
-                    <textarea
-                      rows="3"
-                      placeholder="Tell us about specific concepts your child needs assistance with or current school syllabus..."
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-[#0B100E] border border-white/10 focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 text-sm text-white placeholder-gray-500"
-                    ></textarea>
-                  </div>
+          {/* ASH.nl Two-Column Layout: Left = News Stories, Right = Social Media Column */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+            
+            {/* COLUMN 1: NEWS & MILESTONES (lg:col-span-5) */}
+            <div className="lg:col-span-5 space-y-6">
+              
+              <div className="flex items-center justify-between">
+                <h3 className="font-heading font-bold text-xl text-white flex items-center gap-2">
+                  <Icon name="award" className="w-5 h-5 text-emerald-400" />
+                  <span>Stories & Milestones</span>
+                </h3>
+                <span className="text-xs text-emerald-300/80 font-medium">From the Founders</span>
+              </div>
 
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    className="w-full py-4 rounded-2xl bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-300 text-gray-950 font-heading font-bold text-sm transition-all shadow-[0_0_30px_rgba(110,231,183,0.35)] hover:shadow-[0_0_40px_rgba(110,231,183,0.5)] active:scale-95 flex items-center justify-center gap-2"
-                  >
-                    <span>Submit Enquiry</span>
-                    <Icon name="arrowRight" className="w-4 h-4" />
-                  </button>
+              {/* Featured Main News Card: Frank Freese Inauguration */}
+              <div className="rounded-3xl p-6 sm:p-7 bg-gradient-to-b from-[#131E18] via-[#101713] to-[#0D1310] border border-emerald-500/30 hover:border-emerald-400/60 shadow-[0_15px_40px_rgba(0,0,0,0.6)] transition-all hover-card-lift space-y-4">
+                
+                <div className="flex items-center justify-between">
+                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-950/80 text-emerald-300 border border-emerald-500/30">
+                    Official Inauguration
+                  </span>
+                  <span className="text-xs text-gray-400 flex items-center gap-1">
+                    <Icon name="calendar" className="w-3.5 h-3.5 text-gray-400" />
+                    <span>October 2026</span>
+                  </span>
+                </div>
 
-                  <p className="text-[11px] text-gray-400 text-center">
-                    Your details are safe. We will never spam or share your contact number.
+                <div className="space-y-2">
+                  <h4 className="font-heading font-bold text-xl sm:text-2xl text-white leading-snug">
+                    Inauguration by Mr. Frank Freese: A Historic Beginning
+                  </h4>
+                  <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                    Two Wise Academy was deeply honoured to welcome legendary educationist <strong>Mr. Frank Freese</strong>, former Principal of <em>The Bishop's School, Pune</em>, to inaugurate our learning center at Prasad Apartments, Gultekdi. His inspiring address to founders Reva Mehta and Diya Shah ignited our mission to provide uncompromising classroom excellence.
                   </p>
+                </div>
 
-                </form>
-              )}
+                <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+                  <button
+                    onClick={() => setSelectedInstagramPost(instagramFeed[0])}
+                    className="inline-flex items-center gap-2 text-xs font-bold text-emerald-300 hover:text-emerald-200 transition-colors"
+                  >
+                    <span>Watch Inauguration Reel</span>
+                    <Icon name="play" className="w-3.5 h-3.5 fill-emerald-300" />
+                  </button>
+                  <a
+                    href={frankFreeseReelUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-gray-400 hover:text-white inline-flex items-center gap-1"
+                  >
+                    <span>Open Reel</span>
+                    <Icon name="externalLink" className="w-3 h-3" />
+                  </a>
+                </div>
+
+              </div>
+
+              {/* Secondary News Cards List */}
+              <div className="space-y-4">
+                {newsStories.slice(1).map((story) => (
+                  <div 
+                    key={story.id}
+                    onClick={story.linkAction}
+                    className="rounded-2xl p-4 sm:p-5 bg-[#121915]/80 hover:bg-[#16211B] border border-white/5 hover:border-emerald-500/20 transition-all cursor-pointer group"
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${story.tagColor}`}>
+                        {story.tag}
+                      </span>
+                      <span className="text-[11px] text-gray-400">{story.date}</span>
+                    </div>
+                    <h5 className="font-heading font-semibold text-sm sm:text-base text-gray-100 group-hover:text-emerald-300 transition-colors line-clamp-2">
+                      {story.title}
+                    </h5>
+                    <p className="text-xs text-gray-400 mt-1 line-clamp-2 leading-relaxed">
+                      {story.summary}
+                    </p>
+                    <div className="mt-2.5 flex items-center justify-between text-[11px] text-gray-500 group-hover:text-gray-300">
+                      <span>{story.author}</span>
+                      <span className="text-emerald-400 group-hover:translate-x-1 transition-transform">Read story →</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
 
             </div>
 
-            {/* Right Column: Contact Cards & Info */}
-            <div className="lg:col-span-5 space-y-6 text-left">
+            {/* COLUMN 2: SOCIAL FEED COLUMN (INSTA PHOTOS & REELS) (lg:col-span-7) */}
+            <div className="lg:col-span-7 space-y-6">
               
-              {/* WhatsApp Card */}
-              <div className="p-7 rounded-3xl bg-[#0E1712]/90 border border-emerald-500/30 shadow-glow-green space-y-4">
+              {/* Social Feed Header & Filter Controls */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#111814] p-4 rounded-2xl border border-white/5">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
-                    <Icon name="whatsapp" className="w-6 h-6" />
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-yellow-500 via-rose-500 to-purple-600 flex items-center justify-center shadow-sm">
+                    <Icon name="instagram" className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-heading font-bold text-lg text-white">Chat Directly on WhatsApp</h3>
-                    <p className="text-xs text-emerald-300">Quick answers for batches & fees</p>
+                    <div className="flex items-center gap-1.5">
+                      <h4 className="font-heading font-bold text-sm text-white">@twowise_academy</h4>
+                      <span className="w-3.5 h-3.5 rounded-full bg-emerald-400 text-gray-950 flex items-center justify-center text-[9px] font-bold">✓</span>
+                    </div>
+                    <p className="text-xs text-gray-400">Offline Classroom Moments & Masterclasses</p>
                   </div>
                 </div>
 
-                <p className="text-xs text-gray-300 leading-relaxed">
-                  Have quick questions regarding timings, batch availability, or diagnostic sessions? Reach us instantly on WhatsApp.
-                </p>
-
-                <div className="pt-2">
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-300 text-gray-950 font-bold text-sm transition-all shadow-glow-green"
+                {/* Filter Pills */}
+                <div className="flex items-center gap-1.5 self-start sm:self-auto bg-[#0A0E0C] p-1 rounded-xl border border-white/10">
+                  <button
+                    onClick={() => setActiveSocialFilter('all')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeSocialFilter === 'all' ? 'bg-emerald-400 text-gray-950 font-bold' : 'text-gray-400 hover:text-white'}`}
                   >
-                    <Icon name="whatsapp" className="w-4 h-4" />
-                    <span>WhatsApp: +91 90496 50666</span>
-                  </a>
+                    All ({instagramFeed.length})
+                  </button>
+                  <button
+                    onClick={() => setActiveSocialFilter('reels')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1 ${activeSocialFilter === 'reels' ? 'bg-rose-400 text-gray-950 font-bold' : 'text-gray-400 hover:text-white'}`}
+                  >
+                    <span>Reels 🎬</span>
+                  </button>
+                  <button
+                    onClick={() => setActiveSocialFilter('photos')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1 ${activeSocialFilter === 'photos' ? 'bg-emerald-400 text-gray-950 font-bold' : 'text-gray-400 hover:text-white'}`}
+                  >
+                    <span>Photos 📸</span>
+                  </button>
                 </div>
               </div>
 
-              {/* Offline Academy Location Card */}
-              <div className="p-7 rounded-3xl bg-[#121815]/90 border border-white/10 shadow-soft space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300">
-                    <Icon name="mapPin" className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-bold text-lg text-white">Academy Location</h3>
-                    <p className="text-xs text-gray-400">Offline Classroom Coaching</p>
-                  </div>
-                </div>
-
-                <div className="space-y-2 text-sm text-gray-300">
-                  <p className="font-semibold text-white leading-snug">
-                    Two Wise Academy, Prasad Apartments, T.M.V. Colony, Gultekdi, Pune-411037
-                  </p>
-                  <p className="text-xs text-gray-400 leading-relaxed">
-                    Centrally accessible offline classroom setup designed for modern, student-friendly interactive coaching.
-                  </p>
-                  <a
-                    href="https://www.google.com/maps/search/?api=1&query=Two+Wise+Academy+Prasad+Apartments+TMV+Colony+Gultekdi+Pune+411037"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-300 hover:text-emerald-200 hover:underline pt-1"
+              {/* Instagram Feed Grid (2 Columns) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {filteredSocialPosts.map((post) => (
+                  <div
+                    key={post.id}
+                    onClick={() => setSelectedInstagramPost(post)}
+                    className="rounded-2xl bg-[#121915] border border-white/10 hover:border-emerald-500/40 p-4 space-y-3 cursor-pointer hover-card-lift transition-all group relative overflow-hidden"
                   >
-                    <span>Get Directions on Google Maps</span>
-                    <Icon name="arrowRight" className="w-3.5 h-3.5" />
-                  </a>
-                </div>
+                    
+                    {/* Visual Media Placeholder Box / Simulated Reel */}
+                    <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-gradient-to-br from-[#16221B] via-[#101814] to-[#1E151A] border border-white/5 flex flex-col justify-between p-3.5 group-hover:brightness-110 transition-all">
+                      
+                      {/* Top Badges */}
+                      <div className="flex items-center justify-between z-10">
+                        <span className={`px-2.5 py-0.5 rounded-md text-[10px] font-bold border ${post.tagColor}`}>
+                          {post.tag}
+                        </span>
+                        
+                        {post.type === 'reel' ? (
+                          <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-rose-300 border border-rose-500/30 flex items-center gap-1">
+                            <Icon name="video" className="w-3 h-3 text-rose-400" />
+                            <span>{post.duration}</span>
+                          </span>
+                        ) : (
+                          <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
+                            <Icon name="image" className="w-3 h-3 text-emerald-400" />
+                            <span>Photo</span>
+                          </span>
+                        )}
+                      </div>
 
-                <div className="pt-2 border-t border-white/5 flex items-center justify-between text-xs text-gray-400">
-                  <span>Classroom Mode:</span>
-                  <span className="font-semibold text-emerald-300">Offline In-Person Batches</span>
-                </div>
+                      {/* Center Play Button Icon (for Reels) or Owl Watermark */}
+                      <div className="flex items-center justify-center my-auto z-10">
+                        {post.type === 'reel' ? (
+                          <div className="w-12 h-12 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-rose-500/80 transition-all shadow-lg">
+                            <Icon name="play" className="w-5 h-5 fill-current ml-0.5" />
+                          </div>
+                        ) : (
+                          <div className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-105 transition-transform">
+                            <img src="./logo-owl-dark.png" alt="Two Wise" className="w-7 h-auto opacity-70" />
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Bottom Info Bar inside media */}
+                      <div className="flex items-center justify-between text-[11px] text-white/90 z-10 bg-black/40 backdrop-blur-sm px-2 py-1 rounded-lg">
+                        <span className="font-semibold truncate max-w-[140px]">{post.title}</span>
+                        <div className="flex items-center gap-2">
+                          <span className="flex items-center gap-0.5 text-rose-300">
+                            <Icon name="heart" className="w-3 h-3 fill-rose-300" />
+                            <span>{post.likes}</span>
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Subtle Background Glow */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none"></div>
+                    </div>
+
+                    {/* Post Caption & Hashtags */}
+                    <div className="space-y-1.5">
+                      <p className="text-xs text-gray-300 line-clamp-2 leading-relaxed">
+                        {post.caption}
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-1 pt-1">
+                        {post.hashtags.slice(0, 3).map((tag, i) => (
+                          <span key={i} className="text-[10px] font-medium text-emerald-300/80">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Footer with Timestamp & Link */}
+                    <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[11px] text-gray-400">
+                      <span>{post.date}</span>
+                      <span className="text-emerald-400 group-hover:underline flex items-center gap-1 font-semibold">
+                        <span>{post.type === 'reel' ? 'Watch Reel' : 'View Post'}</span>
+                        <Icon name="arrowRight" className="w-3 h-3" />
+                      </span>
+                    </div>
+
+                  </div>
+                ))}
               </div>
 
-              {/* Instagram Card */}
-              <div className="p-7 rounded-3xl bg-[#181316]/90 border border-rose-500/20 shadow-soft space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-rose-950 border border-rose-500/30 flex items-center justify-center text-rose-300">
-                    <Icon name="instagram" className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-bold text-lg text-white">Follow Our Journey</h3>
-                    <p className="text-xs text-gray-400">Classroom glimpses & study tips</p>
-                  </div>
+              {/* Bottom Follow Callout Banner */}
+              <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-[#121915] to-rose-950/30 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+                <div className="space-y-0.5">
+                  <p className="text-xs font-bold text-white">Join 1,400+ parents and students on Instagram</p>
+                  <p className="text-[11px] text-gray-400">Daily syllabus updates, tips from Reva Mehta & Diya Shah, and exam prep insights.</p>
                 </div>
-
-                <p className="text-xs text-gray-300 leading-relaxed">
-                  Join our growing community on Instagram for conceptual breakdowns, student updates, and learning motivation.
-                </p>
-
-                <div className="pt-1">
-                  <a
-                    href="https://www.instagram.com/twowise_academy/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs font-bold text-rose-400 hover:text-rose-300 hover:underline"
-                  >
-                    <span>@twowise_academy on Instagram</span>
-                    <Icon name="arrowRight" className="w-3.5 h-3.5" />
-                  </a>
-                </div>
+                <a
+                  href={officialInstagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 rounded-xl text-xs font-bold bg-white/10 hover:bg-white/20 text-white border border-white/10 transition-all flex items-center gap-1.5 shrink-0"
+                >
+                  <Icon name="instagram" className="w-3.5 h-3.5 text-rose-400" />
+                  <span>Follow @twowise_academy</span>
+                </a>
               </div>
 
             </div>
@@ -2067,144 +1313,952 @@ function App() {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 10: FOOTER */}
+      {/* SECTION 4: ABOUT & PHILOSOPHY */}
       {/* ========================================================================= */}
-      <footer className="bg-[#070A09] border-t border-white/5 pt-16 pb-12 text-left">
+      <section id="about" className="py-20 bg-[#0B100D] relative border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div className="lg:col-span-6 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-semibold text-emerald-300">
+                <Icon name="compass" className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Our Educational Philosophy</span>
+              </div>
+
+              <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                Education That Goes <br />
+                <span className="bg-gradient-to-r from-emerald-300 to-rose-300 bg-clip-text text-transparent">
+                  Beyond Textbooks.
+                </span>
+              </h2>
+
+              <p className="text-base text-gray-300 leading-relaxed">
+                At Two Wise Academy, we believe real academic mastery starts with genuine understanding. When students understand the <em>“why”</em> behind every equation, historical event, and scientific principle, confidence replaces anxiety.
+              </p>
+
+              <div className="space-y-3 pt-2">
+                {[
+                  { title: "No Rote Memorisation", desc: "We deconstruct principles so students can tackle unfamiliar problems with composure." },
+                  { title: "Bespoke Personal Attention", desc: "Every student's baseline is assessed, crafting a custom learning pace." },
+                  { title: "Small Batches, Big Results", desc: "Capped batch sizes guarantee every question is answered immediately." },
+                  { title: "Continuous Diagnostic Feedback", desc: "Transparent progress reviews for parents without surprise exam panic." }
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3 p-3 rounded-2xl bg-[#111714] border border-white/5">
+                    <div className="w-6 h-6 rounded-full bg-emerald-950 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 mt-0.5">
+                      <Icon name="check" className="w-3.5 h-3.5" />
+                    </div>
+                    <div>
+                      <h4 className="font-heading font-semibold text-sm text-white">{item.title}</h4>
+                      <p className="text-xs text-gray-400">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="lg:col-span-6">
+              <div className="rounded-3xl p-8 bg-gradient-to-br from-[#121915] to-[#161719] border border-white/10 shadow-2xl relative overflow-hidden">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-glow-green">
+                      <Icon name="award" className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-heading font-bold text-lg text-white">The Two Wise Standard</h4>
+                      <p className="text-xs text-gray-400">Offline Classroom Excellence in Pune</p>
+                    </div>
+                  </div>
+
+                  <p className="text-sm text-gray-300 italic border-l-2 border-emerald-400 pl-4">
+                    “True wisdom is knowing how to think, not just what to think. Our mission is to transform students into independent, confident thinkers for life.”
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/10">
+                    <div className="p-4 rounded-2xl bg-[#0A0E0C] border border-white/5">
+                      <span className="font-heading font-extrabold text-2xl text-emerald-300 block">Grades 4–12</span>
+                      <span className="text-xs text-gray-400">Foundation to Board Prelims</span>
+                    </div>
+                    <div className="p-4 rounded-2xl bg-[#0A0E0C] border border-white/5">
+                      <span className="font-heading font-extrabold text-2xl text-rose-300 block">100% Offline</span>
+                      <span className="text-xs text-gray-400">Interactive Classroom Coaching</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* SECTION 5: CURRICULA & BOARDS */}
+      {/* ========================================================================= */}
+      <section id="boards" className="py-20 bg-[#0A0E0C] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/5">
+          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-semibold text-emerald-300">
+              <Icon name="bookOpen" className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Multi-Curriculum Expertise</span>
+            </div>
+            <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white">
+              One Academy. Multiple Curricula.
+            </h2>
+            <p className="text-gray-300 text-sm sm:text-base">
+              Every educational board follows distinct exam formats and assessment criteria. Our mentors tailor instruction specifically to each curriculum from Grades 4 through 12.
+            </p>
+          </div>
+
+          {/* Board Selector Tabs */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+            {[
+              { id: 'icse', name: 'ICSE & ISC Board', grades: 'Grades 4–12', badge: 'Analytical Rigour' },
+              { id: 'cbse', name: 'CBSE Board', grades: 'Grades 4–12', badge: 'Concept & Application' },
+              { id: 'ib', name: 'IB (MYP & DP)', grades: 'Grades 4–12', badge: 'Inquiry-Based' },
+              { id: 'igcse', name: 'Cambridge (IGCSE & A-Levels)', grades: 'Grades 4–12', badge: 'Global Standards' }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveBoard(tab.id)}
+                className={`px-5 py-3 rounded-2xl font-heading text-sm font-semibold transition-all flex items-center gap-2 ${activeBoard === tab.id ? 'bg-emerald-400 text-gray-950 shadow-glow-green font-bold' : 'bg-[#121915] text-gray-300 hover:text-white border border-white/5 hover:border-white/20'}`}
+              >
+                <span>{tab.name}</span>
+                <span className={`text-[11px] px-2 py-0.5 rounded-full ${activeBoard === tab.id ? 'bg-emerald-950 text-emerald-200' : 'bg-white/5 text-gray-400'}`}>
+                  {tab.grades}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          {/* Board Detail Content */}
+          <div className="rounded-3xl p-8 sm:p-10 bg-[#121915] border border-white/10 shadow-2xl">
+            {activeBoard === 'icse' && (
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="lg:col-span-7 space-y-5">
+                  <div className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-950/80 text-emerald-300 border border-emerald-500/30">
+                    Council for the Indian School Certificate Examinations (CISCE)
+                  </div>
+                  <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white">
+                    ICSE (Grades 4–10) & ISC (Grades 11–12)
+                  </h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    Known for its detailed syllabus and exhaustive language requirements, the ICSE curriculum demands strong conceptual clarity, comprehensive writing, and rigorous numerical problem solving.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    {[
+                      "Exhaustive coverage of Selina & concise textbook problems",
+                      "10-year past ICSE/ISC paper solving & board marking scheme practice",
+                      "Focus on scientific derivations and descriptive answer frameworks",
+                      "Structured English language grammar, comprehension & literature drills"
+                    ].map((point, i) => (
+                      <div key={i} className="flex items-start gap-2.5 text-xs text-gray-300">
+                        <Icon name="check" className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                        <span>{point}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="lg:col-span-5 p-6 rounded-2xl bg-[#0A0E0C] border border-white/5 space-y-4">
+                  <h4 className="font-heading font-bold text-sm text-white">ICSE/ISC Subjects Covered</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {["Mathematics", "Physics", "Chemistry", "Biology", "English Literature & Lang", "History & Civics", "Geography", "Economics", "Commercial Studies", "Computer Applications"].map((sub, i) => (
+                      <span key={i} className="px-3 py-1 rounded-xl text-xs bg-emerald-950/40 text-emerald-300 border border-emerald-500/20">
+                        {sub}
+                      </span>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => scrollToSection('contact')}
+                    className="w-full mt-4 py-3 rounded-xl font-heading font-bold text-xs bg-emerald-400 text-gray-950 hover:brightness-105 transition-all text-center block"
+                  >
+                    Enquire for ICSE/ISC Batches →
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {activeBoard === 'cbse' && (
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="lg:col-span-7 space-y-5">
+                  <div className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-rose-950/80 text-rose-300 border border-rose-500/30">
+                    Central Board of Secondary Education
+                  </div>
+                  <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white">
+                    CBSE Board (Grades 4–12)
+                  </h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    Aligned closely with NCERT, CBSE emphasizes structured concept application, competency-based questions, and solid foundations for national competitive examinations.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    {[
+                      "Line-by-line NCERT mastery with Exemplar problem analysis",
+                      "Competency-focused case-based questions training",
+                      "Regular chapter tests with error analysis journals",
+                      "Integrated foundation for future competitive exams"
+                    ].map((point, i) => (
+                      <div key={i} className="flex items-start gap-2.5 text-xs text-gray-300">
+                        <Icon name="check" className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                        <span>{point}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="lg:col-span-5 p-6 rounded-2xl bg-[#0A0E0C] border border-white/5 space-y-4">
+                  <h4 className="font-heading font-bold text-sm text-white">CBSE Subjects Covered</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {["Mathematics", "Science (Phy/Chem/Bio)", "Social Science", "English Core", "Accountancy", "Business Studies", "Economics", "Applied Mathematics", "Computer Science"].map((sub, i) => (
+                      <span key={i} className="px-3 py-1 rounded-xl text-xs bg-rose-950/40 text-rose-300 border border-rose-500/20">
+                        {sub}
+                      </span>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => scrollToSection('contact')}
+                    className="w-full mt-4 py-3 rounded-xl font-heading font-bold text-xs bg-rose-400 text-gray-950 hover:brightness-105 transition-all text-center block"
+                  >
+                    Enquire for CBSE Batches →
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {activeBoard === 'ib' && (
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="lg:col-span-7 space-y-5">
+                  <div className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-950/80 text-amber-300 border border-amber-500/30">
+                    International Baccalaureate Organisation
+                  </div>
+                  <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white">
+                    IB Middle Years (MYP) & Diploma Programme (DP)
+                  </h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    The IB curriculum prioritizes critical inquiry, criteria-referenced assessment, research-backed essays, and global contexts. Our mentors guide students through both content mastery and criterion-based scoring rubrics.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    {[
+                      "Criterion A, B, C, D rubric breakdown and alignment",
+                      "Guidance on Internal Assessments (IA) and Extended Essays (EE)",
+                      "Higher Level (HL) and Standard Level (SL) tailored modules",
+                      "Inquiry-driven scientific experimentation and paper analysis"
+                    ].map((point, i) => (
+                      <div key={i} className="flex items-start gap-2.5 text-xs text-gray-300">
+                        <Icon name="check" className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                        <span>{point}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="lg:col-span-5 p-6 rounded-2xl bg-[#0A0E0C] border border-white/5 space-y-4">
+                  <h4 className="font-heading font-bold text-sm text-white">IB Pathways Supported</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {["IB MYP Mathematics", "IB MYP Sciences", "IB DP Math (AA & AI)", "IB DP Physics (HL/SL)", "IB DP Chemistry (HL/SL)", "IB DP Economics", "IB DP Business Management", "TOK & IA Mentorship"].map((sub, i) => (
+                      <span key={i} className="px-3 py-1 rounded-xl text-xs bg-amber-950/40 text-amber-300 border border-amber-500/20">
+                        {sub}
+                      </span>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => scrollToSection('contact')}
+                    className="w-full mt-4 py-3 rounded-xl font-heading font-bold text-xs bg-amber-400 text-gray-950 hover:brightness-105 transition-all text-center block"
+                  >
+                    Enquire for IB Mentorship →
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {activeBoard === 'igcse' && (
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="lg:col-span-7 space-y-5">
+                  <div className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-teal-950/80 text-teal-300 border border-teal-500/30">
+                    Cambridge Assessment International Education (CAIE)
+                  </div>
+                  <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white">
+                    Cambridge IGCSE & International A-Levels
+                  </h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    Renowned worldwide for international benchmarking, Cambridge IGCSE and A-Levels demand precision in experimental science, structured command terms, and rigorous past-paper mastery.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    {[
+                      "Extensive practice with Paper 2 (MCQ), Paper 4 (Theory), and Paper 6 (ATP)",
+                      "Cambridge Command Words decoding (Evaluate, Discuss, Explain)",
+                      "Structured topical past-paper compilation practice",
+                      "Cambridge Lower Secondary checkpoint foundation for Grades 6–8"
+                    ].map((point, i) => (
+                      <div key={i} className="flex items-start gap-2.5 text-xs text-gray-300">
+                        <Icon name="check" className="w-4 h-4 text-teal-400 shrink-0 mt-0.5" />
+                        <span>{point}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="lg:col-span-5 p-6 rounded-2xl bg-[#0A0E0C] border border-white/5 space-y-4">
+                  <h4 className="font-heading font-bold text-sm text-white">Cambridge Subjects Covered</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {["Extended Mathematics (0580)", "Additional Mathematics (0606)", "Physics (0625)", "Chemistry (0620)", "Biology (0610)", "Economics (0455)", "Business Studies (0450)", "English as First/Second Lang"].map((sub, i) => (
+                      <span key={i} className="px-3 py-1 rounded-xl text-xs bg-teal-950/40 text-teal-300 border border-teal-500/20">
+                        {sub}
+                      </span>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => scrollToSection('contact')}
+                    className="w-full mt-4 py-3 rounded-xl font-heading font-bold text-xs bg-teal-400 text-gray-950 hover:brightness-105 transition-all text-center block"
+                  >
+                    Enquire for Cambridge Batches →
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* SECTION 6: SUBJECTS DIRECTORY */}
+      {/* ========================================================================= */}
+      <section id="subjects" className="py-20 bg-[#0B100D] relative border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-semibold text-emerald-300">
+              <Icon name="target" className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Full Academic Breadth</span>
+            </div>
+            <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white">
+              All Subjects. One Learning Destination.
+            </h2>
+            <p className="text-gray-300 text-sm sm:text-base">
+              From early foundational reading and numeracy in Grade 4 to advanced differential calculus and commercial economics in Grade 12.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Mathematics",
+                badge: "Grades 4–12",
+                desc: "Arithmetic, Algebra, Geometry, Trigonometry, Coordinate Geometry, Calculus, Statistics & Probability. Concept-first approach eliminates fear of numbers.",
+                accent: "border-emerald-500/30 text-emerald-300 bg-emerald-950/40",
+                icon: "calculator"
+              },
+              {
+                title: "Sciences (Phy, Chem, Bio)",
+                badge: "Grades 4–12",
+                desc: "Integrated General Science for middle school; specialized Physics, Chemistry, and Biology modules for high school board exams and Cambridge ATP/practicals.",
+                accent: "border-rose-400/30 text-rose-300 bg-rose-950/40",
+                icon: "microscope"
+              },
+              {
+                title: "English Language & Literature",
+                badge: "Grades 4–12",
+                desc: "Grammar accuracy, creative composition, analytical essay frameworks, Shakespearean drama, poetry commentary, and reading comprehension.",
+                accent: "border-teal-400/30 text-teal-300 bg-teal-950/40",
+                icon: "languages"
+              },
+              {
+                title: "Commerce & Economics",
+                badge: "Grades 9–12",
+                desc: "Commercial Studies, Accountancy basics, Micro/Macro Economics, Business Studies, and applied case analysis for ICSE, CBSE, IB, and IGCSE.",
+                accent: "border-amber-400/30 text-amber-300 bg-amber-950/40",
+                icon: "award"
+              },
+              {
+                title: "Social Sciences & Humanities",
+                badge: "Grades 4–10",
+                desc: "Indian & World History, Civics & Governance, Physical & Economic Geography, Map work, and structured descriptive answer writing.",
+                accent: "border-purple-400/30 text-purple-300 bg-purple-950/40",
+                icon: "globe"
+              },
+              {
+                title: "Computer Applications & Coding",
+                badge: "Grades 6–12",
+                desc: "Java for ICSE/ISC, Python for CBSE, algorithmic problem solving, logic gates, computational thinking, and software design principles.",
+                accent: "border-emerald-500/30 text-emerald-300 bg-emerald-950/40",
+                icon: "cpu"
+              }
+            ].map((sub, i) => (
+              <div key={i} className="p-6 rounded-3xl bg-[#111714] border border-white/10 hover-card-lift transition-all space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white">
+                    <Icon name={sub.icon} className="w-5 h-5" />
+                  </div>
+                  <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold border ${sub.accent}`}>
+                    {sub.badge}
+                  </span>
+                </div>
+                <h3 className="font-heading font-bold text-lg text-white">{sub.title}</h3>
+                <p className="text-xs text-gray-400 leading-relaxed">{sub.desc}</p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* SECTION 7: WHY TWO WISE ACADEMY */}
+      {/* ========================================================================= */}
+      <section id="why-us" className="py-20 bg-[#0A0E0C] relative border-y border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-semibold text-emerald-300">
+              <Icon name="shieldCheck" className="w-3.5 h-3.5 text-emerald-400" />
+              <span>The Two Wise Difference</span>
+            </div>
+            <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white">
+              Because Every Student Deserves to Be Understood.
+            </h2>
+            <p className="text-gray-300 text-sm sm:text-base">
+              Mass coaching factories fail because they treat diverse minds identically. We intentionally maintain small batches so teaching adapts to the learner.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { title: "Small, Interactive Batches", desc: "Strictly limited student intake per batch guarantees personalized eye-level coaching.", icon: "users", tag: "< 12 Students" },
+              { title: "Diagnostic Concept Mapping", desc: "We uncover root misconceptions from prior grades before building advanced topics.", icon: "target", tag: "Personalised" },
+              { title: "Doubt-Friendly Safe Spaces", desc: "No judgment, no hesitation. Students are celebrated for asking questions until concepts are clear.", icon: "messageSquare", tag: "Open Dialogue" },
+              { title: "Curriculum-Specific Test Banks", desc: "Strict adherence to official board syllabi and question formatting across ICSE, CBSE, IB, and IGCSE.", icon: "clipboardCheck", tag: "Exhaustive" },
+              { title: "Transparent Parent Partnership", desc: "Regular, meaningful progress reviews with parents to celebrate wins and address challenges early.", icon: "heartHandshake", tag: "Zero Surprises" },
+              { title: "Central Pune Location", desc: "Located at Prasad Apartments, T.M.V. Colony, Gultekdi with convenient accessibility.", icon: "mapPin", tag: "Gultekdi, Pune" }
+            ].map((pillar, i) => (
+              <div key={i} className="p-6 rounded-3xl bg-[#111714] border border-white/10 hover-card-lift transition-all space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="w-10 h-10 rounded-2xl bg-emerald-950/60 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                    <Icon name={pillar.icon} className="w-5 h-5" />
+                  </div>
+                  <span className="text-[11px] font-semibold text-rose-300 px-2 py-0.5 rounded-full bg-rose-950/50 border border-rose-500/20">
+                    {pillar.tag}
+                  </span>
+                </div>
+                <h3 className="font-heading font-bold text-base text-white">{pillar.title}</h3>
+                <p className="text-xs text-gray-400 leading-relaxed">{pillar.desc}</p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* SECTION 8: 5-STEP LEARNING APPROACH */}
+      {/* ========================================================================= */}
+      <section id="approach" className="py-20 bg-[#0B100D] relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-semibold text-emerald-300">
+              <Icon name="lightbulb" className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Proven Methodology</span>
+            </div>
+            <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white">
+              Smart Learning. Step by Step.
+            </h2>
+            <p className="text-gray-300 text-sm sm:text-base">
+              Our 5-stage learning lifecycle ensures students transition seamlessly from initial comprehension to independent problem-solving and exam distinction.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            {[
+              { step: "01", title: "Diagnostic Assessment", desc: "Map current conceptual grasp and identify foundational gaps." },
+              { step: "02", title: "Concept Demystification", desc: "Break complex topics into intuitive, first-principles logic." },
+              { step: "03", title: "Guided Problem Solving", desc: "Work through varied problem sets with instant mentor feedback." },
+              { step: "04", title: "Targeted Doubt Resolution", desc: "Dedicated 1-on-1 reviews until every ambiguity is resolved." },
+              { step: "05", title: "Exam Simulation & Mastery", desc: "Timed board-standard papers to build speed, accuracy & calm." }
+            ].map((st, i) => (
+              <div key={i} className="p-5 rounded-3xl bg-[#111714] border border-white/5 hover-card-lift transition-all space-y-2 relative">
+                <span className="font-heading font-extrabold text-3xl text-emerald-400/40 block">{st.step}</span>
+                <h3 className="font-heading font-bold text-sm text-white">{st.title}</h3>
+                <p className="text-xs text-gray-400 leading-relaxed">{st.desc}</p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* SECTION 9: FACULTY & FOUNDERS */}
+      {/* ========================================================================= */}
+      <section id="faculty" className="py-20 bg-[#0A0E0C] relative border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-semibold text-emerald-300">
+              <Icon name="award" className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Leadership & Mentorship</span>
+            </div>
+            <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white">
+              Meet the Mentors Behind Two Wise.
+            </h2>
+            <p className="text-gray-300 text-sm sm:text-base">
+              Passionate educators who combine elite academic credentials with years of classroom experience across international and national curricula.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
             
-            {/* Brand Column */}
-            <div className="lg:col-span-5 space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="px-3.5 py-1.5 rounded-2xl bg-white/95 backdrop-blur-md shadow-sm border border-white/20 inline-flex items-center">
-                  <img 
-                    src="./logo.png" 
-                    alt="Two Wise Academy" 
-                    className="h-12 w-auto object-contain" 
-                  />
+            {/* Reva Mehta */}
+            <div className="rounded-3xl p-8 bg-gradient-to-b from-[#141F18] to-[#101613] border border-emerald-500/30 hover-card-lift transition-all space-y-5">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-2xl bg-emerald-950/80 border border-emerald-500/40 flex items-center justify-center text-emerald-300 font-heading font-bold text-2xl shadow-glow-green">
+                  RM
+                </div>
+                <div>
+                  <h3 className="font-heading font-bold text-2xl text-white">Reva Mehta</h3>
+                  <p className="text-xs font-semibold text-emerald-300">Co-Founder & Lead Academic Mentor</p>
+                  <p className="text-xs text-gray-400">MBA (SIBM Pune) • 6+ Years Experience</p>
                 </div>
               </div>
 
-              <p className="font-heading font-semibold text-sm text-gray-200 tracking-wide">
-                "Learn Smart. Think Wise."
-              </p>
+              <div className="space-y-2 text-xs sm:text-sm text-gray-300 leading-relaxed">
+                <p>
+                  Former educator at <strong>Symbiosis International School</strong> with extensive expertise in teaching Mathematics, Economics, and analytical sciences across <strong>ICSE, CBSE, and IB</strong> curricula.
+                </p>
+                <p>
+                  Reva specializes in demystifying complex mathematical structures, ensuring students grasp underlying logic rather than relying on rote formulae.
+                </p>
+              </div>
 
-              <p className="text-xs text-gray-400 max-w-sm leading-relaxed">
-                Two Wise Academy is a contemporary offline classroom coaching academy based in Pune, Maharashtra. Empowering students across ICSE, CBSE, IB, and IGCSE curricula (Grades 4–12) with conceptual clarity, individual attention, and academic confidence.
-              </p>
-
-              <div className="flex items-center gap-3 pt-2">
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl bg-emerald-950 border border-emerald-500/30 text-emerald-400 flex items-center justify-center transition-colors hover:bg-emerald-900"
-                  title="WhatsApp"
-                >
-                  <Icon name="whatsapp" className="w-4 h-4" />
-                </a>
-                <a
-                  href="https://www.instagram.com/twowise_academy/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl bg-rose-950 border border-rose-500/30 text-rose-300 flex items-center justify-center transition-colors hover:bg-rose-900"
-                  title="Instagram"
-                >
-                  <Icon name="instagram" className="w-4 h-4" />
-                </a>
+              <div className="pt-4 border-t border-white/10 flex flex-wrap gap-2">
+                <span className="px-3 py-1 rounded-full text-[11px] bg-emerald-950/60 text-emerald-300 border border-emerald-500/20">Mathematics Specialist</span>
+                <span className="px-3 py-1 rounded-full text-[11px] bg-emerald-950/60 text-emerald-300 border border-emerald-500/20">Economics & Commerce</span>
+                <span className="px-3 py-1 rounded-full text-[11px] bg-emerald-950/60 text-emerald-300 border border-emerald-500/20">IB & ICSE Mentor</span>
               </div>
             </div>
 
-            {/* Quick Navigation */}
-            <div className="lg:col-span-2 space-y-3">
-              <h4 className="font-heading font-bold text-xs uppercase tracking-wider text-emerald-300">
-                Navigation
-              </h4>
-              <ul className="space-y-2 text-xs text-gray-400">
-                <li><a href="#hero" className="hover:text-white hover:underline">Home</a></li>
-                <li><a href="#about" className="hover:text-white hover:underline">About Us</a></li>
-                <li><a href="#boards" className="hover:text-white hover:underline">Programs</a></li>
-                <li><a href="#approach" className="hover:text-white hover:underline">Our Approach</a></li>
-                <li><a href="#why-us" className="hover:text-white hover:underline">Why Two Wise</a></li>
-                <li><a href="#faculty" className="hover:text-white hover:underline">Faculty & Mentors</a></li>
-                <li><a href="#contact" className="hover:text-white hover:underline">Contact</a></li>
-              </ul>
-            </div>
+            {/* Diya Shah */}
+            <div className="rounded-3xl p-8 bg-gradient-to-b from-[#1A1618] to-[#141214] border border-rose-500/30 hover-card-lift transition-all space-y-5">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-2xl bg-rose-950/80 border border-rose-500/40 flex items-center justify-center text-rose-300 font-heading font-bold text-2xl shadow-glow-red">
+                  DS
+                </div>
+                <div>
+                  <h3 className="font-heading font-bold text-2xl text-white">Diya Shah</h3>
+                  <p className="text-xs font-semibold text-rose-300">Co-Founder & Pedagogical Director</p>
+                  <p className="text-xs text-gray-400">BBA Finance • 6+ Years Experience</p>
+                </div>
+              </div>
 
-            {/* Curricula & Grades */}
-            <div className="lg:col-span-2 space-y-3">
-              <h4 className="font-heading font-bold text-xs uppercase tracking-wider text-rose-300">
-                Curricula & Grades
-              </h4>
-              <ul className="space-y-2 text-xs text-gray-400">
-                <li>ICSE & ISC Board (Grades 4–12)</li>
-                <li>CBSE Board (Grades 4–12)</li>
-                <li>IB Curriculum (Grades 4–12)</li>
-                <li>IGCSE & Cambridge A-Levels (Grades 4–12)</li>
-                <li>All Core & Elective Subjects</li>
-              </ul>
-            </div>
+              <div className="space-y-2 text-xs sm:text-sm text-gray-300 leading-relaxed">
+                <p>
+                  Specializing in foundational pedagogy and analytical thinking, Diya guides students through critical middle-school transitions (Grades 4–8) and secondary board preparation.
+                </p>
+                <p>
+                  With a sharp background in finance and quantitative reasoning, Diya focuses on building strong problem-solving habits, self-discipline, and confident exam performance.
+                </p>
+              </div>
 
-            {/* Contact Details */}
-            <div className="lg:col-span-3 space-y-3">
-              <h4 className="font-heading font-bold text-xs uppercase tracking-wider text-emerald-300">
-                Contact & Location
-              </h4>
-              <ul className="space-y-2.5 text-xs text-gray-400">
-                <li className="flex items-center gap-2">
-                  <Icon name="phone" className="w-4 h-4 text-emerald-400" />
-                  <a href="tel:+919049650666" className="hover:text-white">+91 90496 50666</a>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Icon name="whatsapp" className="w-4 h-4 text-emerald-400" />
-                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">WhatsApp: 9049650666</a>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Icon name="instagram" className="w-4 h-4 text-rose-400" />
-                  <a href="https://www.instagram.com/twowise_academy/" target="_blank" rel="noopener noreferrer" className="hover:text-white">@twowise_academy</a>
-                </li>
-                <li className="flex items-start gap-2 pt-1">
-                  <Icon name="mapPin" className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span>Two Wise Academy, Prasad Apartments, T.M.V. Colony, Gultekdi, Pune-411037</span>
-                </li>
-              </ul>
+              <div className="pt-4 border-t border-white/10 flex flex-wrap gap-2">
+                <span className="px-3 py-1 rounded-full text-[11px] bg-rose-950/60 text-rose-300 border border-rose-500/20">Foundation Specialist (Grades 4–8)</span>
+                <span className="px-3 py-1 rounded-full text-[11px] bg-rose-950/60 text-rose-300 border border-rose-500/20">Quantitative Reasoning</span>
+                <span className="px-3 py-1 rounded-full text-[11px] bg-rose-950/60 text-rose-300 border border-rose-500/20">CBSE & Cambridge Specialist</span>
+              </div>
             </div>
 
           </div>
 
-          {/* Bottom Copyright */}
-          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
-            <p>© 2026 Two Wise Academy. All Rights Reserved.</p>
-            <p className="flex items-center gap-3">
-              <span className="text-emerald-400/80">Offline Classroom Coaching in Pune</span>
-              <span>•</span>
-              <span className="text-rose-300/80">"Learn Smart. Think Wise."</span>
-            </p>
+          {/* Mr. Frank Freese Keynote Tribute */}
+          <div className="rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-emerald-950/30 via-[#121915] to-rose-950/20 border border-white/10 max-w-4xl mx-auto flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+            <div className="w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-emerald-300 shrink-0">
+              <Icon name="award" className="w-8 h-8 text-emerald-300" />
+            </div>
+            <div className="space-y-1">
+              <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">Inaugurated by Educational Leadership</span>
+              <h4 className="font-heading font-bold text-lg text-white">
+                Honoured to be Inaugurated by Mr. Frank Freese
+              </h4>
+              <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                Former Principal of <strong>The Bishop's School, Pune</strong>, Mr. Frank Freese personally inaugurated Two Wise Academy, recognizing our focus on character, intellectual discipline, and student-centered mentorship.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* SECTION 10: CONTACT & ENQUIRY */}
+      {/* ========================================================================= */}
+      <section id="contact" className="py-20 bg-[#0A0E0C] relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            {/* Left Contact Information */}
+            <div className="lg:col-span-5 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-semibold text-emerald-300">
+                <Icon name="mapPin" className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Visit Our Offline Center</span>
+              </div>
+
+              <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white">
+                Let's Start Their Learning Journey.
+              </h2>
+
+              <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                Schedule a diagnostic evaluation or visit our classroom setup at Gultekdi to discuss your child's academic roadmap with founders Reva Mehta and Diya Shah.
+              </p>
+
+              {/* Location Card */}
+              <div className="p-6 rounded-3xl bg-[#111714] border border-white/10 space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+                    <Icon name="mapPin" className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-bold text-sm text-white">Academy Location</h4>
+                    <p className="text-xs text-gray-300 font-medium mt-1">
+                      Two Wise Academy, Prasad Apartments, T.M.V. Colony, Gultekdi, Pune-411037
+                    </p>
+                    <a
+                      href="https://maps.google.com/?q=Prasad+Apartments+TMV+Colony+Gultekdi+Pune"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs text-emerald-400 hover:text-emerald-300 font-semibold mt-2"
+                    >
+                      <span>Open in Google Maps</span>
+                      <Icon name="externalLink" className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 pt-3 border-t border-white/5">
+                  <div className="w-10 h-10 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-400 shrink-0">
+                    <Icon name="phone" className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-bold text-sm text-white">Call / WhatsApp</h4>
+                    <a href="tel:+919049650666" className="text-xs text-gray-300 hover:text-white block mt-0.5">
+                      +91 90496 50666
+                    </a>
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-emerald-400 hover:underline block mt-0.5">
+                      Chat on WhatsApp →
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 pt-3 border-t border-white/5">
+                  <div className="w-10 h-10 rounded-2xl bg-purple-950/80 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0">
+                    <Icon name="instagram" className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-bold text-sm text-white">Instagram Community</h4>
+                    <a href={officialInstagramUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-rose-300 hover:underline block mt-0.5">
+                      @twowise_academy ↗
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Right Interactive Enquiry Form */}
+            <div className="lg:col-span-7">
+              <div className="rounded-3xl p-6 sm:p-8 bg-[#121915] border border-white/10 shadow-2xl">
+                
+                {isSubmitted ? (
+                  <div className="text-center py-10 space-y-4">
+                    <div className="w-16 h-16 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto shadow-glow-green">
+                      <Icon name="check" className="w-8 h-8" />
+                    </div>
+                    <h3 className="font-heading font-bold text-2xl text-white">Thank You for Reaching Out!</h3>
+                    <p className="text-sm text-gray-300 max-w-md mx-auto">
+                      We have received your enquiry for <strong>{formData.studentName}</strong> ({formData.grade}, {formData.board}). Our mentors will contact you shortly.
+                    </p>
+                    <div className="pt-4">
+                      <a
+                        href={generatedWhatsAppLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-emerald-500 text-gray-950 font-heading font-bold text-sm shadow-glow-green hover:brightness-105"
+                      >
+                        <Icon name="whatsapp" className="w-4 h-4" />
+                        <span>Send Details on WhatsApp Instantly</span>
+                      </a>
+                    </div>
+                  </div>
+                ) : (
+                  <form onSubmit={handleFormSubmit} className="space-y-4">
+                    <div>
+                      <h3 className="font-heading font-bold text-xl text-white">Book a Consultation / Diagnostic Test</h3>
+                      <p className="text-xs text-gray-400 mt-1">Fill in the student details below to schedule an evaluation at our center.</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-300 mb-1">Parent's Name *</label>
+                        <input
+                          type="text"
+                          value={formData.parentName}
+                          onChange={(e) => setFormData({ ...formData, parentName: e.target.value })}
+                          placeholder="e.g. Rajesh Kuwad"
+                          className="w-full px-4 py-2.5 rounded-xl bg-[#0A0E0C] border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-emerald-400"
+                        />
+                        {formErrors.parentName && <p className="text-[11px] text-rose-400 mt-1">{formErrors.parentName}</p>}
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-300 mb-1">Student's Name *</label>
+                        <input
+                          type="text"
+                          value={formData.studentName}
+                          onChange={(e) => setFormData({ ...formData, studentName: e.target.value })}
+                          placeholder="e.g. Sara"
+                          className="w-full px-4 py-2.5 rounded-xl bg-[#0A0E0C] border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-emerald-400"
+                        />
+                        {formErrors.studentName && <p className="text-[11px] text-rose-400 mt-1">{formErrors.studentName}</p>}
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-300 mb-1">Mobile Number *</label>
+                        <input
+                          type="tel"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          placeholder="10-digit number"
+                          className="w-full px-4 py-2.5 rounded-xl bg-[#0A0E0C] border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-emerald-400"
+                        />
+                        {formErrors.phone && <p className="text-[11px] text-rose-400 mt-1">{formErrors.phone}</p>}
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-300 mb-1">Grade (4–12) *</label>
+                        <select
+                          value={formData.grade}
+                          onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
+                          className="w-full px-4 py-2.5 rounded-xl bg-[#0A0E0C] border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-emerald-400"
+                        >
+                          {["Grade 4", "Grade 5", "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10", "Grade 11", "Grade 12"].map((g) => (
+                            <option key={g} value={g}>{g}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-300 mb-1">Curriculum / Board *</label>
+                        <select
+                          value={formData.board}
+                          onChange={(e) => setFormData({ ...formData, board: e.target.value })}
+                          className="w-full px-4 py-2.5 rounded-xl bg-[#0A0E0C] border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-emerald-400"
+                        >
+                          <option value="ICSE">ICSE & ISC</option>
+                          <option value="CBSE">CBSE</option>
+                          <option value="IB">IB (MYP / DP)</option>
+                          <option value="IGCSE">Cambridge (IGCSE / A-Levels)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-300 mb-1.5">Select Subjects Needed *</label>
+                      <div className="flex flex-wrap gap-2">
+                        {["Mathematics", "Science (Phy/Chem/Bio)", "English", "Economics", "Commercial Studies", "Computer Applications"].map((sub) => {
+                          const isSelected = formData.subjects.includes(sub);
+                          return (
+                            <button
+                              type="button"
+                              key={sub}
+                              onClick={() => toggleSubject(sub)}
+                              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${isSelected ? 'bg-emerald-400 text-gray-950 font-bold shadow-sm' : 'bg-[#0A0E0C] text-gray-400 border border-white/10 hover:border-white/20'}`}
+                            >
+                              {sub}
+                            </button>
+                          );
+                        })}
+                      </div>
+                      {formErrors.subjects && <p className="text-[11px] text-rose-400 mt-1">{formErrors.subjects}</p>}
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-300 mb-1">Specific Goals or Questions (Optional)</label>
+                      <textarea
+                        rows="2"
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        placeholder="e.g. Looking for concept strengthening in algebra and board exam past paper drills..."
+                        className="w-full px-4 py-2 rounded-xl bg-[#0A0E0C] border border-white/10 text-white text-xs focus:outline-none focus:border-emerald-400"
+                      ></textarea>
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-3.5 rounded-2xl font-heading font-bold text-sm bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-300 text-gray-950 hover:brightness-105 transition-all shadow-[0_0_25px_rgba(110,231,183,0.3)]"
+                    >
+                      Submit Consultation Request →
+                    </button>
+                  </form>
+                )}
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* FOOTER */}
+      {/* ========================================================================= */}
+      <footer className="bg-[#070B09] border-t border-white/5 py-12 text-gray-400 text-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            
+            <div className="md:col-span-5 space-y-3">
+              <div className="px-3 py-1.5 rounded-2xl bg-white/95 backdrop-blur-md border border-white/20 inline-block">
+                <img src="./logo.png" alt="Two Wise Academy" className="h-8 w-auto object-contain" />
+              </div>
+              <p className="font-heading text-sm font-semibold text-white">
+                “Learn Smart. Think Wise.”
+              </p>
+              <p className="text-gray-400 max-w-sm leading-relaxed">
+                Personalised offline classroom coaching at Prasad Apartments, T.M.V. Colony, Gultekdi, Pune-411037 for students from Grades 4 to 12 across ICSE, CBSE, IB, and IGCSE.
+              </p>
+            </div>
+
+            <div className="md:col-span-3 space-y-2">
+              <h4 className="font-heading font-bold text-white text-sm">Quick Links</h4>
+              <ul className="space-y-1.5">
+                <li><a href="#hero" className="hover:text-emerald-300 transition-colors">Home</a></li>
+                <li><a href="#divisions" className="hover:text-emerald-300 transition-colors">School Divisions (Grades 4–12)</a></li>
+                <li><a href="#boards" className="hover:text-emerald-300 transition-colors">Curricula & Boards</a></li>
+                <li><a href="#faculty" className="hover:text-emerald-300 transition-colors">Faculty & Founders</a></li>
+                <li><a href="#happenings" className="hover:text-rose-300 transition-colors">Happenings & Reels</a></li>
+                <li><a href="#contact" className="hover:text-emerald-300 transition-colors">Contact & Directions</a></li>
+              </ul>
+            </div>
+
+            <div className="md:col-span-4 space-y-2">
+              <h4 className="font-heading font-bold text-white text-sm">Center Information</h4>
+              <p className="text-gray-300">
+                <strong>Two Wise Academy</strong><br />
+                Prasad Apartments, T.M.V. Colony,<br />
+                Gultekdi, Pune-411037, Maharashtra.
+              </p>
+              <p className="text-gray-300 pt-1">
+                WhatsApp / Call: <a href="tel:+919049650666" className="text-emerald-300 hover:underline">+91 90496 50666</a>
+              </p>
+              <p className="text-gray-300">
+                Instagram: <a href={officialInstagramUrl} target="_blank" rel="noopener noreferrer" className="text-rose-300 hover:underline">@twowise_academy</a>
+              </p>
+            </div>
+
+          </div>
+
+          <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-gray-500 text-[11px]">
+            <p>© {new Date().getFullYear()} Two Wise Academy. All rights reserved. Gultekdi, Pune.</p>
+            <p>Learn Smart. Think Wise.</p>
           </div>
 
         </div>
       </footer>
 
       {/* ========================================================================= */}
-      {/* FLOATING WHATSAPP BUTTON */}
+      {/* INSTAGRAM REEL & POST MODAL VIEWER */}
       {/* ========================================================================= */}
-      <div className="fixed bottom-6 right-6 z-50 flex items-center group">
-        <div className="hidden sm:block mr-3 px-3 py-1.5 rounded-xl bg-[#111714] border border-emerald-500/30 text-emerald-200 text-xs font-medium shadow-[0_0_20px_rgba(0,0,0,0.8)] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
-          Chat with Two Wise Academy
-        </div>
-
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Chat with Two Wise Academy on WhatsApp"
-          className="relative w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-gray-950 shadow-[0_0_30px_rgba(52,211,153,0.4)] flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
+      {selectedInstagramPost && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn"
+          onClick={() => setSelectedInstagramPost(null)}
         >
-          <span className="absolute inset-0 rounded-full bg-emerald-400 opacity-75 animate-ping-slow pointer-events-none"></span>
-          <Icon name="whatsapp" className="w-7 h-7 relative z-10" />
-        </a>
-      </div>
+          <div 
+            className="rounded-3xl bg-[#111714] border border-white/10 max-w-lg w-full overflow-hidden shadow-2xl relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="p-4 border-b border-white/10 flex items-center justify-between bg-[#151D18]">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-yellow-500 via-rose-500 to-purple-600 flex items-center justify-center">
+                  <Icon name="instagram" className="w-4 h-4 text-white" />
+                </div>
+                <div>
+                  <h4 className="font-heading font-bold text-xs text-white">@twowise_academy</h4>
+                  <p className="text-[10px] text-gray-400">Two Wise Academy • Pune</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setSelectedInstagramPost(null)}
+                className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white flex items-center justify-center transition-colors"
+              >
+                <Icon name="x" className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Modal Visual Area */}
+            <div className="relative aspect-video bg-gradient-to-br from-[#1A261F] via-[#121915] to-[#20151C] flex items-center justify-center p-6 text-center overflow-hidden">
+              <div className="space-y-3 z-10 max-w-sm">
+                <div className="w-14 h-14 rounded-full bg-black/60 border border-white/20 mx-auto flex items-center justify-center shadow-lg">
+                  {selectedInstagramPost.type === 'reel' ? (
+                    <Icon name="play" className="w-6 h-6 text-rose-300 fill-rose-300 ml-1" />
+                  ) : (
+                    <Icon name="image" className="w-6 h-6 text-emerald-300" />
+                  )}
+                </div>
+                <h3 className="font-heading font-bold text-base text-white">
+                  {selectedInstagramPost.title}
+                </h3>
+                <span className={`inline-block px-3 py-0.5 rounded-full text-xs font-bold border ${selectedInstagramPost.tagColor}`}>
+                  {selectedInstagramPost.tag}
+                </span>
+              </div>
+              
+              {/* Background Owl Logo Watermark */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+                <img src="./logo-owl-dark.png" alt="Two Wise" className="w-48 h-auto" />
+              </div>
+            </div>
+
+            {/* Modal Caption & Details */}
+            <div className="p-5 space-y-4 max-h-[40vh] overflow-y-auto">
+              <p className="text-xs sm:text-sm text-gray-200 leading-relaxed">
+                {selectedInstagramPost.caption}
+              </p>
+
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {selectedInstagramPost.hashtags.map((tag, i) => (
+                  <span key={i} className="text-xs font-medium text-emerald-400">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
+                <div className="flex items-center gap-3">
+                  <span className="flex items-center gap-1 text-rose-300 font-semibold">
+                    <Icon name="heart" className="w-3.5 h-3.5 fill-rose-300" />
+                    <span>{selectedInstagramPost.likes} likes</span>
+                  </span>
+                  <span>{selectedInstagramPost.comments} comments</span>
+                </div>
+                <span>{selectedInstagramPost.date}</span>
+              </div>
+
+              <div className="pt-2">
+                <a
+                  href={selectedInstagramPost.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3 rounded-2xl font-heading font-bold text-xs bg-gradient-to-r from-rose-500 via-purple-500 to-amber-500 text-white flex items-center justify-center gap-2 shadow-lg hover:brightness-110 transition-all"
+                >
+                  <Icon name="instagram" className="w-4 h-4 text-white" />
+                  <span>Watch on Instagram ↗</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
 
     </div>
   );
