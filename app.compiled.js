@@ -2025,7 +2025,7 @@ function App() {
       ...formData,
       parentName: e.target.value
     }),
-    placeholder: "e.g. Rajesh Kuwad",
+    placeholder: "e.g. Arjun Mehta",
     className: "w-full px-4 py-2.5 rounded-xl bg-[#0A0E0C] border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-emerald-400"
   }), formErrors.parentName && /*#__PURE__*/React.createElement("p", {
     className: "text-[11px] text-rose-400 mt-1"
@@ -2038,7 +2038,7 @@ function App() {
       ...formData,
       studentName: e.target.value
     }),
-    placeholder: "e.g. Sara",
+    placeholder: "e.g. Harshwardhan Mehta",
     className: "w-full px-4 py-2.5 rounded-xl bg-[#0A0E0C] border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-emerald-400"
   }), formErrors.studentName && /*#__PURE__*/React.createElement("p", {
     className: "text-[11px] text-rose-400 mt-1"
