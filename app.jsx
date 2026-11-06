@@ -705,7 +705,7 @@ function App() {
           onClick={() => scrollToSection('contact')}
           className="ml-2 underline font-semibold text-emerald-300 hover:text-emerald-200 hidden sm:inline"
         >
-          Book Consultation →
+          Enquire Now →
         </button>
       </div>
 
@@ -1987,8 +1987,8 @@ function App() {
                 ) : (
                   <form onSubmit={handleFormSubmit} className="space-y-4">
                     <div>
-                      <h3 className="font-heading font-bold text-xl text-white">Book a Consultation / Diagnostic Test</h3>
-                      <p className="text-xs text-gray-400 mt-1">Fill in the student details below to schedule an evaluation at our center.</p>
+                      <h3 className="font-heading font-bold text-xl text-white">Enquiry</h3>
+                      <p className="text-xs text-gray-400 mt-1">Fill in the student details below to send an enquiry to our center.</p>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -2093,7 +2093,7 @@ function App() {
                       type="submit"
                       className="w-full py-3.5 rounded-2xl font-heading font-bold text-sm bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-300 text-gray-950 hover:brightness-105 transition-all shadow-[0_0_25px_rgba(110,231,183,0.3)]"
                     >
-                      Submit Consultation Request →
+                      Submit Enquiry →
                     </button>
                   </form>
                 )}

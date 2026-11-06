@@ -945,7 +945,7 @@ function App() {
   }), /*#__PURE__*/React.createElement("span", null, "Admissions Open for 2026–27 • Offline Classroom Coaching in Gultekdi, Pune • Grades 4 to 12 (ICSE, CBSE, IB, IGCSE)"), /*#__PURE__*/React.createElement("button", {
     onClick: () => scrollToSection('contact'),
     className: "ml-2 underline font-semibold text-emerald-300 hover:text-emerald-200 hidden sm:inline"
-  }, "Book Consultation →")), /*#__PURE__*/React.createElement("header", {
+  }, "Enquire Now →")), /*#__PURE__*/React.createElement("header", {
     className: `sticky top-0 z-40 transition-all duration-300 ${scrolled ? 'nav-glass-dark border-b border-white/5 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)]' : 'bg-[#0A0E0C]/90 py-4'}`
   }, /*#__PURE__*/React.createElement("div", {
     className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -2012,9 +2012,9 @@ function App() {
     className: "space-y-4"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
     className: "font-heading font-bold text-xl text-white"
-  }, "Book a Consultation / Diagnostic Test"), /*#__PURE__*/React.createElement("p", {
+  }, "Enquiry"), /*#__PURE__*/React.createElement("p", {
     className: "text-xs text-gray-400 mt-1"
-  }, "Fill in the student details below to schedule an evaluation at our center.")), /*#__PURE__*/React.createElement("div", {
+  }, "Fill in the student details below to send an enquiry to our center.")), /*#__PURE__*/React.createElement("div", {
     className: "grid grid-cols-1 sm:grid-cols-2 gap-4"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
     className: "block text-xs font-semibold text-gray-300 mb-1"
@@ -2114,7 +2114,7 @@ function App() {
   })), /*#__PURE__*/React.createElement("button", {
     type: "submit",
     className: "w-full py-3.5 rounded-2xl font-heading font-bold text-sm bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-300 text-gray-950 hover:brightness-105 transition-all shadow-[0_0_25px_rgba(110,231,183,0.3)]"
-  }, "Submit Consultation Request →"))))))), /*#__PURE__*/React.createElement("footer", {
+  }, "Submit Enquiry →"))))))), /*#__PURE__*/React.createElement("footer", {
     className: "bg-[#070B09] border-t border-white/5 py-12 text-gray-400 text-xs"
   }, /*#__PURE__*/React.createElement("div", {
     className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8"
