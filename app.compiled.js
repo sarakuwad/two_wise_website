@@ -659,11 +659,6 @@ function App() {
   const [activeSubjectTab, setActiveSubjectTab] = useState('math');
   const [activeApproachStep, setActiveApproachStep] = useState(0);
 
-  // Social Feed & Instagram state
-  const [activeSocialFilter, setActiveSocialFilter] = useState('all');
-  const [selectedInstagramPost, setSelectedInstagramPost] = useState(null);
-  const [isPlayingReel, setIsPlayingReel] = useState(true);
-
   // Enquiry form state
   const [formData, setFormData] = useState({
     parentName: "",
@@ -803,139 +798,6 @@ function App() {
     glow: "shadow-glow-red",
     icon: "graduationCap"
   }];
-
-  // Instagram Social Posts & Reels (ASH-Style Social Feed)
-  const instagramFeed = [{
-    id: "reel-frank-freese",
-    type: "reel",
-    duration: "0:48",
-    views: "4.2k",
-    likes: 384,
-    comments: 52,
-    date: "Inauguration Reel",
-    title: "Historic Inauguration with Mr. Frank Freese",
-    caption: "A truly historic day for Two Wise Academy! Honoured to have Mr. Frank Freese, legendary former Principal of The Bishop's School, Pune, inaugurate our learning spaces at Prasad Apartments, Gultekdi. Inspiring our faculty and students to learn smart and think wise! 🦉✨",
-    hashtags: ['#TwoWiseAcademy', '#FrankFreese', '#BishopsPune', '#Inauguration', '#PuneTuitions', '#LearnSmartThinkWise'],
-    link: frankFreeseReelUrl,
-    isOfficialReel: true,
-    tag: "Key Milestone",
-    tagColor: "bg-emerald-950/70 text-emerald-300 border-emerald-500/30"
-  }, {
-    id: "reel-reva-math",
-    type: "reel",
-    duration: "1:12",
-    views: "3.1k",
-    likes: 295,
-    comments: 38,
-    date: "Classroom Insight",
-    title: "Math Conceptual Breakdown with Reva Mehta",
-    caption: "Formulas should never be memorised blindly when their visual geometry makes total sense! Watch Founder Reva Mehta (MBA SIBM Pune) break down tough ICSE & CBSE algebraic identities with intuitive sketches. 📐💡",
-    hashtags: ['#MathMadeSimple', '#RevaMehta', '#ConceptFirst', '#ICSEMath', '#CBSEMath', '#TwoWiseWay'],
-    link: frankFreeseReelUrl,
-    isOfficialReel: false,
-    tag: "Faculty Masterclass",
-    tagColor: "bg-rose-950/70 text-rose-300 border-rose-500/30"
-  }, {
-    id: "photo-campus-tour",
-    type: "photo",
-    likes: 242,
-    comments: 21,
-    date: "Gultekdi Center",
-    title: "Inside Our Modern Classrooms at Prasad Apartments",
-    caption: "Distraction-free, air-conditioned, and ergonomically designed for small-group coaching (under 12 students per batch). Centrally located at Prasad Apartments, T.M.V. Colony, Gultekdi, Pune. 📚🌿",
-    hashtags: ['#PuneClassrooms', '#Gultekdi', '#SmallBatches', '#StudyInPune', '#TwoWiseCampus'],
-    link: officialInstagramUrl,
-    isOfficialReel: false,
-    tag: "Campus Life",
-    tagColor: "bg-emerald-950/70 text-emerald-300 border-emerald-500/30"
-  }, {
-    id: "reel-diya-finance",
-    type: "reel",
-    duration: "0:56",
-    views: "2.6k",
-    likes: 218,
-    comments: 29,
-    date: "Foundation Spotlight",
-    title: "Financial & Logical Intuition with Diya Shah",
-    caption: "Co-Founder Diya Shah (BBA Finance) engaging Grades 4–8 students in commercial math and logic puzzles. Developing quantitative intuition early builds fearless learners! 🧠🔢",
-    hashtags: ['#CriticalThinking', '#DiyaShah', '#FoundationYears', '#MiddleSchoolMath', '#SmartKids'],
-    link: frankFreeseReelUrl,
-    isOfficialReel: false,
-    tag: "Faculty Masterclass",
-    tagColor: "bg-rose-950/70 text-rose-300 border-rose-500/30"
-  }, {
-    id: "photo-diagnostic-camp",
-    type: "photo",
-    likes: 188,
-    comments: 16,
-    date: "Academic Assessment",
-    title: "Personalised Diagnostic Mocks & 1-on-1 Feedback",
-    caption: "Every learner has unique strengths and hidden bottlenecks. Our weekend diagnostic evaluations give parents a crystal-clear roadmap before school exams arrive. 🎯📊",
-    hashtags: ['#PersonalisedLearning', '#BoardExamPrep', '#DiagnosticAssessment', '#Grades4to12'],
-    link: officialInstagramUrl,
-    isOfficialReel: false,
-    tag: "Assessment Camp",
-    tagColor: "bg-emerald-950/70 text-emerald-300 border-emerald-500/30"
-  }, {
-    id: "photo-doubt-clearing",
-    type: "photo",
-    likes: 265,
-    comments: 34,
-    date: "Student Culture",
-    title: "The Confidence to Ask “Why?”: Doubt Clearing Sessions",
-    caption: "In small batches of under 12, no student ever gets overlooked. Safe, supportive classrooms where questions are celebrated and answered completely. 🦉💚",
-    hashtags: ['#DoubtClearing', '#StudentCare', '#InteractiveLearning', '#PuneTuitionCenter'],
-    link: officialInstagramUrl,
-    isOfficialReel: false,
-    tag: "Student Culture",
-    tagColor: "bg-emerald-950/70 text-emerald-300 border-emerald-500/30"
-  }];
-
-  // News & School Stories (ASH-Style News Column)
-  const newsStories = [{
-    id: "news-1",
-    tag: "Special Inauguration",
-    tagColor: "bg-emerald-950/80 text-emerald-300 border-emerald-500/30",
-    date: "October 2026",
-    title: "Inauguration by Mr. Frank Freese: A Proud Milestone for Two Wise Academy",
-    summary: "Legendary former Principal of The Bishop's School, Pune, Mr. Frank Freese, graced Two Wise Academy to officially inaugurate our center in Gultekdi. He highlighted the transformative value of dedicated mentorship, concept clarity, and small-batch accountability.",
-    author: "Two Wise Academy News Desk",
-    linkAction: () => setSelectedInstagramPost(instagramFeed[0])
-  }, {
-    id: "news-2",
-    tag: "Academic Insight",
-    tagColor: "bg-rose-950/80 text-rose-300 border-rose-500/30",
-    date: "Faculty Editorial",
-    title: "Why Capping Batches Under 12 Unlocks Rapid Conceptual Breakthroughs",
-    summary: "Reva Mehta (MBA SIBM Pune) shares pedagogical findings from 6+ years of classroom teaching: when teachers can observe every pen-stroke, student hesitations disappear in days instead of months.",
-    author: "Reva Mehta, Co-Founder",
-    linkAction: () => scrollToSection('faculty')
-  }, {
-    id: "news-3",
-    tag: "Foundation Pedagogy",
-    tagColor: "bg-emerald-950/80 text-emerald-300 border-emerald-500/30",
-    date: "Methodology",
-    title: "Connecting Classroom Numbers to Real-World Economics for Grades 4–8",
-    summary: "Diya Shah (BBA Finance) explains how practical financial reasoning and puzzle-based arithmetic transform early middle school math from an intimidating chore into an exciting game.",
-    author: "Diya Shah, Co-Founder",
-    linkAction: () => scrollToSection('faculty')
-  }, {
-    id: "news-4",
-    tag: "Enrollment Notice",
-    tagColor: "bg-rose-950/80 text-rose-300 border-rose-500/30",
-    date: "Admissions 2026–27",
-    title: "Admissions Open for Grades 4–12: Book Your Free Diagnostic Assessment",
-    summary: "Parents across Pune can now book an in-person diagnostic test and academic strategy session at Prasad Apartments, T.M.V. Colony, Gultekdi.",
-    author: "Admissions Office",
-    linkAction: () => scrollToSection('contact')
-  }];
-
-  // Filtered Social Posts
-  const filteredSocialPosts = useMemo(() => {
-    if (activeSocialFilter === 'reels') return instagramFeed.filter(p => p.type === 'reel');
-    if (activeSocialFilter === 'photos') return instagramFeed.filter(p => p.type === 'photo');
-    return instagramFeed;
-  }, [activeSocialFilter]);
   return /*#__PURE__*/React.createElement("div", {
     className: "min-h-screen flex flex-col bg-[#0A0E0C] text-gray-100 selection:bg-emerald-500/30 selection:text-emerald-200 font-sans relative overflow-x-hidden"
   }, /*#__PURE__*/React.createElement("div", {
@@ -975,12 +837,6 @@ function App() {
     href: "#faculty",
     className: "px-3 py-2 text-sm font-medium text-emerald-300 hover:text-emerald-200 hover:bg-emerald-950/40 rounded-xl transition-colors"
   }, "Faculty"), /*#__PURE__*/React.createElement("a", {
-    href: "#happenings",
-    className: "px-3 py-2 text-sm font-medium text-rose-300 hover:text-rose-200 hover:bg-rose-950/40 rounded-xl transition-colors flex items-center gap-1.5"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "instagram",
-    className: "w-3.5 h-3.5 text-rose-400"
-  }), /*#__PURE__*/React.createElement("span", null, "Happenings & Reels")), /*#__PURE__*/React.createElement("a", {
     href: "#why-us",
     className: "px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors"
   }, "Why Us"), /*#__PURE__*/React.createElement("a", {
@@ -1032,12 +888,6 @@ function App() {
     onClick: () => scrollToSection('faculty'),
     className: "px-3 py-2.5 text-base font-medium text-emerald-300 hover:bg-emerald-950/30 rounded-xl cursor-pointer"
   }, "Faculty & Mentors"), /*#__PURE__*/React.createElement("a", {
-    onClick: () => scrollToSection('happenings'),
-    className: "px-3 py-2.5 text-base font-medium text-rose-300 hover:bg-rose-950/30 rounded-xl cursor-pointer flex items-center gap-2"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "instagram",
-    className: "w-4 h-4 text-rose-400"
-  }), /*#__PURE__*/React.createElement("span", null, "Happenings & Reels")), /*#__PURE__*/React.createElement("a", {
     onClick: () => scrollToSection('why-us'),
     className: "px-3 py-2.5 text-base font-medium text-gray-200 hover:bg-white/5 rounded-xl cursor-pointer"
   }, "Why Two Wise"), /*#__PURE__*/React.createElement("a", {
@@ -1099,16 +949,14 @@ function App() {
     name: "arrowRight",
     className: "w-4 h-4"
   })), /*#__PURE__*/React.createElement("button", {
-    onClick: () => setSelectedInstagramPost(instagramFeed[0]),
+    onClick: () => scrollToSection('boards'),
     className: "w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl font-heading font-semibold text-base bg-[#141B17] hover:bg-[#1A241F] text-white border border-rose-400/30 hover:border-rose-400/60 transition-all shadow-[0_0_25px_rgba(253,164,175,0.15)] active:scale-95 group"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "w-6 h-6 rounded-full bg-rose-500/20 text-rose-300 flex items-center justify-center group-hover:scale-110 transition-transform"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "play",
-    className: "w-3 h-3 text-rose-300 fill-rose-300"
-  })), /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", {
     className: "text-rose-200"
-  }, "Watch Inauguration Reel 🎬")), /*#__PURE__*/React.createElement("a", {
+  }, "Explore Curricula"), /*#__PURE__*/React.createElement(Icon, {
+    name: "arrowRight",
+    className: "w-4 h-4 text-rose-300"
+  })), /*#__PURE__*/React.createElement("a", {
     href: whatsappUrl,
     target: "_blank",
     rel: "noopener noreferrer",
@@ -1196,220 +1044,6 @@ function App() {
     name: "arrowRight",
     className: "w-3.5 h-3.5"
   })))))))), /*#__PURE__*/React.createElement("section", {
-    id: "happenings",
-    className: "py-24 bg-[#0A0E0C] relative border-t border-white/5"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "absolute top-1/3 left-10 w-[500px] h-[500px] bg-rose-500/8 rounded-full blur-[170px] pointer-events-none -z-0"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "absolute bottom-10 right-10 w-[450px] h-[450px] bg-emerald-500/8 rounded-full blur-[170px] pointer-events-none -z-0"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-white/10 gap-6"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "space-y-3 max-w-2xl"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-950/60 border border-rose-500/30 text-xs font-semibold text-rose-300"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "instagram",
-    className: "w-3.5 h-3.5 text-rose-400"
-  }), /*#__PURE__*/React.createElement("span", null, "Stay Connected with Two Wise")), /*#__PURE__*/React.createElement("h2", {
-    className: "font-heading text-3xl sm:text-4xl font-extrabold text-white"
-  }, "Recent Happenings at Two Wise Academy"), /*#__PURE__*/React.createElement("p", {
-    className: "text-gray-300 text-sm sm:text-base"
-  }, "Discover our latest campus milestones, faculty masterclasses, and daily classroom breakthroughs streamed directly from our Instagram feed.")), /*#__PURE__*/React.createElement("a", {
-    href: officialInstagramUrl,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    className: "inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-[#141B17] hover:bg-[#1A251F] border border-white/10 hover:border-emerald-500/40 text-white transition-all shadow-glow-green self-start md:self-auto group"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center shadow-sm"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "instagram",
-    className: "w-5 h-5 text-white"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "text-left"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "text-xs font-bold text-white group-hover:text-emerald-300 transition-colors"
-  }, "@twowise_academy"), /*#__PURE__*/React.createElement("p", {
-    className: "text-[11px] text-gray-400"
-  }, "Follow on Instagram ↗")))), /*#__PURE__*/React.createElement("div", {
-    className: "grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "lg:col-span-5 space-y-6"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center justify-between"
-  }, /*#__PURE__*/React.createElement("h3", {
-    className: "font-heading font-bold text-xl text-white flex items-center gap-2"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "award",
-    className: "w-5 h-5 text-emerald-400"
-  }), /*#__PURE__*/React.createElement("span", null, "Stories & Milestones")), /*#__PURE__*/React.createElement("span", {
-    className: "text-xs text-emerald-300/80 font-medium"
-  }, "From the Founders")), /*#__PURE__*/React.createElement("div", {
-    className: "rounded-3xl p-6 sm:p-7 bg-gradient-to-b from-[#131E18] via-[#101713] to-[#0D1310] border border-emerald-500/30 hover:border-emerald-400/60 shadow-[0_15px_40px_rgba(0,0,0,0.6)] transition-all hover-card-lift space-y-4"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center justify-between"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "px-3 py-1 rounded-full text-xs font-bold bg-emerald-950/80 text-emerald-300 border border-emerald-500/30"
-  }, "Official Inauguration"), /*#__PURE__*/React.createElement("span", {
-    className: "text-xs text-gray-400 flex items-center gap-1"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "calendar",
-    className: "w-3.5 h-3.5 text-gray-400"
-  }), /*#__PURE__*/React.createElement("span", null, "October 2026"))), /*#__PURE__*/React.createElement("div", {
-    className: "space-y-2"
-  }, /*#__PURE__*/React.createElement("h4", {
-    className: "font-heading font-bold text-xl sm:text-2xl text-white leading-snug"
-  }, "Inauguration by Mr. Frank Freese: A Historic Beginning"), /*#__PURE__*/React.createElement("p", {
-    className: "text-xs sm:text-sm text-gray-300 leading-relaxed"
-  }, "Two Wise Academy was deeply honoured to welcome legendary educationist ", /*#__PURE__*/React.createElement("strong", null, "Mr. Frank Freese"), ", former Principal of ", /*#__PURE__*/React.createElement("em", null, "The Bishop's School, Pune"), ", to inaugurate our learning center at Prasad Apartments, Gultekdi. His inspiring address to founders Reva Mehta and Diya Shah ignited our mission to provide uncompromising classroom excellence.")), /*#__PURE__*/React.createElement("div", {
-    className: "pt-3 border-t border-white/10 flex items-center justify-between"
-  }, /*#__PURE__*/React.createElement("button", {
-    onClick: () => setSelectedInstagramPost(instagramFeed[0]),
-    className: "inline-flex items-center gap-2 text-xs font-bold text-emerald-300 hover:text-emerald-200 transition-colors"
-  }, /*#__PURE__*/React.createElement("span", null, "Watch Inauguration Reel"), /*#__PURE__*/React.createElement(Icon, {
-    name: "play",
-    className: "w-3.5 h-3.5 fill-emerald-300"
-  })), /*#__PURE__*/React.createElement("a", {
-    href: frankFreeseReelUrl,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    className: "text-xs text-gray-400 hover:text-white inline-flex items-center gap-1"
-  }, /*#__PURE__*/React.createElement("span", null, "Open Reel"), /*#__PURE__*/React.createElement(Icon, {
-    name: "externalLink",
-    className: "w-3 h-3"
-  })))), /*#__PURE__*/React.createElement("div", {
-    className: "space-y-4"
-  }, newsStories.slice(1).map(story => /*#__PURE__*/React.createElement("div", {
-    key: story.id,
-    onClick: story.linkAction,
-    className: "rounded-2xl p-4 sm:p-5 bg-[#121915]/80 hover:bg-[#16211B] border border-white/5 hover:border-emerald-500/20 transition-all cursor-pointer group"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center justify-between mb-2"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: `px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${story.tagColor}`
-  }, story.tag), /*#__PURE__*/React.createElement("span", {
-    className: "text-[11px] text-gray-400"
-  }, story.date)), /*#__PURE__*/React.createElement("h5", {
-    className: "font-heading font-semibold text-sm sm:text-base text-gray-100 group-hover:text-emerald-300 transition-colors line-clamp-2"
-  }, story.title), /*#__PURE__*/React.createElement("p", {
-    className: "text-xs text-gray-400 mt-1 line-clamp-2 leading-relaxed"
-  }, story.summary), /*#__PURE__*/React.createElement("div", {
-    className: "mt-2.5 flex items-center justify-between text-[11px] text-gray-500 group-hover:text-gray-300"
-  }, /*#__PURE__*/React.createElement("span", null, story.author), /*#__PURE__*/React.createElement("span", {
-    className: "text-emerald-400 group-hover:translate-x-1 transition-transform"
-  }, "Read story →")))))), /*#__PURE__*/React.createElement("div", {
-    className: "lg:col-span-7 space-y-6"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#111814] p-4 rounded-2xl border border-white/5"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center gap-3"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "w-10 h-10 rounded-xl bg-gradient-to-tr from-yellow-500 via-rose-500 to-purple-600 flex items-center justify-center shadow-sm"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "instagram",
-    className: "w-5 h-5 text-white"
-  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center gap-1.5"
-  }, /*#__PURE__*/React.createElement("h4", {
-    className: "font-heading font-bold text-sm text-white"
-  }, "@twowise_academy"), /*#__PURE__*/React.createElement("span", {
-    className: "w-3.5 h-3.5 rounded-full bg-emerald-400 text-gray-950 flex items-center justify-center text-[9px] font-bold"
-  }, "✓")), /*#__PURE__*/React.createElement("p", {
-    className: "text-xs text-gray-400"
-  }, "Offline Classroom Moments & Masterclasses"))), /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center gap-1.5 self-start sm:self-auto bg-[#0A0E0C] p-1 rounded-xl border border-white/10"
-  }, /*#__PURE__*/React.createElement("button", {
-    onClick: () => setActiveSocialFilter('all'),
-    className: `px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${activeSocialFilter === 'all' ? 'bg-emerald-400 text-gray-950 font-bold' : 'text-gray-400 hover:text-white'}`
-  }, "All (", instagramFeed.length, ")"), /*#__PURE__*/React.createElement("button", {
-    onClick: () => setActiveSocialFilter('reels'),
-    className: `px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1 ${activeSocialFilter === 'reels' ? 'bg-rose-400 text-gray-950 font-bold' : 'text-gray-400 hover:text-white'}`
-  }, /*#__PURE__*/React.createElement("span", null, "Reels 🎬")), /*#__PURE__*/React.createElement("button", {
-    onClick: () => setActiveSocialFilter('photos'),
-    className: `px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1 ${activeSocialFilter === 'photos' ? 'bg-emerald-400 text-gray-950 font-bold' : 'text-gray-400 hover:text-white'}`
-  }, /*#__PURE__*/React.createElement("span", null, "Photos 📸")))), /*#__PURE__*/React.createElement("div", {
-    className: "grid grid-cols-1 sm:grid-cols-2 gap-4"
-  }, filteredSocialPosts.map(post => /*#__PURE__*/React.createElement("div", {
-    key: post.id,
-    onClick: () => setSelectedInstagramPost(post),
-    className: "rounded-2xl bg-[#121915] border border-white/10 hover:border-emerald-500/40 p-4 space-y-3 cursor-pointer hover-card-lift transition-all group relative overflow-hidden"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "relative aspect-[4/3] rounded-xl overflow-hidden bg-gradient-to-br from-[#16221B] via-[#101814] to-[#1E151A] border border-white/5 flex flex-col justify-between p-3.5 group-hover:brightness-110 transition-all"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center justify-between z-10"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: `px-2.5 py-0.5 rounded-md text-[10px] font-bold border ${post.tagColor}`
-  }, post.tag), post.type === 'reel' ? /*#__PURE__*/React.createElement("span", {
-    className: "px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-rose-300 border border-rose-500/30 flex items-center gap-1"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "video",
-    className: "w-3 h-3 text-rose-400"
-  }), /*#__PURE__*/React.createElement("span", null, post.duration)) : /*#__PURE__*/React.createElement("span", {
-    className: "px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-emerald-300 border border-emerald-500/30 flex items-center gap-1"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "image",
-    className: "w-3 h-3 text-emerald-400"
-  }), /*#__PURE__*/React.createElement("span", null, "Photo"))), /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center justify-center my-auto z-10"
-  }, post.type === 'reel' ? /*#__PURE__*/React.createElement("div", {
-    className: "w-12 h-12 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-rose-500/80 transition-all shadow-lg"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "play",
-    className: "w-5 h-5 fill-current ml-0.5"
-  })) : /*#__PURE__*/React.createElement("div", {
-    className: "w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-105 transition-transform"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: "./logo-owl-dark.png",
-    alt: "Two Wise",
-    className: "w-7 h-auto opacity-70"
-  }))), /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center justify-between text-[11px] text-white/90 z-10 bg-black/40 backdrop-blur-sm px-2 py-1 rounded-lg"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "font-semibold truncate max-w-[140px]"
-  }, post.title), /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center gap-2"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "flex items-center gap-0.5 text-rose-300"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "heart",
-    className: "w-3 h-3 fill-rose-300"
-  }), /*#__PURE__*/React.createElement("span", null, post.likes)))), /*#__PURE__*/React.createElement("div", {
-    className: "absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "space-y-1.5"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "text-xs text-gray-300 line-clamp-2 leading-relaxed"
-  }, post.caption), /*#__PURE__*/React.createElement("div", {
-    className: "flex flex-wrap gap-1 pt-1"
-  }, post.hashtags.slice(0, 3).map((tag, i) => /*#__PURE__*/React.createElement("span", {
-    key: i,
-    className: "text-[10px] font-medium text-emerald-300/80"
-  }, tag)))), /*#__PURE__*/React.createElement("div", {
-    className: "pt-2 border-t border-white/5 flex items-center justify-between text-[11px] text-gray-400"
-  }, /*#__PURE__*/React.createElement("span", null, post.date), /*#__PURE__*/React.createElement("span", {
-    className: "text-emerald-400 group-hover:underline flex items-center gap-1 font-semibold"
-  }, /*#__PURE__*/React.createElement("span", null, post.type === 'reel' ? 'Watch Reel' : 'View Post'), /*#__PURE__*/React.createElement(Icon, {
-    name: "arrowRight",
-    className: "w-3 h-3"
-  })))))), /*#__PURE__*/React.createElement("div", {
-    className: "p-4 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-[#121915] to-rose-950/30 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "space-y-0.5"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "text-xs font-bold text-white"
-  }, "Join 1,400+ parents and students on Instagram"), /*#__PURE__*/React.createElement("p", {
-    className: "text-[11px] text-gray-400"
-  }, "Daily syllabus updates, tips from Reva Mehta & Diya Shah, and exam prep insights.")), /*#__PURE__*/React.createElement("a", {
-    href: officialInstagramUrl,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    className: "px-4 py-2 rounded-xl text-xs font-bold bg-white/10 hover:bg-white/20 text-white border border-white/10 transition-all flex items-center gap-1.5 shrink-0"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "instagram",
-    className: "w-3.5 h-3.5 text-rose-400"
-  }), /*#__PURE__*/React.createElement("span", null, "Follow @twowise_academy"))))))), /*#__PURE__*/React.createElement("section", {
     id: "about",
     className: "py-20 bg-[#0B100D] relative border-t border-white/5"
   }, /*#__PURE__*/React.createElement("div", {
@@ -2151,9 +1785,6 @@ function App() {
     href: "#faculty",
     className: "hover:text-emerald-300 transition-colors"
   }, "Faculty & Founders")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
-    href: "#happenings",
-    className: "hover:text-rose-300 transition-colors"
-  }, "Happenings & Reels")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("a", {
     href: "#contact",
     className: "hover:text-emerald-300 transition-colors"
   }, "Contact & Directions")))), /*#__PURE__*/React.createElement("div", {
@@ -2176,82 +1807,7 @@ function App() {
     className: "text-rose-300 hover:underline"
   }, "@twowise_academy")))), /*#__PURE__*/React.createElement("div", {
     className: "pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-gray-500 text-[11px]"
-  }, /*#__PURE__*/React.createElement("p", null, "© ", new Date().getFullYear(), " Two Wise Academy. All rights reserved. Gultekdi, Pune."), /*#__PURE__*/React.createElement("p", null, "Learn Smart. Think Wise.")))), selectedInstagramPost && /*#__PURE__*/React.createElement("div", {
-    className: "fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn",
-    onClick: () => setSelectedInstagramPost(null)
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "rounded-3xl bg-[#111714] border border-white/10 max-w-lg w-full overflow-hidden shadow-2xl relative",
-    onClick: e => e.stopPropagation()
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "p-4 border-b border-white/10 flex items-center justify-between bg-[#151D18]"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center gap-2.5"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "w-8 h-8 rounded-full bg-gradient-to-tr from-yellow-500 via-rose-500 to-purple-600 flex items-center justify-center"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "instagram",
-    className: "w-4 h-4 text-white"
-  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
-    className: "font-heading font-bold text-xs text-white"
-  }, "@twowise_academy"), /*#__PURE__*/React.createElement("p", {
-    className: "text-[10px] text-gray-400"
-  }, "Two Wise Academy • Pune"))), /*#__PURE__*/React.createElement("button", {
-    onClick: () => setSelectedInstagramPost(null),
-    className: "w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white flex items-center justify-center transition-colors"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "x",
-    className: "w-4 h-4"
-  }))), /*#__PURE__*/React.createElement("div", {
-    className: "relative aspect-video bg-gradient-to-br from-[#1A261F] via-[#121915] to-[#20151C] flex items-center justify-center p-6 text-center overflow-hidden"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "space-y-3 z-10 max-w-sm"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "w-14 h-14 rounded-full bg-black/60 border border-white/20 mx-auto flex items-center justify-center shadow-lg"
-  }, selectedInstagramPost.type === 'reel' ? /*#__PURE__*/React.createElement(Icon, {
-    name: "play",
-    className: "w-6 h-6 text-rose-300 fill-rose-300 ml-1"
-  }) : /*#__PURE__*/React.createElement(Icon, {
-    name: "image",
-    className: "w-6 h-6 text-emerald-300"
-  })), /*#__PURE__*/React.createElement("h3", {
-    className: "font-heading font-bold text-base text-white"
-  }, selectedInstagramPost.title), /*#__PURE__*/React.createElement("span", {
-    className: `inline-block px-3 py-0.5 rounded-full text-xs font-bold border ${selectedInstagramPost.tagColor}`
-  }, selectedInstagramPost.tag)), /*#__PURE__*/React.createElement("div", {
-    className: "absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: "./logo-owl-dark.png",
-    alt: "Two Wise",
-    className: "w-48 h-auto"
-  }))), /*#__PURE__*/React.createElement("div", {
-    className: "p-5 space-y-4 max-h-[40vh] overflow-y-auto"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "text-xs sm:text-sm text-gray-200 leading-relaxed"
-  }, selectedInstagramPost.caption), /*#__PURE__*/React.createElement("div", {
-    className: "flex flex-wrap gap-1.5 pt-1"
-  }, selectedInstagramPost.hashtags.map((tag, i) => /*#__PURE__*/React.createElement("span", {
-    key: i,
-    className: "text-xs font-medium text-emerald-400"
-  }, tag))), /*#__PURE__*/React.createElement("div", {
-    className: "pt-3 border-t border-white/10 flex items-center justify-between text-xs text-gray-400"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "flex items-center gap-3"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "flex items-center gap-1 text-rose-300 font-semibold"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "heart",
-    className: "w-3.5 h-3.5 fill-rose-300"
-  }), /*#__PURE__*/React.createElement("span", null, selectedInstagramPost.likes, " likes")), /*#__PURE__*/React.createElement("span", null, selectedInstagramPost.comments, " comments")), /*#__PURE__*/React.createElement("span", null, selectedInstagramPost.date)), /*#__PURE__*/React.createElement("div", {
-    className: "pt-2"
-  }, /*#__PURE__*/React.createElement("a", {
-    href: selectedInstagramPost.link,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    className: "w-full py-3 rounded-2xl font-heading font-bold text-xs bg-gradient-to-r from-rose-500 via-purple-500 to-amber-500 text-white flex items-center justify-center gap-2 shadow-lg hover:brightness-110 transition-all"
-  }, /*#__PURE__*/React.createElement(Icon, {
-    name: "instagram",
-    className: "w-4 h-4 text-white"
-  }), /*#__PURE__*/React.createElement("span", null, "Watch on Instagram ↗")))))));
+  }, /*#__PURE__*/React.createElement("p", null, "© ", new Date().getFullYear(), " Two Wise Academy. All rights reserved. Gultekdi, Pune."), /*#__PURE__*/React.createElement("p", null, "Learn Smart. Think Wise.")))));
 }
 
 // Mount the React Application
