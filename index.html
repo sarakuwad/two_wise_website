@@ -7,6 +7,7 @@
   <meta name="description" content="Personalised offline classroom coaching at Prasad Apartments, T.M.V. Colony, Gultekdi, Pune-411037 for Grades 4–12 across ICSE, CBSE, IB, and IGCSE boards." />
   <meta name="keywords" content="Two Wise Academy, coaching classes Pune, Gultekdi tuition Pune, ICSE tuition Pune, CBSE coaching Pune, IB tutoring Pune, IGCSE tuition Pune, offline coaching Pune, grades 4 to 12" />
   <meta name="author" content="Two Wise Academy" />
+  <meta name="theme-color" content="#0A0E0C" />
 
   <!-- Open Graph / Meta -->
   <meta property="og:type" content="website" />
@@ -30,18 +31,22 @@
             heading: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
           },
           colors: {
-            brand: {
-              charcoal: '#252525',
-              lavender: '#EAE5FA',
-              blue: '#DFEDFA',
-              peach: '#FCE8DD',
-              mint: '#E2F0E8',
-              yellow: '#FFF3D6',
-              lavenderDark: '#6C5CE7',
-              blueDark: '#2D7FF9',
-              mintDark: '#20BF6B',
-              peachDark: '#FA8231',
-              yellowDark: '#F7B731',
+            dark: {
+              base: '#0A0E0C',
+              surface: '#111714',
+              card: '#161E1A',
+              cardHover: '#1B2621',
+              border: 'rgba(255, 255, 255, 0.08)',
+            },
+            pastel: {
+              green: '#86EFAC',       // Pastel Mint / Emerald
+              greenLight: '#D1FAE5',  // Soft pastel mint tint
+              greenDark: '#059669',   // Darker emerald
+              red: '#FDA4AF',         // Pastel Crimson / Rose
+              redLight: '#FFE4E6',    // Soft pastel rose tint
+              redDark: '#E11D48',     // Darker rose/crimson
+              cream: '#F4F5F0',       // Luxury off-white
+              muted: '#9CA3AF',       // Subtle text
             }
           },
           borderRadius: {
@@ -50,11 +55,11 @@
             '4xl': '2rem',
           },
           boxShadow: {
-            'soft': '0 10px 30px -10px rgba(0, 0, 0, 0.05)',
-            'soft-lg': '0 20px 40px -15px rgba(37, 37, 37, 0.07)',
-            'pastel-lavender': '0 12px 30px -8px rgba(108, 92, 231, 0.15)',
-            'pastel-blue': '0 12px 30px -8px rgba(45, 127, 249, 0.15)',
-            'pastel-mint': '0 12px 30px -8px rgba(32, 191, 107, 0.15)',
+            'soft': '0 10px 30px -10px rgba(0, 0, 0, 0.5)',
+            'soft-lg': '0 20px 40px -15px rgba(0, 0, 0, 0.7)',
+            'glow-green': '0 0 35px -5px rgba(134, 239, 172, 0.2)',
+            'glow-red': '0 0 35px -5px rgba(253, 164, 175, 0.2)',
+            'rich-card': '0 10px 40px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06)',
           }
         }
       }
@@ -75,14 +80,16 @@
   <link rel="icon" type="image/png" href="./favicon.png" />
   <link rel="apple-touch-icon" href="./logo-icon.png" />
 </head>
-<body class="bg-white text-brand-charcoal antialiased selection:bg-brand-lavender selection:text-brand-charcoal overflow-x-hidden">
+<body class="bg-[#0A0E0C] text-gray-100 antialiased selection:bg-emerald-500/30 selection:text-emerald-200 overflow-x-hidden">
   <div id="root">
     <!-- Instant Fallback Shell rendered while scripts load -->
-    <div class="min-h-screen flex items-center justify-center bg-white">
+    <div class="min-h-screen flex items-center justify-center bg-[#0A0E0C]">
       <div class="text-center space-y-4">
-        <img src="./logo-owl.png" alt="Two Wise Academy" class="w-20 h-auto mx-auto animate-pulse" />
-        <p class="text-sm font-semibold text-gray-700 font-heading">Two Wise Academy</p>
-        <p class="text-xs text-gray-400">Learn Smart. Think Wise.</p>
+        <div class="w-16 h-16 mx-auto rounded-3xl bg-[#111714] border border-emerald-500/20 flex items-center justify-center shadow-glow-green">
+          <img src="./logo-owl-dark.png" alt="Two Wise Academy" class="w-10 h-auto animate-pulse" />
+        </div>
+        <p class="text-sm font-semibold text-gray-200 font-heading">Two Wise Academy</p>
+        <p class="text-xs text-emerald-300/60">Learn Smart. Think Wise.</p>
       </div>
     </div>
   </div>

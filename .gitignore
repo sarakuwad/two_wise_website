@@ -9,3 +9,6 @@ __pycache__/
 
 # Local logs
 *.log
+
+# Tooling cache
+babel.min.js

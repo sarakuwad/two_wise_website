@@ -3,14 +3,14 @@ const { useState, useEffect, useMemo } = React;
 // --- Official Logo Component ---
 const WiseOwlLogo = ({ className = "h-10 w-auto", full = false }) => (
   <img 
-    src={full ? "./logo.png" : "./logo-owl.png"} 
+    src={full ? "./logo-dark.png" : "./logo-owl-dark.png"} 
     alt="Two Wise Academy" 
     className={`${className} object-contain`} 
   />
 );
 
-// Lucide icon helper component using lucide-react or SVG equivalents
-const Icon = ({ name, className = "w-5 h-5", color }) => {
+// Lucide icon helper component using SVG equivalents
+const Icon = ({ name, className = "w-5 h-5" }) => {
   const icons = {
     check: (
       <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -206,8 +206,6 @@ const Icon = ({ name, className = "w-5 h-5", color }) => {
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [selectedBoard, setSelectedBoard] = useState('ALL');
-  const [enquiryModalOpen, setEnquiryModalOpen] = useState(false);
   
   // Enquiry form state
   const [formData, setFormData] = useState({
@@ -253,7 +251,6 @@ function App() {
     if (!formData.parentName.trim()) errors.parentName = "Please enter parent's name";
     if (!formData.studentName.trim()) errors.studentName = "Please enter student's name";
     
-    // Validate phone number (at least 10 digits)
     const cleanPhone = formData.phone.replace(/[^0-9]/g, '');
     if (!cleanPhone || cleanPhone.length < 10) {
       errors.phone = "Please enter a valid 10-digit mobile number";
@@ -272,7 +269,6 @@ function App() {
     setIsSubmitted(true);
   };
 
-  // Build custom WhatsApp link with the submitted details
   const generatedWhatsAppLink = useMemo(() => {
     const text = `Hi Two Wise Academy! I would like to enquire about classroom coaching in Pune.\n\n` +
       `Parent Name: ${formData.parentName}\n` +
@@ -293,15 +289,15 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-brand-charcoal selection:bg-brand-lavender selection:text-brand-charcoal font-sans">
+    <div className="min-h-screen flex flex-col bg-[#0A0E0C] text-gray-100 selection:bg-emerald-500/30 selection:text-emerald-200 font-sans relative overflow-x-hidden">
 
       {/* TOP ANNOUNCEMENT BAR */}
-      <div className="bg-brand-lavender/60 border-b border-brand-lavender/80 px-4 py-2 text-xs font-medium text-brand-charcoal text-center flex items-center justify-center gap-2">
-        <span className="inline-block w-2 h-2 rounded-full bg-brand-mintDark animate-pulse"></span>
+      <div className="bg-[#0D1511] border-b border-emerald-900/40 px-4 py-2.5 text-xs font-medium text-emerald-200/90 text-center flex items-center justify-center gap-2 relative z-50">
+        <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
         <span>Admissions Open for 2026–27 • Offline Classroom Coaching in Pune • Grades 4 to 12 (ICSE, CBSE, IB, IGCSE)</span>
         <button 
           onClick={() => scrollToSection('contact')}
-          className="ml-2 underline font-semibold hover:text-brand-lavenderDark hidden sm:inline"
+          className="ml-2 underline font-semibold text-emerald-300 hover:text-emerald-200 hidden sm:inline"
         >
           Book a Consultation →
         </button>
@@ -310,40 +306,42 @@ function App() {
       {/* ========================================================================= */}
       {/* SECTION 1: HEADER & NAVIGATION */}
       {/* ========================================================================= */}
-      <header className={`sticky top-0 z-40 transition-all duration-300 ${scrolled ? 'nav-glass shadow-soft border-b border-gray-100 py-3' : 'bg-white/95 py-4'}`}>
+      <header className={`sticky top-0 z-40 transition-all duration-300 ${scrolled ? 'nav-glass-dark border-b border-white/5 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)]' : 'bg-[#0A0E0C]/90 py-4'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             
             {/* Logo */}
             <a href="#" className="flex items-center gap-3 group focus:outline-none">
-              <img 
-                src="./logo.png" 
-                alt="Two Wise Academy" 
-                className="h-11 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
-              />
+              <div className="px-3 py-1.5 rounded-2xl bg-white/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.3)] border border-white/20 transition-transform duration-300 group-hover:scale-105">
+                <img 
+                  src="./logo.png" 
+                  alt="Two Wise Academy" 
+                  className="h-9 sm:h-10 w-auto object-contain" 
+                />
+              </div>
             </a>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
-              <a href="#hero" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-charcoal hover:bg-gray-50 rounded-xl transition-colors">
+            <nav className="hidden md:flex items-center space-x-1 lg:space-x-1.5">
+              <a href="#hero" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
                 Home
               </a>
-              <a href="#about" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-charcoal hover:bg-gray-50 rounded-xl transition-colors">
+              <a href="#about" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
                 About Us
               </a>
-              <a href="#boards" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-charcoal hover:bg-gray-50 rounded-xl transition-colors">
+              <a href="#boards" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
                 Programs
               </a>
-              <a href="#approach" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-charcoal hover:bg-gray-50 rounded-xl transition-colors">
+              <a href="#approach" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
                 Our Approach
               </a>
-              <a href="#why-us" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-charcoal hover:bg-gray-50 rounded-xl transition-colors">
+              <a href="#why-us" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
                 Why Two Wise
               </a>
-              <a href="#faculty" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-charcoal hover:bg-gray-50 rounded-xl transition-colors">
+              <a href="#faculty" className="px-3 py-2 text-sm font-medium text-emerald-300 hover:text-emerald-200 hover:bg-emerald-950/40 rounded-xl transition-colors">
                 Faculty
               </a>
-              <a href="#contact" className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-charcoal hover:bg-gray-50 rounded-xl transition-colors">
+              <a href="#contact" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
                 Contact
               </a>
             </nav>
@@ -354,16 +352,16 @@ function App() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-emerald-800 bg-brand-mint/70 hover:bg-brand-mint border border-emerald-200/60 rounded-xl transition-all"
+                className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-emerald-300 bg-emerald-950/60 hover:bg-emerald-900/80 border border-emerald-500/30 rounded-xl transition-all shadow-[0_0_15px_rgba(52,211,153,0.1)]"
                 title="Chat on WhatsApp"
               >
-                <Icon name="whatsapp" className="w-4 h-4 text-emerald-600" />
+                <Icon name="whatsapp" className="w-4 h-4 text-emerald-400" />
                 <span>9049650666</span>
               </a>
 
               <button
                 onClick={() => scrollToSection('contact')}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-heading font-semibold text-sm bg-brand-charcoal text-white hover:bg-black transition-all shadow-sm hover:shadow active:scale-95"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-heading font-bold text-sm bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-300 text-gray-950 hover:brightness-105 transition-all shadow-[0_0_25px_rgba(110,231,183,0.3)] hover:shadow-[0_0_35px_rgba(110,231,183,0.5)] active:scale-95"
               >
                 <span>Enquire Now</span>
                 <Icon name="arrowRight" className="w-4 h-4" />
@@ -374,13 +372,13 @@ function App() {
             <div className="flex md:hidden items-center gap-2">
               <button
                 onClick={() => scrollToSection('contact')}
-                className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-charcoal text-white"
+                className="px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-400 text-gray-950"
               >
                 Enquire
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-xl text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none"
+                className="p-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 focus:outline-none"
                 aria-label="Toggle menu"
               >
                 <Icon name={mobileMenuOpen ? "x" : "menu"} className="w-6 h-6" />
@@ -392,65 +390,65 @@ function App() {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-b border-gray-100 bg-white/98 px-4 pt-2 pb-6 space-y-3 animate-fadeIn">
+          <div className="md:hidden border-b border-white/10 bg-[#0A0E0C]/98 px-4 pt-3 pb-6 space-y-3">
             <div className="flex flex-col space-y-1">
               <a 
                 onClick={() => scrollToSection('hero')} 
-                className="px-3 py-2.5 text-base font-medium text-gray-700 hover:bg-brand-lavender/40 rounded-xl cursor-pointer"
+                className="px-3 py-2.5 text-base font-medium text-gray-200 hover:bg-white/5 rounded-xl cursor-pointer"
               >
                 Home
               </a>
               <a 
                 onClick={() => scrollToSection('about')} 
-                className="px-3 py-2.5 text-base font-medium text-gray-700 hover:bg-brand-lavender/40 rounded-xl cursor-pointer"
+                className="px-3 py-2.5 text-base font-medium text-gray-200 hover:bg-white/5 rounded-xl cursor-pointer"
               >
                 About Us
               </a>
               <a 
                 onClick={() => scrollToSection('boards')} 
-                className="px-3 py-2.5 text-base font-medium text-gray-700 hover:bg-brand-lavender/40 rounded-xl cursor-pointer"
+                className="px-3 py-2.5 text-base font-medium text-gray-200 hover:bg-white/5 rounded-xl cursor-pointer"
               >
                 Programs (Boards)
               </a>
               <a 
                 onClick={() => scrollToSection('approach')} 
-                className="px-3 py-2.5 text-base font-medium text-gray-700 hover:bg-brand-lavender/40 rounded-xl cursor-pointer"
+                className="px-3 py-2.5 text-base font-medium text-gray-200 hover:bg-white/5 rounded-xl cursor-pointer"
               >
                 Our Approach
               </a>
               <a 
                 onClick={() => scrollToSection('why-us')} 
-                className="px-3 py-2.5 text-base font-medium text-gray-700 hover:bg-brand-lavender/40 rounded-xl cursor-pointer"
+                className="px-3 py-2.5 text-base font-medium text-gray-200 hover:bg-white/5 rounded-xl cursor-pointer"
               >
                 Why Two Wise
               </a>
               <a 
                 onClick={() => scrollToSection('faculty')} 
-                className="px-3 py-2.5 text-base font-medium text-gray-700 hover:bg-brand-lavender/40 rounded-xl cursor-pointer"
+                className="px-3 py-2.5 text-base font-medium text-emerald-300 hover:bg-white/5 rounded-xl cursor-pointer"
               >
                 Faculty & Mentors
               </a>
               <a 
                 onClick={() => scrollToSection('contact')} 
-                className="px-3 py-2.5 text-base font-medium text-gray-700 hover:bg-brand-lavender/40 rounded-xl cursor-pointer"
+                className="px-3 py-2.5 text-base font-medium text-gray-200 hover:bg-white/5 rounded-xl cursor-pointer"
               >
                 Contact
               </a>
             </div>
 
-            <div className="pt-2 border-t border-gray-100 flex flex-col gap-2">
+            <div className="pt-2 border-t border-white/10 flex flex-col gap-2">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-mint text-emerald-900 font-semibold text-sm"
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-950/80 border border-emerald-500/40 text-emerald-200 font-semibold text-sm"
               >
-                <Icon name="whatsapp" className="w-5 h-5 text-emerald-700" />
+                <Icon name="whatsapp" className="w-5 h-5 text-emerald-400" />
                 <span>WhatsApp: +91 90496 50666</span>
               </a>
               <button
                 onClick={() => scrollToSection('contact')}
-                className="w-full py-3 rounded-xl bg-brand-charcoal text-white font-semibold text-sm shadow-sm"
+                className="w-full py-3 rounded-xl bg-emerald-400 text-gray-950 font-bold text-sm shadow-glow-green"
               >
                 Enquire Now
               </button>
@@ -462,49 +460,51 @@ function App() {
       {/* ========================================================================= */}
       {/* SECTION 1: HERO SECTION */}
       {/* ========================================================================= */}
-      <section id="hero" className="relative pt-8 pb-16 md:pt-14 md:pb-24 overflow-hidden">
-        {/* Subtle background ambient pastel circles */}
-        <div className="absolute top-0 right-10 w-96 h-96 bg-brand-lavender/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
-        <div className="absolute bottom-10 left-5 w-80 h-80 bg-brand-blue/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
-        <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-brand-peach/30 rounded-full blur-3xl pointer-events-none -z-10"></div>
+      <section id="hero" className="relative pt-10 pb-20 md:pt-16 md:pb-28 overflow-hidden bg-dark-grid">
+        {/* Rich Ambient Glowing Orbs (Pastel Green & Pastel Red/Rose) */}
+        <div className="absolute top-10 right-10 w-[480px] h-[480px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none -z-0"></div>
+        <div className="absolute bottom-10 left-5 w-[420px] h-[420px] bg-rose-500/8 rounded-full blur-[140px] pointer-events-none -z-0"></div>
+        <div className="absolute top-1/2 left-1/3 w-[360px] h-[360px] bg-teal-500/8 rounded-full blur-[150px] pointer-events-none -z-0"></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             
             {/* Left Column: Headlines & CTAs */}
             <div className="lg:col-span-7 space-y-6 text-left">
               
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-lavender/70 border border-brand-lavenderDark/20 text-xs font-semibold text-brand-charcoal">
-                <span className="w-2 h-2 rounded-full bg-brand-lavenderDark"></span>
-                <span>Offline Classroom Coaching • Pune, Maharashtra</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-semibold text-emerald-300 shadow-[0_0_20px_rgba(52,211,153,0.15)]">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]"></span>
+                <span>Offline Classroom Coaching • Gultekdi, Pune</span>
               </div>
 
               {/* Main Headline */}
-              <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-charcoal tracking-tight leading-[1.12]">
+              <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12]">
                 Learn Smart. <br />
                 <span className="relative inline-block">
-                  <span className="relative z-10">Think Wise.</span>
-                  {/* Subtle pastel underline accent */}
-                  <span className="absolute bottom-2 left-0 w-full h-3 bg-brand-yellow/80 -z-0 rounded-md"></span>
+                  <span className="bg-gradient-to-r from-emerald-300 via-teal-200 to-rose-300 bg-clip-text text-transparent">
+                    Think Wise.
+                  </span>
+                  {/* Subtle pastel underline glow */}
+                  <span className="absolute bottom-1 left-0 w-full h-1 bg-gradient-to-r from-emerald-400/60 via-teal-400/60 to-rose-400/60 rounded-full blur-[1px]"></span>
                 </span>
               </h1>
 
               {/* Supporting Headline */}
-              <h2 className="font-heading text-xl sm:text-2xl font-semibold text-gray-700">
+              <h2 className="font-heading text-xl sm:text-2xl font-semibold text-gray-200">
                 Building brighter minds, one concept at a time.
               </h2>
 
               {/* Description */}
-              <p className="text-base sm:text-lg text-gray-600 max-w-xl leading-relaxed">
-                Personalised classroom learning for students from <strong className="text-brand-charcoal font-semibold">Grades 4–12</strong> across <span className="font-semibold text-brand-charcoal">ICSE, CBSE, IB</span> and <span className="font-semibold text-brand-charcoal">IGCSE</span> boards.
+              <p className="text-base sm:text-lg text-gray-300 max-w-xl leading-relaxed">
+                Personalised classroom learning for students from <strong className="text-emerald-300 font-semibold">Grades 4–12</strong> across <span className="font-semibold text-rose-300">ICSE</span>, <span className="font-semibold text-emerald-300">CBSE</span>, <span className="font-semibold text-amber-200">IB</span> and <span className="font-semibold text-teal-300">IGCSE</span> boards.
               </p>
 
               {/* CTAs */}
               <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
                 <button
                   onClick={() => scrollToSection('boards')}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl font-heading font-semibold text-base bg-brand-charcoal text-white hover:bg-black transition-all shadow-soft hover:shadow-soft-lg active:scale-95"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl font-heading font-bold text-base bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-300 text-gray-950 hover:brightness-105 transition-all shadow-[0_0_30px_rgba(110,231,183,0.35)] hover:shadow-[0_0_40px_rgba(110,231,183,0.5)] active:scale-95"
                 >
                   <span>Explore Our Programs</span>
                   <Icon name="arrowRight" className="w-4 h-4" />
@@ -512,29 +512,29 @@ function App() {
 
                 <button
                   onClick={() => scrollToSection('contact')}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl font-heading font-semibold text-base bg-brand-lavender hover:bg-brand-lavender/80 text-brand-charcoal border border-brand-lavenderDark/10 transition-all hover:scale-[1.02] active:scale-95"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl font-heading font-semibold text-base bg-white/5 hover:bg-white/10 text-white border border-rose-400/30 hover:border-rose-400/60 transition-all shadow-[0_0_20px_rgba(253,164,175,0.15)] active:scale-95"
                 >
-                  <span>Enquire Now</span>
+                  <span className="text-rose-200">Enquire Now</span>
                 </button>
               </div>
 
               {/* Quick Trust Highlights */}
-              <div className="pt-6 border-t border-gray-100 grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div className="space-y-0.5">
-                  <span className="font-heading font-bold text-lg text-brand-charcoal block">4 Boards</span>
-                  <span className="text-xs text-gray-500">ICSE, CBSE, IB, IGCSE</span>
+              <div className="pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div className="p-3 rounded-2xl bg-[#111714]/80 border border-white/5 space-y-0.5">
+                  <span className="font-heading font-bold text-lg text-emerald-300 block">4 Boards</span>
+                  <span className="text-xs text-gray-400">ICSE, CBSE, IB, IGCSE</span>
                 </div>
-                <div className="space-y-0.5">
-                  <span className="font-heading font-bold text-lg text-brand-charcoal block">Grades 4–12</span>
-                  <span className="text-xs text-gray-500">All Subjects Covered</span>
+                <div className="p-3 rounded-2xl bg-[#111714]/80 border border-white/5 space-y-0.5">
+                  <span className="font-heading font-bold text-lg text-rose-300 block">Grades 4–12</span>
+                  <span className="text-xs text-gray-400">All Subjects Covered</span>
                 </div>
-                <div className="space-y-0.5">
-                  <span className="font-heading font-bold text-lg text-brand-charcoal block">Small Batches</span>
-                  <span className="text-xs text-gray-500">Individual Attention</span>
+                <div className="p-3 rounded-2xl bg-[#111714]/80 border border-white/5 space-y-0.5">
+                  <span className="font-heading font-bold text-lg text-emerald-300 block">Small Batches</span>
+                  <span className="text-xs text-gray-400">Individual Attention</span>
                 </div>
-                <div className="space-y-0.5">
-                  <span className="font-heading font-bold text-lg text-brand-charcoal block">Pune Center</span>
-                  <span className="text-xs text-gray-500">Offline Classrooms</span>
+                <div className="p-3 rounded-2xl bg-[#111714]/80 border border-white/5 space-y-0.5">
+                  <span className="font-heading font-bold text-lg text-rose-300 block">Pune Center</span>
+                  <span className="text-xs text-gray-400">Gultekdi Classrooms</span>
                 </div>
               </div>
 
@@ -545,102 +545,102 @@ function App() {
               <div className="relative mx-auto max-w-md lg:max-w-none">
                 
                 {/* Main Classroom Illustration Card */}
-                <div className="relative rounded-3xl p-6 sm:p-8 bg-white border border-gray-100 shadow-soft-lg overflow-hidden">
+                <div className="relative rounded-3xl p-6 sm:p-8 bg-[#121915]/90 border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.7)] backdrop-blur-xl overflow-hidden">
                   
                   {/* Subtle top background inside card */}
-                  <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-brand-lavender/30 to-transparent -z-0"></div>
+                  <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-emerald-500/10 to-transparent -z-0"></div>
 
                   {/* Header inside card */}
-                  <div className="relative z-10 flex items-center justify-between pb-6 border-b border-gray-100">
+                  <div className="relative z-10 flex items-center justify-between pb-6 border-b border-white/10">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-2xl bg-brand-lavender flex items-center justify-center">
-                        <Icon name="graduationCap" className="w-5 h-5 text-brand-charcoal" />
+                      <div className="w-10 h-10 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-glow-green">
+                        <Icon name="graduationCap" className="w-5 h-5" />
                       </div>
                       <div>
-                        <h4 className="font-heading font-bold text-sm text-brand-charcoal">The Two Wise Classroom</h4>
-                        <p className="text-xs text-gray-500">Engaging • Offline • Pune</p>
+                        <h4 className="font-heading font-bold text-sm text-white">The Two Wise Classroom</h4>
+                        <p className="text-xs text-gray-400">Engaging • Offline • Gultekdi, Pune</p>
                       </div>
                     </div>
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-brand-mint text-emerald-800">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-950 border border-emerald-500/40 text-emerald-300">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                       Active Batches
                     </span>
                   </div>
 
-                  {/* Contemporary Classroom Vector Graphic */}
+                  {/* Contemporary Dark Classroom Vector Graphic */}
                   <div className="relative z-10 my-6 py-4">
-                    <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto drop-shadow-sm">
+                    <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto drop-shadow-lg">
                       {/* Classroom floor & wall */}
-                      <rect x="10" y="20" width="380" height="200" rx="16" fill="#F8FAFC" />
-                      <path d="M10 170L390 170" stroke="#E2E8F0" strokeWidth="2" strokeDasharray="4 4" />
+                      <rect x="10" y="20" width="380" height="200" rx="16" fill="#0C120F" stroke="#1F2E25" strokeWidth="1.5" />
+                      <path d="M10 170L390 170" stroke="#1F2E25" strokeWidth="1.5" strokeDasharray="4 4" />
                       
-                      {/* Modern Whiteboard */}
-                      <rect x="70" y="35" width="260" height="90" rx="10" fill="#FFFFFF" stroke="#EAE5FA" strokeWidth="3" />
-                      <line x1="90" y1="55" x2="160" y2="55" stroke="#6C5CE7" strokeWidth="3" strokeLinecap="round" />
-                      <line x1="90" y1="70" x2="230" y2="70" stroke="#DFEDFA" strokeWidth="4" strokeLinecap="round" />
-                      <line x1="90" y1="85" x2="190" y2="85" stroke="#DFEDFA" strokeWidth="4" strokeLinecap="round" />
-                      <circle cx="280" cy="80" r="22" fill="#FFF3D6" />
-                      <path d="M272 80L278 86L290 74" stroke="#F7B731" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                      <text x="90" y="105" fill="#252525" fontSize="11" fontWeight="600" fontFamily="sans-serif">Concept Clarity &gt; Rote Learning</text>
+                      {/* Modern Digital Whiteboard */}
+                      <rect x="70" y="35" width="260" height="90" rx="10" fill="#131D18" stroke="#34D399" strokeWidth="1.5" strokeOpacity="0.4" />
+                      <line x1="90" y1="55" x2="160" y2="55" stroke="#34D399" strokeWidth="3" strokeLinecap="round" />
+                      <line x1="90" y1="70" x2="230" y2="70" stroke="#FDA4AF" strokeWidth="3" strokeLinecap="round" strokeOpacity="0.8" />
+                      <line x1="90" y1="85" x2="190" y2="85" stroke="#6EE7B7" strokeWidth="3" strokeLinecap="round" strokeOpacity="0.6" />
+                      <circle cx="280" cy="80" r="22" fill="#1C2E24" stroke="#34D399" strokeWidth="1.5" />
+                      <path d="M272 80L278 86L290 74" stroke="#86EFAC" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                      <text x="90" y="105" fill="#86EFAC" fontSize="11" fontWeight="600" fontFamily="sans-serif">Concept Clarity &gt; Rote Learning</text>
 
                       {/* Collaborative Classroom Desks */}
-                      <rect x="60" y="155" width="110" height="42" rx="8" fill="#DFEDFA" />
-                      <rect x="230" y="155" width="110" height="42" rx="8" fill="#FCE8DD" />
+                      <rect x="60" y="155" width="110" height="42" rx="8" fill="#18251E" stroke="#2D4235" strokeWidth="1" />
+                      <rect x="230" y="155" width="110" height="42" rx="8" fill="#241B1F" stroke="#4A2E38" strokeWidth="1" />
 
                       {/* Student 1 (Desk Left) */}
-                      <circle cx="115" cy="140" r="14" fill="#6C5CE7" />
-                      <circle cx="115" cy="136" r="6" fill="#FFFFFF" />
+                      <circle cx="115" cy="140" r="14" fill="#34D399" />
+                      <circle cx="115" cy="136" r="6" fill="#0A0E0C" />
                       {/* Notebook */}
-                      <rect x="95" y="162" width="24" height="16" rx="2" fill="#FFFFFF" stroke="#252525" strokeWidth="1" />
+                      <rect x="95" y="162" width="24" height="16" rx="2" fill="#121D17" stroke="#34D399" strokeWidth="1" />
 
                       {/* Student 2 (Desk Right) */}
-                      <circle cx="285" cy="140" r="14" fill="#20BF6B" />
-                      <circle cx="285" cy="136" r="6" fill="#FFFFFF" />
+                      <circle cx="285" cy="140" r="14" fill="#FB7185" />
+                      <circle cx="285" cy="136" r="6" fill="#0A0E0C" />
                       {/* Tablet / Book */}
-                      <rect x="265" y="162" width="26" height="16" rx="3" fill="#FFFFFF" stroke="#252525" strokeWidth="1" />
+                      <rect x="265" y="162" width="26" height="16" rx="3" fill="#1E1418" stroke="#FB7185" strokeWidth="1" />
 
                       {/* Teacher / Mentor */}
-                      <circle cx="200" cy="115" r="16" fill="#252525" />
-                      <circle cx="200" cy="110" r="7" fill="#FFFFFF" />
-                      <path d="M192 135C192 125 208 125 208 135" stroke="#252525" strokeWidth="3" />
+                      <circle cx="200" cy="115" r="16" fill="#F3F4F6" />
+                      <circle cx="200" cy="110" r="7" fill="#0A0E0C" />
+                      <path d="M192 135C192 125 208 125 208 135" stroke="#F3F4F6" strokeWidth="3" />
                       {/* Pointer / Light */}
-                      <path d="M210 120L230 100" stroke="#6C5CE7" strokeWidth="2.5" strokeLinecap="round" />
+                      <path d="M210 120L230 100" stroke="#86EFAC" strokeWidth="2.5" strokeLinecap="round" />
                     </svg>
                   </div>
 
                   {/* Micro Indicators / Pills inside */}
                   <div className="relative z-10 grid grid-cols-2 gap-3 pt-2">
-                    <div className="flex items-center gap-2 p-2.5 rounded-xl bg-brand-mint/50 border border-emerald-100">
-                      <Icon name="users" className="w-4 h-4 text-emerald-700" />
-                      <span className="text-xs font-semibold text-emerald-900">8–10 Students Max</span>
+                    <div className="flex items-center gap-2 p-2.5 rounded-xl bg-emerald-950/70 border border-emerald-500/30">
+                      <Icon name="users" className="w-4 h-4 text-emerald-400" />
+                      <span className="text-xs font-semibold text-emerald-200">8–10 Students Max</span>
                     </div>
-                    <div className="flex items-center gap-2 p-2.5 rounded-xl bg-brand-yellow/60 border border-amber-100">
-                      <Icon name="sparkles" className="w-4 h-4 text-amber-700" />
-                      <span className="text-xs font-semibold text-amber-900">Zero Rote Learning</span>
+                    <div className="flex items-center gap-2 p-2.5 rounded-xl bg-rose-950/70 border border-rose-500/30">
+                      <Icon name="sparkles" className="w-4 h-4 text-rose-400" />
+                      <span className="text-xs font-semibold text-rose-200">Zero Rote Learning</span>
                     </div>
                   </div>
 
                 </div>
 
                 {/* Floating Academic Element 1: Top Left */}
-                <div className="absolute -top-5 -left-4 sm:-left-6 p-3.5 rounded-2xl bg-white border border-gray-100 shadow-soft animate-float flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-brand-lavender flex items-center justify-center">
-                    <Icon name="target" className="w-4 h-4 text-brand-charcoal" />
+                <div className="absolute -top-5 -left-4 sm:-left-6 p-3.5 rounded-2xl bg-[#141C18]/90 border border-emerald-500/30 shadow-glow-green backdrop-blur-xl animate-float flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-emerald-300">
+                    <Icon name="target" className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-brand-charcoal block leading-none">Concept First</span>
-                    <span className="text-[10px] text-gray-500">Every Topic Understood</span>
+                    <span className="text-xs font-bold text-white block leading-none">Concept First</span>
+                    <span className="text-[10px] text-emerald-300/80">Every Topic Understood</span>
                   </div>
                 </div>
 
                 {/* Floating Academic Element 2: Bottom Right */}
-                <div className="absolute -bottom-5 -right-3 sm:-right-6 p-3.5 rounded-2xl bg-white border border-gray-100 shadow-soft animate-float-reverse flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-brand-blue flex items-center justify-center">
-                    <Icon name="compass" className="w-4 h-4 text-brand-charcoal" />
+                <div className="absolute -bottom-5 -right-3 sm:-right-6 p-3.5 rounded-2xl bg-[#1A1417]/90 border border-rose-500/30 shadow-glow-red backdrop-blur-xl animate-float-reverse flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-xl bg-rose-950 border border-rose-500/40 flex items-center justify-center text-rose-300">
+                    <Icon name="compass" className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-brand-charcoal block leading-none">All 4 Curricula</span>
-                    <span className="text-[10px] text-gray-500">ICSE • CBSE • IB • IGCSE</span>
+                    <span className="text-xs font-bold text-white block leading-none">All 4 Curricula</span>
+                    <span className="text-[10px] text-rose-300/80">Grades 4–12 Support</span>
                   </div>
                 </div>
 
@@ -654,17 +654,17 @@ function App() {
       {/* ========================================================================= */}
       {/* SECTION 2: INTRODUCTION */}
       {/* ========================================================================= */}
-      <section id="about" className="py-20 bg-white relative border-t border-gray-100">
+      <section id="about" className="py-20 bg-[#0B100D] relative border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="px-3.5 py-1.5 rounded-full bg-brand-peach/80 border border-amber-200/50 text-xs font-bold tracking-wide uppercase text-brand-charcoal">
+            <span className="px-4 py-1.5 rounded-full bg-rose-950/60 border border-rose-500/30 text-xs font-bold tracking-wide uppercase text-rose-300 shadow-[0_0_15px_rgba(253,164,175,0.15)]">
               Our Educational Philosophy
             </span>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-charcoal tracking-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
               Education That Goes Beyond Textbooks.
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
               At Two Wise Academy, we believe every student learns differently. Our approach combines structured academic guidance, individual attention and conceptual learning to help students develop the confidence to excel.
             </p>
           </div>
@@ -673,69 +673,69 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             
             {/* Highlight 1: Understand Better */}
-            <div className="p-8 rounded-3xl bg-brand-lavender/60 border border-brand-lavenderDark/10 hover-card-lift space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-white shadow-soft flex items-center justify-center">
-                <Icon name="lightbulb" className="w-7 h-7 text-brand-lavenderDark" />
+            <div className="p-8 rounded-3xl bg-[#121915]/90 border border-emerald-500/20 shadow-glow-green hover:border-emerald-400/40 hover-card-lift space-y-4">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-300 shadow-sm">
+                <Icon name="lightbulb" className="w-7 h-7" />
               </div>
-              <h3 className="font-heading text-2xl font-bold text-brand-charcoal">
+              <h3 className="font-heading text-2xl font-bold text-white">
                 Understand Better
               </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-gray-300 text-sm leading-relaxed">
                 We break down complex formulas and theories into relatable everyday concepts. No blindly memorising steps without understanding why they work.
               </p>
-              <ul className="space-y-2 pt-2 text-xs font-medium text-gray-700">
+              <ul className="space-y-2 pt-2 text-xs font-medium text-gray-300">
                 <li className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-brand-lavenderDark" />
+                  <Icon name="check" className="w-4 h-4 text-emerald-400" />
                   <span>First-principles conceptual foundation</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-brand-lavenderDark" />
+                  <Icon name="check" className="w-4 h-4 text-emerald-400" />
                   <span>Interactive question-and-answer dialogue</span>
                 </li>
               </ul>
             </div>
 
             {/* Highlight 2: Learn Smarter */}
-            <div className="p-8 rounded-3xl bg-brand-blue/60 border border-brand-blueDark/10 hover-card-lift space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-white shadow-soft flex items-center justify-center">
-                <Icon name="target" className="w-7 h-7 text-brand-blueDark" />
+            <div className="p-8 rounded-3xl bg-[#181316]/90 border border-rose-500/20 shadow-glow-red hover:border-rose-400/40 hover-card-lift space-y-4">
+              <div className="w-14 h-14 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300 shadow-sm">
+                <Icon name="target" className="w-7 h-7" />
               </div>
-              <h3 className="font-heading text-2xl font-bold text-brand-charcoal">
+              <h3 className="font-heading text-2xl font-bold text-white">
                 Learn Smarter
               </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-gray-300 text-sm leading-relaxed">
                 Master active learning habits, effective revision pacing, and clear problem-solving frameworks that save hours of unproductive cramming.
               </p>
-              <ul className="space-y-2 pt-2 text-xs font-medium text-gray-700">
+              <ul className="space-y-2 pt-2 text-xs font-medium text-gray-300">
                 <li className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-brand-blueDark" />
+                  <Icon name="check" className="w-4 h-4 text-rose-400" />
                   <span>Structured step-by-step study methods</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-brand-blueDark" />
+                  <Icon name="check" className="w-4 h-4 text-rose-400" />
                   <span>Targeted practice on high-yield questions</span>
                 </li>
               </ul>
             </div>
 
             {/* Highlight 3: Grow Confidently */}
-            <div className="p-8 rounded-3xl bg-brand-mint/60 border border-brand-mintDark/10 hover-card-lift space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-white shadow-soft flex items-center justify-center">
-                <Icon name="smile" className="w-7 h-7 text-brand-mintDark" />
+            <div className="p-8 rounded-3xl bg-[#131917]/90 border border-teal-500/20 shadow-[0_0_30px_rgba(45,212,191,0.1)] hover:border-teal-400/40 hover-card-lift space-y-4">
+              <div className="w-14 h-14 rounded-2xl bg-teal-950/80 border border-teal-500/30 flex items-center justify-center text-teal-300 shadow-sm">
+                <Icon name="smile" className="w-7 h-7" />
               </div>
-              <h3 className="font-heading text-2xl font-bold text-brand-charcoal">
+              <h3 className="font-heading text-2xl font-bold text-white">
                 Grow Confidently
               </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-gray-300 text-sm leading-relaxed">
                 When doubts are welcomed and mistakes become learning opportunities, students naturally develop self-reliance, curiosity, and examination poise.
               </p>
-              <ul className="space-y-2 pt-2 text-xs font-medium text-gray-700">
+              <ul className="space-y-2 pt-2 text-xs font-medium text-gray-300">
                 <li className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-brand-mintDark" />
+                  <Icon name="check" className="w-4 h-4 text-teal-400" />
                   <span>Judgment-free doubt clarification</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-brand-mintDark" />
+                  <Icon name="check" className="w-4 h-4 text-teal-400" />
                   <span>Confidence to tackle unfamiliar problems</span>
                 </li>
               </ul>
@@ -749,51 +749,51 @@ function App() {
       {/* ========================================================================= */}
       {/* SECTION 3: BOARDS WE CATER TO */}
       {/* ========================================================================= */}
-      <section id="boards" className="py-20 bg-gray-50/50 relative">
+      <section id="boards" className="py-20 bg-[#0A0E0C] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="px-3.5 py-1.5 rounded-full bg-brand-blue/80 border border-blue-200/50 text-xs font-bold tracking-wide uppercase text-brand-charcoal">
+            <span className="px-4 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-bold tracking-wide uppercase text-emerald-300 shadow-[0_0_15px_rgba(52,211,153,0.15)]">
               Targeted Board Excellence
             </span>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-charcoal tracking-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
               One Academy. Multiple Curricula.
             </h2>
-            <p className="text-base sm:text-lg text-gray-600">
-              Comprehensive academic support across leading educational boards.
+            <p className="text-base sm:text-lg text-gray-300">
+              Comprehensive academic support across leading educational boards for Grades 4 to 12.
             </p>
           </div>
 
           {/* Four Board Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             
-            {/* Card 1: ICSE */}
-            <div className="p-7 rounded-3xl bg-brand-lavender/50 border border-purple-200/40 hover-card-lift flex flex-col justify-between">
+            {/* Card 1: ICSE & ISC */}
+            <div className="p-7 rounded-3xl bg-[#121915]/90 border border-emerald-500/25 shadow-glow-green hover:border-emerald-400/50 hover-card-lift flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="w-12 h-12 rounded-2xl bg-white shadow-soft flex items-center justify-center font-heading font-black text-lg text-purple-700">
+                  <span className="w-12 h-12 rounded-2xl bg-emerald-950 border border-emerald-500/30 flex items-center justify-center font-heading font-black text-lg text-emerald-300">
                     ICSE
                   </span>
-                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-white text-brand-charcoal shadow-sm">
+                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#1A2520] text-emerald-200 border border-emerald-500/20">
                     Grades 4–12
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-heading text-xl font-bold text-brand-charcoal">
-                    ICSE Board
+                  <h3 className="font-heading text-xl font-bold text-white">
+                    ICSE & ISC
                   </h3>
-                  <p className="text-xs text-purple-900/70 font-medium">CISCE — ICSE (Grades 4–10) & ISC (Grades 11–12)</p>
+                  <p className="text-xs text-emerald-300/70 font-medium">CISCE — ICSE (Grades 4–10) & ISC (Grades 11–12)</p>
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-gray-300 text-sm leading-relaxed">
                   In-depth subject mastery with strong emphasis on English language precision, descriptive scientific reasoning, and analytical Mathematics.
                 </p>
-                <div className="space-y-1.5 pt-2 text-xs text-gray-700">
+                <div className="space-y-1.5 pt-2 text-xs text-gray-300">
                   <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-600"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                     <span>Detailed board exam answering techniques</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-600"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                     <span>Project & practical application guidance</span>
                   </div>
                 </div>
@@ -804,40 +804,40 @@ function App() {
                     setFormData(prev => ({ ...prev, board: 'ICSE' }));
                     scrollToSection('contact');
                   }}
-                  className="w-full py-2.5 rounded-xl bg-white hover:bg-purple-50 text-brand-charcoal font-semibold text-xs border border-purple-200 transition-colors"
+                  className="w-full py-2.5 rounded-xl bg-emerald-950/60 hover:bg-emerald-900/80 text-emerald-200 font-semibold text-xs border border-emerald-500/30 transition-colors"
                 >
-                  Enquire for ICSE →
+                  Enquire for ICSE / ISC →
                 </button>
               </div>
             </div>
 
             {/* Card 2: CBSE */}
-            <div className="p-7 rounded-3xl bg-brand-blue/50 border border-blue-200/40 hover-card-lift flex flex-col justify-between">
+            <div className="p-7 rounded-3xl bg-[#181316]/90 border border-rose-500/25 shadow-glow-red hover:border-rose-400/50 hover-card-lift flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="w-12 h-12 rounded-2xl bg-white shadow-soft flex items-center justify-center font-heading font-black text-lg text-blue-700">
+                  <span className="w-12 h-12 rounded-2xl bg-rose-950 border border-rose-500/30 flex items-center justify-center font-heading font-black text-lg text-rose-300">
                     CBSE
                   </span>
-                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-white text-brand-charcoal shadow-sm">
+                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#261A1E] text-rose-200 border border-rose-500/20">
                     Grades 4–12
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-heading text-xl font-bold text-brand-charcoal">
+                  <h3 className="font-heading text-xl font-bold text-white">
                     CBSE Board
                   </h3>
-                  <p className="text-xs text-blue-900/70 font-medium">Central Board of Secondary Education</p>
+                  <p className="text-xs text-rose-300/70 font-medium">Central Board of Secondary Education</p>
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-gray-300 text-sm leading-relaxed">
                   Solid NCERT foundation, competency-based question preparation, and critical conceptual clarity building strong fundamentals for higher grades.
                 </p>
-                <div className="space-y-1.5 pt-2 text-xs text-gray-700">
+                <div className="space-y-1.5 pt-2 text-xs text-gray-300">
                   <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
                     <span>NCERT line-by-line concept mastery</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
                     <span>Exemplar & case-based questions practice</span>
                   </div>
                 </div>
@@ -848,7 +848,7 @@ function App() {
                     setFormData(prev => ({ ...prev, board: 'CBSE' }));
                     scrollToSection('contact');
                   }}
-                  className="w-full py-2.5 rounded-xl bg-white hover:bg-blue-50 text-brand-charcoal font-semibold text-xs border border-blue-200 transition-colors"
+                  className="w-full py-2.5 rounded-xl bg-rose-950/60 hover:bg-rose-900/80 text-rose-200 font-semibold text-xs border border-rose-500/30 transition-colors"
                 >
                   Enquire for CBSE →
                 </button>
@@ -856,33 +856,33 @@ function App() {
             </div>
 
             {/* Card 3: IB */}
-            <div className="p-7 rounded-3xl bg-brand-peach/50 border border-orange-200/40 hover-card-lift flex flex-col justify-between">
+            <div className="p-7 rounded-3xl bg-[#151714]/90 border border-amber-500/20 hover:border-amber-400/40 hover-card-lift flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="w-12 h-12 rounded-2xl bg-white shadow-soft flex items-center justify-center font-heading font-black text-lg text-orange-600">
+                  <span className="w-12 h-12 rounded-2xl bg-amber-950 border border-amber-500/30 flex items-center justify-center font-heading font-black text-lg text-amber-300">
                     IB
                   </span>
-                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-white text-brand-charcoal shadow-sm">
+                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#262217] text-amber-200 border border-amber-500/20">
                     Grades 4–12
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-heading text-xl font-bold text-brand-charcoal">
+                  <h3 className="font-heading text-xl font-bold text-white">
                     IB (MYP & DP)
                   </h3>
-                  <p className="text-xs text-orange-900/70 font-medium">International Baccalaureate</p>
+                  <p className="text-xs text-amber-300/70 font-medium">International Baccalaureate</p>
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-gray-300 text-sm leading-relaxed">
                   Inquiry-based learning tailored to IB criteria (A, B, C, D), global context integration, analytical writing, and independent research skills.
                 </p>
-                <div className="space-y-1.5 pt-2 text-xs text-gray-700">
+                <div className="space-y-1.5 pt-2 text-xs text-gray-300">
                   <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
                     <span>Criterion-referenced assessment prep</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
-                    <span>Interdisciplinary & MYP eAssessment readiness</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                    <span>Interdisciplinary & MYP/DP readiness</span>
                   </div>
                 </div>
               </div>
@@ -892,7 +892,7 @@ function App() {
                     setFormData(prev => ({ ...prev, board: 'IB' }));
                     scrollToSection('contact');
                   }}
-                  className="w-full py-2.5 rounded-xl bg-white hover:bg-orange-50 text-brand-charcoal font-semibold text-xs border border-orange-200 transition-colors"
+                  className="w-full py-2.5 rounded-xl bg-amber-950/60 hover:bg-amber-900/80 text-amber-200 font-semibold text-xs border border-amber-500/30 transition-colors"
                 >
                   Enquire for IB →
                 </button>
@@ -900,32 +900,32 @@ function App() {
             </div>
 
             {/* Card 4: IGCSE */}
-            <div className="p-7 rounded-3xl bg-brand-mint/50 border border-emerald-200/40 hover-card-lift flex flex-col justify-between">
+            <div className="p-7 rounded-3xl bg-[#121817]/90 border border-teal-500/20 hover:border-teal-400/40 hover-card-lift flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="w-12 h-12 rounded-2xl bg-white shadow-soft flex items-center justify-center font-heading font-black text-lg text-emerald-700">
+                  <span className="w-12 h-12 rounded-2xl bg-teal-950 border border-teal-500/30 flex items-center justify-center font-heading font-black text-lg text-teal-300">
                     IGCSE
                   </span>
-                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-white text-brand-charcoal shadow-sm">
+                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#182522] text-teal-200 border border-teal-500/20">
                     Grades 4–12
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-heading text-xl font-bold text-brand-charcoal">
+                  <h3 className="font-heading text-xl font-bold text-white">
                     Cambridge IGCSE
                   </h3>
-                  <p className="text-xs text-emerald-900/70 font-medium">Cambridge — IGCSE & A-Levels (Grades 4–12)</p>
+                  <p className="text-xs text-teal-300/70 font-medium">Cambridge — IGCSE & A-Levels (Grades 4–12)</p>
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-gray-300 text-sm leading-relaxed">
                   Practical comprehension, structured past paper mastery, mark-scheme precision, and deep command-term understanding for Cambridge assessments.
                 </p>
-                <div className="space-y-1.5 pt-2 text-xs text-gray-700">
+                <div className="space-y-1.5 pt-2 text-xs text-gray-300">
                   <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
                     <span>Topic-wise past paper drill & examiner tips</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
                     <span>Core & Extended curriculum support</span>
                   </div>
                 </div>
@@ -936,7 +936,7 @@ function App() {
                     setFormData(prev => ({ ...prev, board: 'IGCSE' }));
                     scrollToSection('contact');
                   }}
-                  className="w-full py-2.5 rounded-xl bg-white hover:bg-emerald-50 text-brand-charcoal font-semibold text-xs border border-emerald-200 transition-colors"
+                  className="w-full py-2.5 rounded-xl bg-teal-950/60 hover:bg-teal-900/80 text-teal-200 font-semibold text-xs border border-teal-500/30 transition-colors"
                 >
                   Enquire for IGCSE →
                 </button>
@@ -951,23 +951,22 @@ function App() {
       {/* ========================================================================= */}
       {/* SECTION 4: SUBJECTS */}
       {/* ========================================================================= */}
-      <section id="subjects" className="py-20 bg-white relative">
+      <section id="subjects" className="py-20 bg-[#0B100D] relative border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="px-3.5 py-1.5 rounded-full bg-brand-yellow/80 border border-amber-200/50 text-xs font-bold tracking-wide uppercase text-brand-charcoal">
+            <span className="px-4 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-bold tracking-wide uppercase text-emerald-300 shadow-[0_0_15px_rgba(52,211,153,0.15)]">
               Holistic Academic Coverage
             </span>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-charcoal tracking-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
               All Subjects. One Learning Destination.
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-              From strengthening fundamentals to mastering advanced concepts, we provide academic support across all subjects and curriculum requirements.
+            <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+              From strengthening fundamentals to mastering advanced concepts, we provide academic support across all subjects and curriculum requirements for Grades 4–12.
             </p>
             
-            {/* Explicit Notice Badge */}
-            <div className="inline-block p-3 rounded-2xl bg-brand-lavender/40 border border-purple-200/40 text-xs font-medium text-brand-charcoal mt-2">
-              <strong className="font-semibold text-purple-900">Note:</strong> We cater to <em>all subjects</em> across your child's syllabus. If a particular subject is not listed below, our faculty accommodates it within your board curriculum!
+            <div className="inline-block p-3 rounded-2xl bg-[#141C18] border border-emerald-500/25 text-xs font-medium text-emerald-200 mt-2 shadow-sm">
+              <strong className="font-semibold text-emerald-300">Note:</strong> We cater to <em>all subjects</em> across your child's syllabus. If a particular subject is not listed below, our faculty accommodates it within your board curriculum!
             </div>
           </div>
 
@@ -975,128 +974,128 @@ function App() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             
             {/* Subject 1: Mathematics */}
-            <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift">
+            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-emerald-500/30">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-brand-lavender flex items-center justify-center">
-                  <Icon name="calculator" className="w-6 h-6 text-brand-lavenderDark" />
+                <div className="w-12 h-12 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-300">
+                  <Icon name="calculator" className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-heading font-bold text-lg text-brand-charcoal">Mathematics</h3>
-                  <span className="text-xs text-gray-500 font-medium">Grades 4 to 12</span>
+                  <h3 className="font-heading font-bold text-lg text-white">Mathematics</h3>
+                  <span className="text-xs text-emerald-400/80 font-medium">Grades 4 to 12</span>
                 </div>
               </div>
-              <p className="text-xs text-gray-600 leading-relaxed mb-4">
-                Arithmetic, Pre-Algebra, Geometry, Trigonometry, Statistics, Mensuration, and Word Problems deconstructed through step-by-step logic.
+              <p className="text-xs text-gray-300 leading-relaxed mb-4">
+                Arithmetic, Pre-Algebra, Geometry, Trigonometry, Calculus, Statistics, Mensuration, and Applied Math deconstructed through step-by-step logic.
               </p>
               <div className="flex flex-wrap gap-1.5">
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">Conceptual Clarity</span>
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">Step-by-Step Proofs</span>
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">Speed & Accuracy</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Conceptual Clarity</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Step-by-Step Proofs</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Speed & Accuracy</span>
               </div>
             </div>
 
             {/* Subject 2: Science */}
-            <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift">
+            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-rose-500/30">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-brand-blue flex items-center justify-center">
-                  <Icon name="microscope" className="w-6 h-6 text-brand-blueDark" />
+                <div className="w-12 h-12 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300">
+                  <Icon name="microscope" className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-heading font-bold text-lg text-brand-charcoal">Science</h3>
-                  <span className="text-xs text-gray-500 font-medium">Physics • Chemistry • Biology</span>
+                  <h3 className="font-heading font-bold text-lg text-white">Science</h3>
+                  <span className="text-xs text-rose-400/80 font-medium">Physics • Chemistry • Biology</span>
                 </div>
               </div>
-              <p className="text-xs text-gray-600 leading-relaxed mb-4">
-                General Science for primary grades; segregated Physics, Chemistry, Biology for middle and secondary. Real-life demonstrations & clear diagrams.
+              <p className="text-xs text-gray-300 leading-relaxed mb-4">
+                General Science for middle school; segregated Physics, Chemistry, Biology for secondary & senior secondary. Real-life demonstrations & clear diagrams.
               </p>
               <div className="flex flex-wrap gap-1.5">
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">Visual Diagrams</span>
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">Numerical Problem Solving</span>
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">Scientific Reasoning</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Visual Diagrams</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Numerical Problem Solving</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Scientific Reasoning</span>
               </div>
             </div>
 
             {/* Subject 3: English */}
-            <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift">
+            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-emerald-500/30">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-brand-peach flex items-center justify-center">
-                  <Icon name="bookOpen" className="w-6 h-6 text-brand-peachDark" />
+                <div className="w-12 h-12 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-300">
+                  <Icon name="bookOpen" className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-heading font-bold text-lg text-brand-charcoal">English</h3>
-                  <span className="text-xs text-gray-500 font-medium">Language & Literature</span>
+                  <h3 className="font-heading font-bold text-lg text-white">English</h3>
+                  <span className="text-xs text-emerald-400/80 font-medium">Language & Literature</span>
                 </div>
               </div>
-              <p className="text-xs text-gray-600 leading-relaxed mb-4">
+              <p className="text-xs text-gray-300 leading-relaxed mb-4">
                 Grammar mastery, comprehension synthesis, creative essay writing, letter/notice formats, Shakespearean drama & poetry analysis.
               </p>
               <div className="flex flex-wrap gap-1.5">
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">Vocabulary Expansion</span>
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">Creative Composition</span>
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">Grammar Rules</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Vocabulary Expansion</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Creative Composition</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Grammar Rules</span>
               </div>
             </div>
 
             {/* Subject 4: Social Studies */}
-            <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift">
+            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-rose-500/30">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-brand-mint flex items-center justify-center">
-                  <Icon name="globe" className="w-6 h-6 text-brand-mintDark" />
+                <div className="w-12 h-12 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300">
+                  <Icon name="globe" className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-heading font-bold text-lg text-brand-charcoal">Social Studies</h3>
-                  <span className="text-xs text-gray-500 font-medium">History • Civics • Geography</span>
+                  <h3 className="font-heading font-bold text-lg text-white">Social Studies</h3>
+                  <span className="text-xs text-rose-400/80 font-medium">History • Civics • Geography</span>
                 </div>
               </div>
-              <p className="text-xs text-gray-600 leading-relaxed mb-4">
+              <p className="text-xs text-gray-300 leading-relaxed mb-4">
                 Engaging narrative timelines, political systems, topographical map reading, weather systems, and environmental case studies.
               </p>
               <div className="flex flex-wrap gap-1.5">
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">Timeline Mapping</span>
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">Topo Map Skills</span>
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">Structured Answers</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Timeline Mapping</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Topo Map Skills</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Structured Answers</span>
               </div>
             </div>
 
             {/* Subject 5: Languages */}
-            <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift">
+            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-emerald-500/30">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-brand-yellow flex items-center justify-center">
-                  <Icon name="languages" className="w-6 h-6 text-brand-yellowDark" />
+                <div className="w-12 h-12 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-300">
+                  <Icon name="languages" className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-heading font-bold text-lg text-brand-charcoal">Languages</h3>
-                  <span className="text-xs text-gray-500 font-medium">Regional & Foreign Options</span>
+                  <h3 className="font-heading font-bold text-lg text-white">Languages</h3>
+                  <span className="text-xs text-emerald-400/80 font-medium">Regional & Foreign Options</span>
                 </div>
               </div>
-              <p className="text-xs text-gray-600 leading-relaxed mb-4">
+              <p className="text-xs text-gray-300 leading-relaxed mb-4">
                 Hindi, Marathi, Sanskrit, French, German, and Spanish. Emphasis on grammar, correct pronunciation, sentence framing, and literature.
               </p>
               <div className="flex flex-wrap gap-1.5">
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">Hindi & Marathi</span>
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">French & German</span>
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">Reading & Writing</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Hindi & Marathi</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">French & German</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Reading & Writing</span>
               </div>
             </div>
 
             {/* Subject 6: Curriculum-Specific Subjects */}
-            <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift">
+            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-rose-500/30">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-brand-lavender flex items-center justify-center">
-                  <Icon name="cpu" className="w-6 h-6 text-brand-lavenderDark" />
+                <div className="w-12 h-12 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300">
+                  <Icon name="cpu" className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-heading font-bold text-lg text-brand-charcoal">Curriculum-Specific</h3>
-                  <span className="text-xs text-gray-500 font-medium">Computers, Economics & More</span>
+                  <h3 className="font-heading font-bold text-lg text-white">Curriculum-Specific</h3>
+                  <span className="text-xs text-rose-400/80 font-medium">Computers, Economics & More</span>
                 </div>
               </div>
-              <p className="text-xs text-gray-600 leading-relaxed mb-4">
-                Computer Applications (Java, Python, ICT), Commercial Studies, Economics, Environmental Management, and board electives.
+              <p className="text-xs text-gray-300 leading-relaxed mb-4">
+                Computer Applications (Java, Python, ICT), Commercial Studies, Economics, Environmental Management, and senior secondary electives.
               </p>
               <div className="flex flex-wrap gap-1.5">
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">Computer Apps</span>
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">Economics</span>
-                <span className="px-2.5 py-1 rounded-lg bg-gray-50 text-[11px] font-medium text-gray-600">Commercial Studies</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Computer Apps</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Economics</span>
+                <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-[11px] font-medium text-gray-300">Commercial Studies</span>
               </div>
             </div>
 
@@ -1106,7 +1105,7 @@ function App() {
           <div className="mt-12 text-center">
             <button
               onClick={() => scrollToSection('contact')}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gray-100 hover:bg-gray-200 text-brand-charcoal font-semibold text-sm transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#16201A] hover:bg-[#1D2B23] text-emerald-200 border border-emerald-500/25 font-semibold text-sm transition-colors shadow-sm"
             >
               <span>Have a specific subject or textbook requirement? Ask us directly</span>
               <Icon name="arrowRight" className="w-4 h-4" />
@@ -1119,17 +1118,17 @@ function App() {
       {/* ========================================================================= */}
       {/* SECTION 5: WHY CHOOSE TWO WISE? */}
       {/* ========================================================================= */}
-      <section id="why-us" className="py-20 bg-gray-50/50 relative border-y border-gray-100">
+      <section id="why-us" className="py-20 bg-[#0A0E0C] relative border-y border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="px-3.5 py-1.5 rounded-full bg-brand-lavender/80 border border-purple-200/50 text-xs font-bold tracking-wide uppercase text-brand-charcoal">
+            <span className="px-4 py-1.5 rounded-full bg-rose-950/60 border border-rose-500/30 text-xs font-bold tracking-wide uppercase text-rose-300 shadow-[0_0_15px_rgba(253,164,175,0.15)]">
               The Two Wise Advantage
             </span>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-charcoal tracking-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
               Because Every Student Deserves to Be Understood.
             </h2>
-            <p className="text-base sm:text-lg text-gray-600">
+            <p className="text-base sm:text-lg text-gray-300">
               We replace overwhelming tuition batches with personal mentorship, clarity and consistent academic growth.
             </p>
           </div>
@@ -1138,90 +1137,90 @@ function App() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
             {/* 1. Individual Attention */}
-            <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-brand-lavender flex items-center justify-center">
-                <Icon name="heartHandshake" className="w-6 h-6 text-brand-lavenderDark" />
+            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-emerald-500/30 space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-300">
+                <Icon name="heartHandshake" className="w-6 h-6" />
               </div>
-              <h3 className="font-heading font-bold text-lg text-brand-charcoal">Individual Attention</h3>
-              <p className="text-xs text-gray-600 leading-relaxed">
+              <h3 className="font-heading font-bold text-lg text-white">Individual Attention</h3>
+              <p className="text-xs text-gray-300 leading-relaxed">
                 Teaching that recognises every student's strengths and learning needs. No student is left behind in a sea of faces.
               </p>
             </div>
 
             {/* 2. Small Batches */}
-            <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-brand-blue flex items-center justify-center">
-                <Icon name="users" className="w-6 h-6 text-brand-blueDark" />
+            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-rose-500/30 space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300">
+                <Icon name="users" className="w-6 h-6" />
               </div>
-              <h3 className="font-heading font-bold text-lg text-brand-charcoal">Small Batches</h3>
-              <p className="text-xs text-gray-600 leading-relaxed">
+              <h3 className="font-heading font-bold text-lg text-white">Small Batches</h3>
+              <p className="text-xs text-gray-300 leading-relaxed">
                 A more interactive classroom environment with meaningful student participation, discussions and personal mentoring.
               </p>
             </div>
 
             {/* 3. Regular Tests & Assessments */}
-            <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-brand-peach flex items-center justify-center">
-                <Icon name="clipboardCheck" className="w-6 h-6 text-brand-peachDark" />
+            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-emerald-500/30 space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-300">
+                <Icon name="clipboardCheck" className="w-6 h-6" />
               </div>
-              <h3 className="font-heading font-bold text-lg text-brand-charcoal">Regular Tests & Assessments</h3>
-              <p className="text-xs text-gray-600 leading-relaxed">
+              <h3 className="font-heading font-bold text-lg text-white">Regular Tests & Assessments</h3>
+              <p className="text-xs text-gray-300 leading-relaxed">
                 Monitor academic progress and identify areas for improvement through structured, diagnostic chapter-wise tests.
               </p>
             </div>
 
             {/* 4. Doubt-Solving Sessions */}
-            <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-brand-mint flex items-center justify-center">
-                <Icon name="messageSquare" className="w-6 h-6 text-brand-mintDark" />
+            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-rose-500/30 space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300">
+                <Icon name="messageSquare" className="w-6 h-6" />
               </div>
-              <h3 className="font-heading font-bold text-lg text-brand-charcoal">Doubt-Solving Sessions</h3>
-              <p className="text-xs text-gray-600 leading-relaxed">
+              <h3 className="font-heading font-bold text-lg text-white">Doubt-Solving Sessions</h3>
+              <p className="text-xs text-gray-300 leading-relaxed">
                 Encourage students to ask questions freely and understand concepts thoroughly without hesitation or fear.
               </p>
             </div>
 
             {/* 5. Personalised Study Plans */}
-            <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-brand-yellow flex items-center justify-center">
-                <Icon name="target" className="w-6 h-6 text-brand-yellowDark" />
+            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-emerald-500/30 space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-300">
+                <Icon name="target" className="w-6 h-6" />
               </div>
-              <h3 className="font-heading font-bold text-lg text-brand-charcoal">Personalised Study Plans</h3>
-              <p className="text-xs text-gray-600 leading-relaxed">
+              <h3 className="font-heading font-bold text-lg text-white">Personalised Study Plans</h3>
+              <p className="text-xs text-gray-300 leading-relaxed">
                 Structured academic guidance based on individual learning requirements, school timelines and revision milestones.
               </p>
             </div>
 
             {/* 6. Parent-Teacher Feedback */}
-            <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-brand-lavender flex items-center justify-center">
-                <Icon name="sparkles" className="w-6 h-6 text-brand-lavenderDark" />
+            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-rose-500/30 space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300">
+                <Icon name="sparkles" className="w-6 h-6" />
               </div>
-              <h3 className="font-heading font-bold text-lg text-brand-charcoal">Parent-Teacher Feedback</h3>
-              <p className="text-xs text-gray-600 leading-relaxed">
+              <h3 className="font-heading font-bold text-lg text-white">Parent-Teacher Feedback</h3>
+              <p className="text-xs text-gray-300 leading-relaxed">
                 Keep parents informed about their child's learning journey with timely, constructive and transparent communication.
               </p>
             </div>
 
             {/* 7. Exam Preparation */}
-            <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-brand-blue flex items-center justify-center">
-                <Icon name="award" className="w-6 h-6 text-brand-blueDark" />
+            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-emerald-500/30 space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-300">
+                <Icon name="award" className="w-6 h-6" />
               </div>
-              <h3 className="font-heading font-bold text-lg text-brand-charcoal">Exam Preparation</h3>
-              <p className="text-xs text-gray-600 leading-relaxed">
+              <h3 className="font-heading font-bold text-lg text-white">Exam Preparation</h3>
+              <p className="text-xs text-gray-300 leading-relaxed">
                 Focused preparation to help students approach school exams and board examinations with confidence and clarity.
               </p>
             </div>
 
             {/* 8. Experienced Faculty */}
-            <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-brand-mint flex items-center justify-center">
-                <Icon name="graduationCap" className="w-6 h-6 text-brand-mintDark" />
+            <div className="p-6 rounded-3xl bg-[#121815]/90 border border-white/8 shadow-soft hover-card-lift hover:border-rose-500/30 space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300">
+                <Icon name="graduationCap" className="w-6 h-6" />
               </div>
-              <h3 className="font-heading font-bold text-lg text-brand-charcoal">Experienced Faculty</h3>
-              <p className="text-xs text-gray-600 leading-relaxed">
-                Learn under the guidance of experienced educators who specialise in curriculum frameworks and modern teaching methods.
+              <h3 className="font-heading font-bold text-lg text-white">Experienced Faculty</h3>
+              <p className="text-xs text-gray-300 leading-relaxed">
+                Learn under the direct mentorship of co-founders Reva Mehta (MBA, SIBM Pune) and Diya Shah (BBA Finance).
               </p>
             </div>
 
@@ -1233,17 +1232,17 @@ function App() {
       {/* ========================================================================= */}
       {/* SECTION 6: OUR LEARNING APPROACH */}
       {/* ========================================================================= */}
-      <section id="approach" className="py-20 bg-white relative">
+      <section id="approach" className="py-20 bg-[#0B100D] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="px-3.5 py-1.5 rounded-full bg-brand-mint/80 border border-emerald-200/50 text-xs font-bold tracking-wide uppercase text-brand-charcoal">
+            <span className="px-4 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-bold tracking-wide uppercase text-emerald-300 shadow-[0_0_15px_rgba(52,211,153,0.15)]">
               Pedagogical Framework
             </span>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-charcoal tracking-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
               Smart Learning. Step by Step.
             </h2>
-            <p className="text-base sm:text-lg text-gray-600">
+            <p className="text-base sm:text-lg text-gray-300">
               A structured four-phase methodology engineered for long-term retention and conceptual mastery.
             </p>
           </div>
@@ -1252,101 +1251,101 @@ function App() {
           <div className="relative">
             
             {/* Connecting Line (Desktop) */}
-            <div className="hidden lg:block absolute top-1/2 left-10 right-10 h-1 bg-gradient-to-r from-brand-lavender via-brand-blue to-brand-mint -translate-y-8 -z-0"></div>
+            <div className="hidden lg:block absolute top-1/2 left-10 right-10 h-0.5 bg-gradient-to-r from-emerald-500/40 via-rose-500/40 to-emerald-500/40 -translate-y-8 -z-0"></div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
               
               {/* STEP 01 */}
-              <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift flex flex-col justify-between">
+              <div className="p-6 rounded-3xl bg-[#121915]/90 border border-emerald-500/25 shadow-glow-green hover-card-lift flex flex-col justify-between">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-extrabold font-heading bg-brand-lavender text-purple-900">
+                    <span className="px-3 py-1 rounded-full text-xs font-extrabold font-heading bg-emerald-950 text-emerald-300 border border-emerald-500/30">
                       STEP 01
                     </span>
-                    <span className="w-8 h-8 rounded-full bg-brand-lavender/50 flex items-center justify-center text-xs font-bold text-brand-charcoal">
+                    <span className="w-8 h-8 rounded-full bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-xs font-bold text-emerald-300">
                       1
                     </span>
                   </div>
-                  <h3 className="font-heading text-2xl font-bold text-brand-charcoal">
+                  <h3 className="font-heading text-2xl font-bold text-white">
                     Understand
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-gray-300 text-sm leading-relaxed">
                     Understand each student's academic requirements and learning style. We identify specific learning gaps before diving into syllabus topics.
                   </p>
                 </div>
-                <div className="pt-6 border-t border-gray-50 text-xs font-medium text-purple-800 flex items-center gap-1.5">
+                <div className="pt-6 border-t border-white/5 text-xs font-medium text-emerald-300 flex items-center gap-1.5">
                   <Icon name="check" className="w-3.5 h-3.5" />
                   <span>Diagnostic assessment & gap analysis</span>
                 </div>
               </div>
 
               {/* STEP 02 */}
-              <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift flex flex-col justify-between">
+              <div className="p-6 rounded-3xl bg-[#181316]/90 border border-rose-500/25 shadow-glow-red hover-card-lift flex flex-col justify-between">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-extrabold font-heading bg-brand-blue text-blue-900">
+                    <span className="px-3 py-1 rounded-full text-xs font-extrabold font-heading bg-rose-950 text-rose-300 border border-rose-500/30">
                       STEP 02
                     </span>
-                    <span className="w-8 h-8 rounded-full bg-brand-blue/50 flex items-center justify-center text-xs font-bold text-brand-charcoal">
+                    <span className="w-8 h-8 rounded-full bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-xs font-bold text-rose-300">
                       2
                     </span>
                   </div>
-                  <h3 className="font-heading text-2xl font-bold text-brand-charcoal">
+                  <h3 className="font-heading text-2xl font-bold text-white">
                     Strengthen
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-gray-300 text-sm leading-relaxed">
                     Build a strong foundation through conceptual clarity. Complex principles are mapped to real-world examples with deep classroom discussions.
                   </p>
                 </div>
-                <div className="pt-6 border-t border-gray-50 text-xs font-medium text-blue-800 flex items-center gap-1.5">
+                <div className="pt-6 border-t border-white/5 text-xs font-medium text-rose-300 flex items-center gap-1.5">
                   <Icon name="check" className="w-3.5 h-3.5" />
                   <span>First-principles concept mastery</span>
                 </div>
               </div>
 
               {/* STEP 03 */}
-              <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift flex flex-col justify-between">
+              <div className="p-6 rounded-3xl bg-[#121915]/90 border border-emerald-500/25 shadow-glow-green hover-card-lift flex flex-col justify-between">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-extrabold font-heading bg-brand-peach text-orange-900">
+                    <span className="px-3 py-1 rounded-full text-xs font-extrabold font-heading bg-emerald-950 text-emerald-300 border border-emerald-500/30">
                       STEP 03
                     </span>
-                    <span className="w-8 h-8 rounded-full bg-brand-peach/50 flex items-center justify-center text-xs font-bold text-brand-charcoal">
+                    <span className="w-8 h-8 rounded-full bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-xs font-bold text-emerald-300">
                       3
                     </span>
                   </div>
-                  <h3 className="font-heading text-2xl font-bold text-brand-charcoal">
+                  <h3 className="font-heading text-2xl font-bold text-white">
                     Practise
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-gray-300 text-sm leading-relaxed">
                     Reinforce understanding through regular practice, assignments and assessments. Students solve problems with increasing difficulty gradients.
                   </p>
                 </div>
-                <div className="pt-6 border-t border-gray-50 text-xs font-medium text-orange-800 flex items-center gap-1.5">
+                <div className="pt-6 border-t border-white/5 text-xs font-medium text-emerald-300 flex items-center gap-1.5">
                   <Icon name="check" className="w-3.5 h-3.5" />
                   <span>Curated question banks & drills</span>
                 </div>
               </div>
 
               {/* STEP 04 */}
-              <div className="p-6 rounded-3xl bg-white border border-gray-100 shadow-soft hover-card-lift flex flex-col justify-between">
+              <div className="p-6 rounded-3xl bg-[#181316]/90 border border-rose-500/25 shadow-glow-red hover-card-lift flex flex-col justify-between">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-extrabold font-heading bg-brand-mint text-emerald-900">
+                    <span className="px-3 py-1 rounded-full text-xs font-extrabold font-heading bg-rose-950 text-rose-300 border border-rose-500/30">
                       STEP 04
                     </span>
-                    <span className="w-8 h-8 rounded-full bg-brand-mint/50 flex items-center justify-center text-xs font-bold text-brand-charcoal">
+                    <span className="w-8 h-8 rounded-full bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-xs font-bold text-rose-300">
                       4
                     </span>
                   </div>
-                  <h3 className="font-heading text-2xl font-bold text-brand-charcoal">
+                  <h3 className="font-heading text-2xl font-bold text-white">
                     Progress
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-gray-300 text-sm leading-relaxed">
                     Review progress, address challenges and continuously improve. Feedback loops with students and parents ensure consistent academic growth.
                   </p>
                 </div>
-                <div className="pt-6 border-t border-gray-50 text-xs font-medium text-emerald-800 flex items-center gap-1.5">
+                <div className="pt-6 border-t border-white/5 text-xs font-medium text-rose-300 flex items-center gap-1.5">
                   <Icon name="check" className="w-3.5 h-3.5" />
                   <span>Continuous progress evaluation</span>
                 </div>
@@ -1361,17 +1360,17 @@ function App() {
       {/* ========================================================================= */}
       {/* SECTION: MEET OUR FOUNDERS & FACULTY */}
       {/* ========================================================================= */}
-      <section id="faculty" className="py-20 bg-white relative border-t border-gray-100">
+      <section id="faculty" className="py-20 bg-[#0A0E0C] relative border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="px-3.5 py-1.5 rounded-full bg-brand-lavender/80 border border-purple-200/50 text-xs font-bold tracking-wide uppercase text-brand-charcoal">
+            <span className="px-4 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-bold tracking-wide uppercase text-emerald-300 shadow-[0_0_15px_rgba(52,211,153,0.15)]">
               Leadership & Educators
             </span>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-charcoal tracking-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
               Meet the Mentors Behind Two Wise.
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
               Founded by passionate, experienced educators dedicated to student-centric guidance, conceptual clarity, and building genuine academic confidence.
             </p>
           </div>
@@ -1380,146 +1379,146 @@ function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
             
             {/* 1. Reva Mehta */}
-            <div className="p-8 sm:p-10 rounded-4xl bg-brand-lavender/40 border border-purple-200/60 shadow-soft hover-card-lift flex flex-col justify-between space-y-6">
+            <div className="p-8 sm:p-10 rounded-4xl bg-[#121915]/95 border border-emerald-500/30 shadow-glow-green hover-card-lift flex flex-col justify-between space-y-6">
               <div className="space-y-5">
                 
                 {/* Header Profile Info */}
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-1">
-                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-white text-purple-900 shadow-sm border border-purple-100">
+                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-950 text-emerald-300 border border-emerald-500/40">
                       Co-Founder & Director
                     </span>
-                    <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-brand-charcoal pt-1">
+                    <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white pt-1">
                       Reva Mehta
                     </h3>
-                    <p className="text-xs sm:text-sm font-semibold text-purple-900/80">
+                    <p className="text-xs sm:text-sm font-semibold text-emerald-300/80">
                       Senior-Secondary Educator & Academic Director
                     </p>
                   </div>
 
-                  <div className="w-16 h-16 rounded-3xl bg-white shadow-soft flex items-center justify-center shrink-0 border border-purple-100">
-                    <span className="font-heading font-extrabold text-xl text-purple-800">RM</span>
+                  <div className="w-16 h-16 rounded-3xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center shrink-0 shadow-sm">
+                    <span className="font-heading font-extrabold text-xl text-emerald-300">RM</span>
                   </div>
                 </div>
 
                 {/* Badges / Credentials */}
                 <div className="flex flex-wrap gap-2 pt-1">
-                  <span className="px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-purple-100 flex items-center gap-1.5">
-                    <Icon name="graduationCap" className="w-4 h-4 text-purple-700" />
+                  <span className="px-3 py-1.5 rounded-xl bg-[#17231E] border border-emerald-500/30 text-xs font-semibold text-emerald-200 flex items-center gap-1.5">
+                    <Icon name="graduationCap" className="w-4 h-4 text-emerald-400" />
                     <span>MBA, SIBM Pune</span>
                   </span>
-                  <span className="px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-purple-100 flex items-center gap-1.5">
-                    <Icon name="award" className="w-4 h-4 text-purple-700" />
+                  <span className="px-3 py-1.5 rounded-xl bg-[#17231E] border border-emerald-500/30 text-xs font-semibold text-emerald-200 flex items-center gap-1.5">
+                    <Icon name="award" className="w-4 h-4 text-emerald-400" />
                     <span>6+ Years Teaching Experience</span>
                   </span>
-                  <span className="px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-purple-100 flex items-center gap-1.5">
-                    <Icon name="bookOpen" className="w-4 h-4 text-purple-700" />
+                  <span className="px-3 py-1.5 rounded-xl bg-[#17231E] border border-emerald-500/30 text-xs font-semibold text-emerald-200 flex items-center gap-1.5">
+                    <Icon name="bookOpen" className="w-4 h-4 text-emerald-400" />
                     <span>Ex-Symbiosis International School</span>
                   </span>
                 </div>
 
                 {/* Bio / Description */}
-                <p className="text-sm text-gray-600 leading-relaxed pt-2">
+                <p className="text-sm text-gray-300 leading-relaxed pt-2">
                   An MBA graduate from the prestigious Symbiosis Institute of Business Management (SIBM), Pune, Reva brings over six years of senior-secondary teaching experience, including teaching at Symbiosis International School. She specializes in higher-grade analytical thinking, rigorous curriculum mastery, and examination strategy across ICSE, CBSE, IB, and IGCSE boards.
                 </p>
 
                 {/* Mentorship Ethos Quote */}
-                <div className="p-4 rounded-2xl bg-white/80 border border-purple-200/50">
-                  <p className="text-xs italic text-gray-700 leading-relaxed">
+                <div className="p-4 rounded-2xl bg-[#0C120F] border border-emerald-500/20">
+                  <p className="text-xs italic text-emerald-100/90 leading-relaxed">
                     “True learning begins when students understand the 'why' behind every concept. We deconstruct complex theories into intuitive, relatable logic so students build permanent mastery.”
                   </p>
                 </div>
               </div>
 
               {/* Core Strengths */}
-              <div className="pt-4 border-t border-purple-200/40 grid grid-cols-2 gap-3 text-xs font-medium text-gray-700">
+              <div className="pt-4 border-t border-emerald-500/20 grid grid-cols-2 gap-3 text-xs font-medium text-gray-300">
                 <div className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-purple-700 shrink-0" />
+                  <Icon name="check" className="w-4 h-4 text-emerald-400 shrink-0" />
                   <span>Senior-Secondary Strategy</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-purple-700 shrink-0" />
+                  <Icon name="check" className="w-4 h-4 text-emerald-400 shrink-0" />
                   <span>Analytical Problem Solving</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-purple-700 shrink-0" />
+                  <Icon name="check" className="w-4 h-4 text-emerald-400 shrink-0" />
                   <span>Board Exam Excellence</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-purple-700 shrink-0" />
+                  <Icon name="check" className="w-4 h-4 text-emerald-400 shrink-0" />
                   <span>1-on-1 Concept Mentoring</span>
                 </div>
               </div>
             </div>
 
             {/* 2. Diya Shah */}
-            <div className="p-8 sm:p-10 rounded-4xl bg-brand-peach/40 border border-orange-200/60 shadow-soft hover-card-lift flex flex-col justify-between space-y-6">
+            <div className="p-8 sm:p-10 rounded-4xl bg-[#181316]/95 border border-rose-500/30 shadow-glow-red hover-card-lift flex flex-col justify-between space-y-6">
               <div className="space-y-5">
                 
                 {/* Header Profile Info */}
                 <div className="flex items-start justify-between gap-4">
                   <div className="space-y-1">
-                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-white text-orange-900 shadow-sm border border-orange-100">
+                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-rose-950 text-rose-300 border border-rose-500/40">
                       Co-Founder & Educator
                     </span>
-                    <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-brand-charcoal pt-1">
+                    <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white pt-1">
                       Diya Shah
                     </h3>
-                    <p className="text-xs sm:text-sm font-semibold text-orange-900/80">
+                    <p className="text-xs sm:text-sm font-semibold text-rose-300/80">
                       Foundational Stage & Upper-Primary Specialist
                     </p>
                   </div>
 
-                  <div className="w-16 h-16 rounded-3xl bg-white shadow-soft flex items-center justify-center shrink-0 border border-orange-100">
-                    <span className="font-heading font-extrabold text-xl text-orange-700">DS</span>
+                  <div className="w-16 h-16 rounded-3xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center shrink-0 shadow-sm">
+                    <span className="font-heading font-extrabold text-xl text-rose-300">DS</span>
                   </div>
                 </div>
 
                 {/* Badges / Credentials */}
                 <div className="flex flex-wrap gap-2 pt-1">
-                  <span className="px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-orange-100 flex items-center gap-1.5">
-                    <Icon name="graduationCap" className="w-4 h-4 text-orange-700" />
+                  <span className="px-3 py-1.5 rounded-xl bg-[#261A1F] border border-rose-500/30 text-xs font-semibold text-rose-200 flex items-center gap-1.5">
+                    <Icon name="graduationCap" className="w-4 h-4 text-rose-400" />
                     <span>BBA in Finance</span>
                   </span>
-                  <span className="px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-orange-100 flex items-center gap-1.5">
-                    <Icon name="award" className="w-4 h-4 text-orange-700" />
+                  <span className="px-3 py-1.5 rounded-xl bg-[#261A1F] border border-rose-500/30 text-xs font-semibold text-rose-200 flex items-center gap-1.5">
+                    <Icon name="award" className="w-4 h-4 text-rose-400" />
                     <span>6+ Years Teaching Experience</span>
                   </span>
-                  <span className="px-3 py-1.5 rounded-xl bg-white text-xs font-semibold text-gray-700 shadow-sm border border-orange-100 flex items-center gap-1.5">
-                    <Icon name="smile" className="w-4 h-4 text-orange-700" />
+                  <span className="px-3 py-1.5 rounded-xl bg-[#261A1F] border border-rose-500/30 text-xs font-semibold text-rose-200 flex items-center gap-1.5">
+                    <Icon name="smile" className="w-4 h-4 text-rose-400" />
                     <span>Upper-Primary & Foundation Expert</span>
                   </span>
                 </div>
 
                 {/* Bio / Description */}
-                <p className="text-sm text-gray-600 leading-relaxed pt-2">
+                <p className="text-sm text-gray-300 leading-relaxed pt-2">
                   A BBA Finance graduate with over six years of dedicated teaching experience, Diya specializes in foundational learning for upper-primary and middle-school students. Her teaching methodology focuses on demystifying core concepts, igniting curiosity, and creating a supportive classroom where asking questions is always celebrated.
                 </p>
 
                 {/* Mentorship Ethos Quote */}
-                <div className="p-4 rounded-2xl bg-white/80 border border-orange-200/50">
-                  <p className="text-xs italic text-gray-700 leading-relaxed">
+                <div className="p-4 rounded-2xl bg-[#120B0E] border border-rose-500/20">
+                  <p className="text-xs italic text-rose-100/90 leading-relaxed">
                     “When children feel heard and encouraged, learning naturally shifts from an intimidating chore to an exciting, joyful journey of discovery.”
                   </p>
                 </div>
               </div>
 
               {/* Core Strengths */}
-              <div className="pt-4 border-t border-orange-200/40 grid grid-cols-2 gap-3 text-xs font-medium text-gray-700">
+              <div className="pt-4 border-t border-rose-500/20 grid grid-cols-2 gap-3 text-xs font-medium text-gray-300">
                 <div className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-orange-700 shrink-0" />
+                  <Icon name="check" className="w-4 h-4 text-rose-400 shrink-0" />
                   <span>Foundational Concept Building</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-orange-700 shrink-0" />
+                  <Icon name="check" className="w-4 h-4 text-rose-400 shrink-0" />
                   <span>Interactive Visual Teaching</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-orange-700 shrink-0" />
+                  <Icon name="check" className="w-4 h-4 text-rose-400 shrink-0" />
                   <span>Judgment-Free Doubt Solving</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Icon name="check" className="w-4 h-4 text-orange-700 shrink-0" />
+                  <Icon name="check" className="w-4 h-4 text-rose-400 shrink-0" />
                   <span>Student Confidence Building</span>
                 </div>
               </div>
@@ -1528,15 +1527,15 @@ function App() {
           </div>
 
           {/* Recognition Banner: Inauguration by Frank Freese */}
-          <div className="mt-12 p-6 rounded-3xl bg-brand-mint/40 border border-emerald-200/60 shadow-soft flex flex-col sm:flex-row items-center gap-4 text-left">
-            <div className="w-12 h-12 rounded-2xl bg-white shadow-soft flex items-center justify-center shrink-0">
-              <Icon name="award" className="w-6 h-6 text-emerald-700" />
+          <div className="mt-12 p-6 rounded-3xl bg-[#0E1712] border border-emerald-500/30 shadow-soft flex flex-col sm:flex-row items-center gap-4 text-left">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-950 border border-emerald-500/40 flex items-center justify-center shrink-0 text-emerald-300">
+              <Icon name="award" className="w-6 h-6" />
             </div>
             <div className="space-y-0.5">
-              <h4 className="font-heading font-bold text-sm text-emerald-950">
+              <h4 className="font-heading font-bold text-sm text-emerald-200">
                 Inaugurated by Distinguished Academic Leaders
               </h4>
-              <p className="text-xs text-emerald-900/80 leading-relaxed">
+              <p className="text-xs text-gray-300 leading-relaxed">
                 Two Wise Academy was inaugurated in the presence of esteemed chief guest <strong>Mr. Frank Freese</strong> (former Principal of The Bishop's School, Pune) and <strong>Hon. Mrs. Siddhi Avinash Shilimkar</strong> (Corporator), commending the founders' progressive vision for conceptual, student-centric coaching.
               </p>
             </div>
@@ -1548,74 +1547,74 @@ function App() {
       {/* ========================================================================= */}
       {/* SECTION 7: PARENT AND STUDENT SECTION */}
       {/* ========================================================================= */}
-      <section className="py-20 bg-gray-50/50 relative border-t border-gray-100">
+      <section className="py-20 bg-[#0B100D] relative border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="px-3.5 py-1.5 rounded-full bg-brand-peach/80 border border-orange-200/50 text-xs font-bold tracking-wide uppercase text-brand-charcoal">
+            <span className="px-4 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-bold tracking-wide uppercase text-emerald-300 shadow-[0_0_15px_rgba(52,211,153,0.15)]">
               A Partnership in Learning
             </span>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-charcoal tracking-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
               Designed for Parents. Built for Students.
             </h2>
           </div>
 
-          {/* Split Section with two contrasting pastel backgrounds */}
+          {/* Split Section with two contrasting dark cards */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
             
             {/* For Parents */}
-            <div className="p-8 sm:p-10 rounded-4xl bg-brand-blue/50 border border-blue-200/50 shadow-soft flex flex-col justify-between">
+            <div className="p-8 sm:p-10 rounded-4xl bg-[#101915]/90 border border-emerald-500/25 shadow-glow-green flex flex-col justify-between">
               <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white text-xs font-bold text-blue-900 shadow-sm">
-                  <Icon name="shieldCheck" className="w-4 h-4 text-blue-600" />
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950 text-xs font-bold text-emerald-300 border border-emerald-500/30">
+                  <Icon name="shieldCheck" className="w-4 h-4 text-emerald-400" />
                   <span>FOR PARENTS</span>
                 </div>
 
-                <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-brand-charcoal leading-snug">
+                <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white leading-snug">
                   Confidence That Comes from Knowing Your Child Is Supported.
                 </h3>
 
-                <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
                   As parents, watching your child struggle with heavy portions, homework battles, or exam stress is difficult. Two Wise Academy steps in as a dedicated academic partner you can rely on.
                 </p>
 
                 <div className="space-y-3.5 pt-2">
                   <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center shrink-0 mt-0.5">
-                      <Icon name="check" className="w-3.5 h-3.5 text-blue-600" />
+                    <div className="w-5 h-5 rounded-full bg-emerald-950 border border-emerald-500/40 flex items-center justify-center shrink-0 mt-0.5">
+                      <Icon name="check" className="w-3.5 h-3.5 text-emerald-400" />
                     </div>
                     <div>
-                      <strong className="text-xs sm:text-sm font-semibold text-brand-charcoal block">Transparent Academic Feedback</strong>
-                      <span className="text-xs text-gray-600">Regular updates on progress, test performance, and conceptual growth.</span>
+                      <strong className="text-xs sm:text-sm font-semibold text-white block">Transparent Academic Feedback</strong>
+                      <span className="text-xs text-gray-300">Regular updates on progress, test performance, and conceptual growth.</span>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center shrink-0 mt-0.5">
-                      <Icon name="check" className="w-3.5 h-3.5 text-blue-600" />
+                    <div className="w-5 h-5 rounded-full bg-emerald-950 border border-emerald-500/40 flex items-center justify-center shrink-0 mt-0.5">
+                      <Icon name="check" className="w-3.5 h-3.5 text-emerald-400" />
                     </div>
                     <div>
-                      <strong className="text-xs sm:text-sm font-semibold text-brand-charcoal block">Reduced Homework Friction</strong>
-                      <span className="text-xs text-gray-600">Structured study discipline so learning happens effectively during coaching hours.</span>
+                      <strong className="text-xs sm:text-sm font-semibold text-white block">Reduced Homework Friction</strong>
+                      <span className="text-xs text-gray-300">Structured study discipline so learning happens effectively during coaching hours.</span>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center shrink-0 mt-0.5">
-                      <Icon name="check" className="w-3.5 h-3.5 text-blue-600" />
+                    <div className="w-5 h-5 rounded-full bg-emerald-950 border border-emerald-500/40 flex items-center justify-center shrink-0 mt-0.5">
+                      <Icon name="check" className="w-3.5 h-3.5 text-emerald-400" />
                     </div>
                     <div>
-                      <strong className="text-xs sm:text-sm font-semibold text-brand-charcoal block">Safe, Modern Classroom Environment</strong>
-                      <span className="text-xs text-gray-600">Bright, comfortable offline classrooms in Pune with respectful faculty.</span>
+                      <strong className="text-xs sm:text-sm font-semibold text-white block">Safe, Modern Classroom Environment</strong>
+                      <span className="text-xs text-gray-300">Bright, comfortable offline classrooms at Gultekdi, Pune with respectful faculty.</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-8 mt-6 border-t border-blue-200/40">
+              <div className="pt-8 mt-6 border-t border-emerald-500/20">
                 <button
                   onClick={() => scrollToSection('contact')}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-heading font-semibold text-xs bg-white hover:bg-blue-50 text-blue-900 border border-blue-200 transition-colors shadow-sm"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-heading font-semibold text-xs bg-emerald-950/80 hover:bg-emerald-900 text-emerald-200 border border-emerald-500/30 transition-colors shadow-sm"
                 >
                   <span>Schedule a Parent Consultation</span>
                   <Icon name="arrowRight" className="w-3.5 h-3.5" />
@@ -1624,58 +1623,58 @@ function App() {
             </div>
 
             {/* For Students */}
-            <div className="p-8 sm:p-10 rounded-4xl bg-brand-peach/50 border border-orange-200/50 shadow-soft flex flex-col justify-between">
+            <div className="p-8 sm:p-10 rounded-4xl bg-[#191216]/90 border border-rose-500/25 shadow-glow-red flex flex-col justify-between">
               <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white text-xs font-bold text-orange-900 shadow-sm">
-                  <Icon name="sparkles" className="w-4 h-4 text-orange-600" />
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-950 text-xs font-bold text-rose-300 border border-rose-500/30">
+                  <Icon name="sparkles" className="w-4 h-4 text-rose-400" />
                   <span>FOR STUDENTS</span>
                 </div>
 
-                <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-brand-charcoal leading-snug">
+                <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white leading-snug">
                   Learning Can Be Interesting. And We Make It So.
                 </h3>
 
-                <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
                   No boring lectures, no endless copying from boards, and absolutely no scolding for asking questions. We make complex concepts click with fun discussions and practical understanding.
                 </p>
 
                 <div className="space-y-3.5 pt-2">
                   <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center shrink-0 mt-0.5">
-                      <Icon name="check" className="w-3.5 h-3.5 text-orange-600" />
+                    <div className="w-5 h-5 rounded-full bg-rose-950 border border-rose-500/40 flex items-center justify-center shrink-0 mt-0.5">
+                      <Icon name="check" className="w-3.5 h-3.5 text-rose-400" />
                     </div>
                     <div>
-                      <strong className="text-xs sm:text-sm font-semibold text-brand-charcoal block">Zero Fear of Doubts</strong>
-                      <span className="text-xs text-gray-600">Ask the same question five times until it completely makes sense to you.</span>
+                      <strong className="text-xs sm:text-sm font-semibold text-white block">Zero Fear of Doubts</strong>
+                      <span className="text-xs text-gray-300">Ask the same question five times until it completely makes sense to you.</span>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center shrink-0 mt-0.5">
-                      <Icon name="check" className="w-3.5 h-3.5 text-orange-600" />
+                    <div className="w-5 h-5 rounded-full bg-rose-950 border border-rose-500/40 flex items-center justify-center shrink-0 mt-0.5">
+                      <Icon name="check" className="w-3.5 h-3.5 text-rose-400" />
                     </div>
                     <div>
-                      <strong className="text-xs sm:text-sm font-semibold text-brand-charcoal block">Friendly Mentors, Not Stiff Tutors</strong>
-                      <span className="text-xs text-gray-600">Teachers who listen, cheer your improvements, and make learning enjoyable.</span>
+                      <strong className="text-xs sm:text-sm font-semibold text-white block">Friendly Mentors, Not Stiff Tutors</strong>
+                      <span className="text-xs text-gray-300">Teachers who listen, cheer your improvements, and make learning enjoyable.</span>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center shrink-0 mt-0.5">
-                      <Icon name="check" className="w-3.5 h-3.5 text-orange-600" />
+                    <div className="w-5 h-5 rounded-full bg-rose-950 border border-rose-500/40 flex items-center justify-center shrink-0 mt-0.5">
+                      <Icon name="check" className="w-3.5 h-3.5 text-rose-400" />
                     </div>
                     <div>
-                      <strong className="text-xs sm:text-sm font-semibold text-brand-charcoal block">Confidence for School Exams</strong>
-                      <span className="text-xs text-gray-600">Know exactly how to approach tricky questions and write crisp answers.</span>
+                      <strong className="text-xs sm:text-sm font-semibold text-white block">Confidence for School & Board Exams</strong>
+                      <span className="text-xs text-gray-300">Know exactly how to approach tricky questions and write crisp answers.</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-8 mt-6 border-t border-orange-200/40">
+              <div className="pt-8 mt-6 border-t border-rose-500/20">
                 <button
                   onClick={() => scrollToSection('contact')}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-heading font-semibold text-xs bg-white hover:bg-orange-50 text-orange-900 border border-orange-200 transition-colors shadow-sm"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-heading font-semibold text-xs bg-rose-950/80 hover:bg-rose-900 text-rose-200 border border-rose-500/30 transition-colors shadow-sm"
                 >
                   <span>Experience a Classroom Session</span>
                   <Icon name="arrowRight" className="w-3.5 h-3.5" />
@@ -1691,28 +1690,27 @@ function App() {
       {/* ========================================================================= */}
       {/* SECTION 8: CALL TO ACTION */}
       {/* ========================================================================= */}
-      <section className="py-20 relative overflow-hidden bg-brand-lavender/70 border-y border-brand-lavenderDark/20">
-        {/* Soft background accents */}
-        <div className="absolute top-0 right-1/4 w-80 h-80 bg-brand-blue/40 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-brand-peach/40 rounded-full blur-3xl pointer-events-none"></div>
+      <section className="py-20 relative overflow-hidden bg-gradient-to-r from-[#0C1510] via-[#141014] to-[#0D1612] border-y border-white/10">
+        <div className="absolute top-0 right-1/4 w-80 h-80 bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-rose-500/10 rounded-full blur-[140px] pointer-events-none"></div>
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
-          <div className="w-14 h-14 mx-auto rounded-3xl bg-white shadow-soft flex items-center justify-center">
-            <WiseOwlLogo className="w-9 h-9" />
+          <div className="px-4 py-2 rounded-2xl bg-white/95 backdrop-blur-md shadow-glow-green border border-white/20 inline-flex items-center mx-auto">
+            <img src="./logo.png" alt="Two Wise" className="h-12 w-auto object-contain" />
           </div>
 
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-charcoal tracking-tight">
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
             Ready to Make Learning Smarter?
           </h2>
 
-          <p className="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
             Give your child the academic support, guidance and confidence to reach their potential. Offline classroom coaching in Pune for Grades 4–12.
           </p>
 
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={() => scrollToSection('contact')}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl font-heading font-semibold text-base bg-brand-charcoal text-white hover:bg-black transition-all shadow-soft active:scale-95"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-heading font-bold text-base bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-300 text-gray-950 hover:brightness-105 transition-all shadow-[0_0_30px_rgba(110,231,183,0.35)] active:scale-95"
             >
               <span>Enquire Now</span>
               <Icon name="arrowRight" className="w-4 h-4" />
@@ -1722,9 +1720,9 @@ function App() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl font-heading font-semibold text-base bg-white text-emerald-900 border border-emerald-300 hover:bg-emerald-50 transition-all shadow-soft active:scale-95"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-heading font-semibold text-base bg-white/5 text-rose-200 border border-rose-400/40 hover:bg-white/10 transition-all shadow-glow-red active:scale-95"
             >
-              <Icon name="whatsapp" className="w-5 h-5 text-emerald-600" />
+              <Icon name="whatsapp" className="w-5 h-5 text-emerald-400" />
               <span>Chat on WhatsApp</span>
             </a>
           </div>
@@ -1734,17 +1732,17 @@ function App() {
       {/* ========================================================================= */}
       {/* SECTION 9: CONTACT / ENQUIRY */}
       {/* ========================================================================= */}
-      <section id="contact" className="py-20 bg-white relative">
+      <section id="contact" className="py-20 bg-[#0A0E0C] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="px-3.5 py-1.5 rounded-full bg-brand-mint/80 border border-emerald-200/50 text-xs font-bold tracking-wide uppercase text-brand-charcoal">
+            <span className="px-4 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-bold tracking-wide uppercase text-emerald-300 shadow-[0_0_15px_rgba(52,211,153,0.15)]">
               Get In Touch
             </span>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-charcoal tracking-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
               Let's Start Their Learning Journey.
             </h2>
-            <p className="text-base sm:text-lg text-gray-600">
+            <p className="text-base sm:text-lg text-gray-300">
               Fill out the enquiry form below or message us directly on WhatsApp. We look forward to welcoming you to Two Wise Academy.
             </p>
           </div>
@@ -1752,35 +1750,34 @@ function App() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             
             {/* Left Column: Functional Enquiry Form */}
-            <div className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl border border-gray-100 shadow-soft-lg">
+            <div className="lg:col-span-7 bg-[#121815]/95 p-6 sm:p-10 rounded-3xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
               
               {isSubmitted ? (
-                <div className="text-center py-10 space-y-6 animate-fadeIn">
-                  <div className="w-16 h-16 mx-auto rounded-3xl bg-brand-mint flex items-center justify-center">
-                    <Icon name="check" className="w-8 h-8 text-emerald-700" />
+                <div className="text-center py-10 space-y-6">
+                  <div className="w-16 h-16 mx-auto rounded-3xl bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-emerald-300 shadow-glow-green">
+                    <Icon name="check" className="w-8 h-8" />
                   </div>
                   
                   <div className="space-y-2">
-                    <h3 className="font-heading text-2xl font-bold text-brand-charcoal">
+                    <h3 className="font-heading text-2xl font-bold text-white">
                       Thank You for Reaching Out!
                     </h3>
-                    <p className="text-sm text-gray-600 max-w-md mx-auto">
-                      We have received your enquiry for <strong className="text-brand-charcoal">{formData.studentName}</strong> ({formData.grade}, {formData.board}). Our academic counselor will contact you shortly.
+                    <p className="text-sm text-gray-300 max-w-md mx-auto">
+                      We have received your enquiry for <strong className="text-emerald-300">{formData.studentName}</strong> ({formData.grade}, {formData.board}). Our academic counselor will contact you shortly.
                     </p>
                   </div>
 
-                  {/* Immediate WhatsApp Connect with Pre-filled Form Details */}
-                  <div className="p-4 rounded-2xl bg-brand-mint/50 border border-emerald-200 max-w-md mx-auto space-y-3">
-                    <p className="text-xs font-medium text-emerald-900">
+                  <div className="p-4 rounded-2xl bg-emerald-950/60 border border-emerald-500/30 max-w-md mx-auto space-y-3">
+                    <p className="text-xs font-medium text-emerald-200">
                       Want an instant response? You can also forward these details directly to our WhatsApp:
                     </p>
                     <a
                       href={generatedWhatsAppLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm transition-colors shadow-sm"
+                      className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-300 text-gray-950 font-bold text-sm transition-all shadow-glow-green"
                     >
-                      <Icon name="whatsapp" className="w-5 h-5" />
+                      <Icon name="whatsapp" className="w-5 h-5 text-gray-950" />
                       <span>Send Enquiry via WhatsApp Now</span>
                     </a>
                   </div>
@@ -1798,7 +1795,7 @@ function App() {
                         message: ''
                       });
                     }}
-                    className="text-xs text-gray-500 hover:text-brand-charcoal underline"
+                    className="text-xs text-gray-400 hover:text-white underline"
                   >
                     Submit another enquiry
                   </button>
@@ -1809,35 +1806,35 @@ function App() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* Parent's Name */}
                     <div className="space-y-1.5 text-left">
-                      <label className="text-xs font-bold uppercase tracking-wider text-gray-700">
-                        Parent's Name <span className="text-red-500">*</span>
+                      <label className="text-xs font-bold uppercase tracking-wider text-gray-300">
+                        Parent's Name <span className="text-rose-400">*</span>
                       </label>
                       <input
                         type="text"
                         placeholder="e.g. Rahul Sharma"
                         value={formData.parentName}
                         onChange={(e) => setFormData({ ...formData, parentName: e.target.value })}
-                        className={`w-full px-4 py-3 rounded-xl bg-gray-50 border ${formErrors.parentName ? 'border-red-400 bg-red-50/20' : 'border-gray-200'} focus:outline-none focus:ring-2 focus:ring-brand-lavenderDark/30 text-sm`}
+                        className={`w-full px-4 py-3 rounded-xl bg-[#0B100E] border ${formErrors.parentName ? 'border-rose-500 bg-rose-950/20' : 'border-white/10'} focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 text-sm text-white placeholder-gray-500`}
                       />
                       {formErrors.parentName && (
-                        <p className="text-xs text-red-500">{formErrors.parentName}</p>
+                        <p className="text-xs text-rose-400">{formErrors.parentName}</p>
                       )}
                     </div>
 
                     {/* Student's Name */}
                     <div className="space-y-1.5 text-left">
-                      <label className="text-xs font-bold uppercase tracking-wider text-gray-700">
-                        Student's Name <span className="text-red-500">*</span>
+                      <label className="text-xs font-bold uppercase tracking-wider text-gray-300">
+                        Student's Name <span className="text-rose-400">*</span>
                       </label>
                       <input
                         type="text"
                         placeholder="e.g. Aryan Sharma"
                         value={formData.studentName}
                         onChange={(e) => setFormData({ ...formData, studentName: e.target.value })}
-                        className={`w-full px-4 py-3 rounded-xl bg-gray-50 border ${formErrors.studentName ? 'border-red-400 bg-red-50/20' : 'border-gray-200'} focus:outline-none focus:ring-2 focus:ring-brand-lavenderDark/30 text-sm`}
+                        className={`w-full px-4 py-3 rounded-xl bg-[#0B100E] border ${formErrors.studentName ? 'border-rose-500 bg-rose-950/20' : 'border-white/10'} focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 text-sm text-white placeholder-gray-500`}
                       />
                       {formErrors.studentName && (
-                        <p className="text-xs text-red-500">{formErrors.studentName}</p>
+                        <p className="text-xs text-rose-400">{formErrors.studentName}</p>
                       )}
                     </div>
                   </div>
@@ -1845,8 +1842,8 @@ function App() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* Phone Number */}
                     <div className="space-y-1.5 text-left">
-                      <label className="text-xs font-bold uppercase tracking-wider text-gray-700">
-                        Phone Number (WhatsApp) <span className="text-red-500">*</span>
+                      <label className="text-xs font-bold uppercase tracking-wider text-gray-300">
+                        Phone Number (WhatsApp) <span className="text-rose-400">*</span>
                       </label>
                       <div className="relative">
                         <span className="absolute left-3 top-3 text-sm text-gray-400 font-medium">+91</span>
@@ -1855,26 +1852,26 @@ function App() {
                           placeholder="90496 50666"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className={`w-full pl-12 pr-4 py-3 rounded-xl bg-gray-50 border ${formErrors.phone ? 'border-red-400 bg-red-50/20' : 'border-gray-200'} focus:outline-none focus:ring-2 focus:ring-brand-lavenderDark/30 text-sm`}
+                          className={`w-full pl-12 pr-4 py-3 rounded-xl bg-[#0B100E] border ${formErrors.phone ? 'border-rose-500 bg-rose-950/20' : 'border-white/10'} focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 text-sm text-white placeholder-gray-500`}
                         />
                       </div>
                       {formErrors.phone && (
-                        <p className="text-xs text-red-500">{formErrors.phone}</p>
+                        <p className="text-xs text-rose-400">{formErrors.phone}</p>
                       )}
                     </div>
 
                     {/* Grade / Standard */}
                     <div className="space-y-1.5 text-left">
-                      <label className="text-xs font-bold uppercase tracking-wider text-gray-700">
-                        Grade / Standard <span className="text-red-500">*</span>
+                      <label className="text-xs font-bold uppercase tracking-wider text-gray-300">
+                        Grade / Standard <span className="text-rose-400">*</span>
                       </label>
                       <select
                         value={formData.grade}
                         onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-lavenderDark/30 text-sm text-gray-800"
+                        className="w-full px-4 py-3 rounded-xl bg-[#0B100E] border border-white/10 focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 text-sm text-white"
                       >
                         {[4, 5, 6, 7, 8, 9, 10, 11, 12].map(g => (
-                          <option key={g} value={`Grade ${g}`}>Grade {g}</option>
+                          <option key={g} value={`Grade ${g}`} className="bg-[#0A0E0C] text-white">Grade {g}</option>
                         ))}
                       </select>
                     </div>
@@ -1882,8 +1879,8 @@ function App() {
 
                   {/* Educational Board Selection */}
                   <div className="space-y-2 text-left">
-                    <label className="text-xs font-bold uppercase tracking-wider text-gray-700 block">
-                      Educational Board <span className="text-red-500">*</span>
+                    <label className="text-xs font-bold uppercase tracking-wider text-gray-300 block">
+                      Educational Board <span className="text-rose-400">*</span>
                     </label>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                       {['ICSE', 'CBSE', 'IB', 'IGCSE'].map(b => (
@@ -1893,8 +1890,8 @@ function App() {
                           onClick={() => setFormData({ ...formData, board: b })}
                           className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all ${
                             formData.board === b
-                              ? 'bg-brand-charcoal text-white shadow-sm'
-                              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                              ? 'bg-gradient-to-r from-emerald-400 to-teal-300 text-gray-950 shadow-glow-green font-extrabold'
+                              : 'bg-[#0B100E] text-gray-300 border border-white/10 hover:border-white/20'
                           }`}
                         >
                           {b}
@@ -1905,8 +1902,8 @@ function App() {
 
                   {/* Subjects Interested In */}
                   <div className="space-y-2 text-left">
-                    <label className="text-xs font-bold uppercase tracking-wider text-gray-700 block">
-                      Subjects Interested In <span className="text-red-500">*</span>
+                    <label className="text-xs font-bold uppercase tracking-wider text-gray-300 block">
+                      Subjects Interested In <span className="text-rose-400">*</span>
                     </label>
                     <div className="flex flex-wrap gap-2">
                       {['Mathematics', 'Science', 'English', 'Social Studies', 'Languages', 'Computer Applications', 'All Subjects'].map(sub => {
@@ -1918,24 +1915,24 @@ function App() {
                             onClick={() => toggleSubject(sub)}
                             className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 ${
                               active
-                                ? 'bg-brand-lavender text-purple-950 border border-purple-300'
-                                : 'bg-gray-50 text-gray-600 border border-gray-200 hover:bg-gray-100'
+                                ? 'bg-emerald-950 text-emerald-200 border border-emerald-500/40 shadow-glow-green'
+                                : 'bg-[#0B100E] text-gray-300 border border-white/10 hover:border-white/20'
                             }`}
                           >
-                            <span className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-purple-700' : 'bg-gray-400'}`}></span>
+                            <span className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-emerald-400' : 'bg-gray-500'}`}></span>
                             <span>{sub}</span>
                           </button>
                         );
                       })}
                     </div>
                     {formErrors.subjects && (
-                      <p className="text-xs text-red-500">{formErrors.subjects}</p>
+                      <p className="text-xs text-rose-400">{formErrors.subjects}</p>
                     )}
                   </div>
 
                   {/* Message */}
                   <div className="space-y-1.5 text-left">
-                    <label className="text-xs font-bold uppercase tracking-wider text-gray-700">
+                    <label className="text-xs font-bold uppercase tracking-wider text-gray-300">
                       Message / Learning Goals (Optional)
                     </label>
                     <textarea
@@ -1943,20 +1940,20 @@ function App() {
                       placeholder="Tell us about specific concepts your child needs assistance with or current school syllabus..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-lavenderDark/30 text-sm"
+                      className="w-full px-4 py-3 rounded-xl bg-[#0B100E] border border-white/10 focus:outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 text-sm text-white placeholder-gray-500"
                     ></textarea>
                   </div>
 
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-2xl bg-brand-charcoal hover:bg-black text-white font-heading font-semibold text-sm transition-all shadow-soft active:scale-95 flex items-center justify-center gap-2"
+                    className="w-full py-4 rounded-2xl bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-300 text-gray-950 font-heading font-bold text-sm transition-all shadow-[0_0_30px_rgba(110,231,183,0.35)] hover:shadow-[0_0_40px_rgba(110,231,183,0.5)] active:scale-95 flex items-center justify-center gap-2"
                   >
                     <span>Submit Enquiry</span>
                     <Icon name="arrowRight" className="w-4 h-4" />
                   </button>
 
-                  <p className="text-[11px] text-gray-500 text-center">
+                  <p className="text-[11px] text-gray-400 text-center">
                     Your details are safe. We will never spam or share your contact number.
                   </p>
 
@@ -1969,18 +1966,18 @@ function App() {
             <div className="lg:col-span-5 space-y-6 text-left">
               
               {/* WhatsApp Card */}
-              <div className="p-7 rounded-3xl bg-brand-mint/60 border border-emerald-200 shadow-soft space-y-4">
+              <div className="p-7 rounded-3xl bg-[#0E1712]/90 border border-emerald-500/30 shadow-glow-green space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-white shadow-soft flex items-center justify-center text-emerald-600">
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
                     <Icon name="whatsapp" className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="font-heading font-bold text-lg text-emerald-950">Chat Directly on WhatsApp</h3>
-                    <p className="text-xs text-emerald-800">Quick answers for batches & fees</p>
+                    <h3 className="font-heading font-bold text-lg text-white">Chat Directly on WhatsApp</h3>
+                    <p className="text-xs text-emerald-300">Quick answers for batches & fees</p>
                   </div>
                 </div>
 
-                <p className="text-xs text-emerald-900 leading-relaxed">
+                <p className="text-xs text-gray-300 leading-relaxed">
                   Have quick questions regarding timings, batch availability, or diagnostic sessions? Reach us instantly on WhatsApp.
                 </p>
 
@@ -1989,7 +1986,7 @@ function App() {
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm transition-colors shadow-sm"
+                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-300 text-gray-950 font-bold text-sm transition-all shadow-glow-green"
                   >
                     <Icon name="whatsapp" className="w-4 h-4" />
                     <span>WhatsApp: +91 90496 50666</span>
@@ -1998,54 +1995,54 @@ function App() {
               </div>
 
               {/* Offline Academy Location Card */}
-              <div className="p-7 rounded-3xl bg-white border border-gray-100 shadow-soft space-y-4">
+              <div className="p-7 rounded-3xl bg-[#121815]/90 border border-white/10 shadow-soft space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-brand-lavender flex items-center justify-center text-brand-charcoal">
-                    <Icon name="mapPin" className="w-6 h-6 text-brand-lavenderDark" />
+                  <div className="w-12 h-12 rounded-2xl bg-rose-950/80 border border-rose-500/30 flex items-center justify-center text-rose-300">
+                    <Icon name="mapPin" className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="font-heading font-bold text-lg text-brand-charcoal">Academy Location</h3>
-                    <p className="text-xs text-gray-500">Offline Classroom Coaching</p>
+                    <h3 className="font-heading font-bold text-lg text-white">Academy Location</h3>
+                    <p className="text-xs text-gray-400">Offline Classroom Coaching</p>
                   </div>
                 </div>
 
-                <div className="space-y-2 text-sm text-gray-700">
-                  <p className="font-semibold text-brand-charcoal leading-snug">
+                <div className="space-y-2 text-sm text-gray-300">
+                  <p className="font-semibold text-white leading-snug">
                     Two Wise Academy, Prasad Apartments, T.M.V. Colony, Gultekdi, Pune-411037
                   </p>
-                  <p className="text-xs text-gray-500 leading-relaxed">
+                  <p className="text-xs text-gray-400 leading-relaxed">
                     Centrally accessible offline classroom setup designed for modern, student-friendly interactive coaching.
                   </p>
                   <a
                     href="https://www.google.com/maps/search/?api=1&query=Two+Wise+Academy+Prasad+Apartments+TMV+Colony+Gultekdi+Pune+411037"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-charcoal hover:underline pt-1 text-purple-700"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-300 hover:text-emerald-200 hover:underline pt-1"
                   >
                     <span>Get Directions on Google Maps</span>
                     <Icon name="arrowRight" className="w-3.5 h-3.5" />
                   </a>
                 </div>
 
-                <div className="pt-2 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+                <div className="pt-2 border-t border-white/5 flex items-center justify-between text-xs text-gray-400">
                   <span>Classroom Mode:</span>
-                  <span className="font-semibold text-brand-charcoal">Offline In-Person Batches</span>
+                  <span className="font-semibold text-emerald-300">Offline In-Person Batches</span>
                 </div>
               </div>
 
               {/* Instagram Card */}
-              <div className="p-7 rounded-3xl bg-white border border-gray-100 shadow-soft space-y-4">
+              <div className="p-7 rounded-3xl bg-[#181316]/90 border border-rose-500/20 shadow-soft space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-brand-peach flex items-center justify-center text-brand-peachDark">
+                  <div className="w-12 h-12 rounded-2xl bg-rose-950 border border-rose-500/30 flex items-center justify-center text-rose-300">
                     <Icon name="instagram" className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="font-heading font-bold text-lg text-brand-charcoal">Follow Our Journey</h3>
-                    <p className="text-xs text-gray-500">Classroom glimpses & study tips</p>
+                    <h3 className="font-heading font-bold text-lg text-white">Follow Our Journey</h3>
+                    <p className="text-xs text-gray-400">Classroom glimpses & study tips</p>
                   </div>
                 </div>
 
-                <p className="text-xs text-gray-600 leading-relaxed">
+                <p className="text-xs text-gray-300 leading-relaxed">
                   Join our growing community on Instagram for conceptual breakdowns, student updates, and learning motivation.
                 </p>
 
@@ -2054,7 +2051,7 @@ function App() {
                     href="https://www.instagram.com/twowise_academy/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs font-bold text-pink-600 hover:text-pink-700 hover:underline"
+                    className="inline-flex items-center gap-2 text-xs font-bold text-rose-400 hover:text-rose-300 hover:underline"
                   >
                     <span>@twowise_academy on Instagram</span>
                     <Icon name="arrowRight" className="w-3.5 h-3.5" />
@@ -2072,26 +2069,28 @@ function App() {
       {/* ========================================================================= */}
       {/* SECTION 10: FOOTER */}
       {/* ========================================================================= */}
-      <footer className="bg-white border-t border-gray-100 pt-16 pb-12 text-left">
+      <footer className="bg-[#070A09] border-t border-white/5 pt-16 pb-12 text-left">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-gray-100">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/5">
             
             {/* Brand Column */}
             <div className="lg:col-span-5 space-y-4">
               <div className="flex items-center gap-3">
-                <img 
-                  src="./logo.png" 
-                  alt="Two Wise Academy" 
-                  className="h-14 sm:h-16 w-auto object-contain" 
-                />
+                <div className="px-3.5 py-1.5 rounded-2xl bg-white/95 backdrop-blur-md shadow-sm border border-white/20 inline-flex items-center">
+                  <img 
+                    src="./logo.png" 
+                    alt="Two Wise Academy" 
+                    className="h-12 w-auto object-contain" 
+                  />
+                </div>
               </div>
 
-              <p className="font-heading font-semibold text-sm text-brand-charcoal tracking-wide">
+              <p className="font-heading font-semibold text-sm text-gray-200 tracking-wide">
                 "Learn Smart. Think Wise."
               </p>
 
-              <p className="text-xs text-gray-600 max-w-sm leading-relaxed">
+              <p className="text-xs text-gray-400 max-w-sm leading-relaxed">
                 Two Wise Academy is a contemporary offline classroom coaching academy based in Pune, Maharashtra. Empowering students across ICSE, CBSE, IB, and IGCSE curricula (Grades 4–12) with conceptual clarity, individual attention, and academic confidence.
               </p>
 
@@ -2100,7 +2099,7 @@ function App() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl bg-brand-mint/70 hover:bg-brand-mint text-emerald-800 flex items-center justify-center transition-colors"
+                  className="w-9 h-9 rounded-xl bg-emerald-950 border border-emerald-500/30 text-emerald-400 flex items-center justify-center transition-colors hover:bg-emerald-900"
                   title="WhatsApp"
                 >
                   <Icon name="whatsapp" className="w-4 h-4" />
@@ -2109,7 +2108,7 @@ function App() {
                   href="https://www.instagram.com/twowise_academy/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl bg-brand-peach/70 hover:bg-brand-peach text-orange-900 flex items-center justify-center transition-colors"
+                  className="w-9 h-9 rounded-xl bg-rose-950 border border-rose-500/30 text-rose-300 flex items-center justify-center transition-colors hover:bg-rose-900"
                   title="Instagram"
                 >
                   <Icon name="instagram" className="w-4 h-4" />
@@ -2119,26 +2118,26 @@ function App() {
 
             {/* Quick Navigation */}
             <div className="lg:col-span-2 space-y-3">
-              <h4 className="font-heading font-bold text-xs uppercase tracking-wider text-brand-charcoal">
+              <h4 className="font-heading font-bold text-xs uppercase tracking-wider text-emerald-300">
                 Navigation
               </h4>
-              <ul className="space-y-2 text-xs text-gray-600">
-                <li><a href="#hero" className="hover:text-brand-charcoal hover:underline">Home</a></li>
-                <li><a href="#about" className="hover:text-brand-charcoal hover:underline">About Us</a></li>
-                <li><a href="#boards" className="hover:text-brand-charcoal hover:underline">Programs</a></li>
-                <li><a href="#approach" className="hover:text-brand-charcoal hover:underline">Our Approach</a></li>
-                <li><a href="#why-us" className="hover:text-brand-charcoal hover:underline">Why Two Wise</a></li>
-                <li><a href="#faculty" className="hover:text-brand-charcoal hover:underline">Faculty & Mentors</a></li>
-                <li><a href="#contact" className="hover:text-brand-charcoal hover:underline">Contact</a></li>
+              <ul className="space-y-2 text-xs text-gray-400">
+                <li><a href="#hero" className="hover:text-white hover:underline">Home</a></li>
+                <li><a href="#about" className="hover:text-white hover:underline">About Us</a></li>
+                <li><a href="#boards" className="hover:text-white hover:underline">Programs</a></li>
+                <li><a href="#approach" className="hover:text-white hover:underline">Our Approach</a></li>
+                <li><a href="#why-us" className="hover:text-white hover:underline">Why Two Wise</a></li>
+                <li><a href="#faculty" className="hover:text-white hover:underline">Faculty & Mentors</a></li>
+                <li><a href="#contact" className="hover:text-white hover:underline">Contact</a></li>
               </ul>
             </div>
 
             {/* Curricula & Grades */}
             <div className="lg:col-span-2 space-y-3">
-              <h4 className="font-heading font-bold text-xs uppercase tracking-wider text-brand-charcoal">
+              <h4 className="font-heading font-bold text-xs uppercase tracking-wider text-rose-300">
                 Curricula & Grades
               </h4>
-              <ul className="space-y-2 text-xs text-gray-600">
+              <ul className="space-y-2 text-xs text-gray-400">
                 <li>ICSE & ISC Board (Grades 4–12)</li>
                 <li>CBSE Board (Grades 4–12)</li>
                 <li>IB Curriculum (Grades 4–12)</li>
@@ -2149,24 +2148,24 @@ function App() {
 
             {/* Contact Details */}
             <div className="lg:col-span-3 space-y-3">
-              <h4 className="font-heading font-bold text-xs uppercase tracking-wider text-brand-charcoal">
+              <h4 className="font-heading font-bold text-xs uppercase tracking-wider text-emerald-300">
                 Contact & Location
               </h4>
-              <ul className="space-y-2.5 text-xs text-gray-600">
+              <ul className="space-y-2.5 text-xs text-gray-400">
                 <li className="flex items-center gap-2">
-                  <Icon name="phone" className="w-4 h-4 text-gray-400" />
-                  <a href="tel:+919049650666" className="hover:text-brand-charcoal">+91 90496 50666</a>
+                  <Icon name="phone" className="w-4 h-4 text-emerald-400" />
+                  <a href="tel:+919049650666" className="hover:text-white">+91 90496 50666</a>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Icon name="whatsapp" className="w-4 h-4 text-emerald-600" />
-                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-brand-charcoal">WhatsApp: 9049650666</a>
+                  <Icon name="whatsapp" className="w-4 h-4 text-emerald-400" />
+                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">WhatsApp: 9049650666</a>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Icon name="instagram" className="w-4 h-4 text-pink-600" />
-                  <a href="https://www.instagram.com/twowise_academy/" target="_blank" rel="noopener noreferrer" className="hover:text-brand-charcoal">@twowise_academy</a>
+                  <Icon name="instagram" className="w-4 h-4 text-rose-400" />
+                  <a href="https://www.instagram.com/twowise_academy/" target="_blank" rel="noopener noreferrer" className="hover:text-white">@twowise_academy</a>
                 </li>
                 <li className="flex items-start gap-2 pt-1">
-                  <Icon name="mapPin" className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
+                  <Icon name="mapPin" className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                   <span>Two Wise Academy, Prasad Apartments, T.M.V. Colony, Gultekdi, Pune-411037</span>
                 </li>
               </ul>
@@ -2178,9 +2177,9 @@ function App() {
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
             <p>© 2026 Two Wise Academy. All Rights Reserved.</p>
             <p className="flex items-center gap-3">
-              <span>Offline Classroom Coaching in Pune</span>
+              <span className="text-emerald-400/80">Offline Classroom Coaching in Pune</span>
               <span>•</span>
-              <span>"Learn Smart. Think Wise."</span>
+              <span className="text-rose-300/80">"Learn Smart. Think Wise."</span>
             </p>
           </div>
 
@@ -2191,8 +2190,7 @@ function App() {
       {/* FLOATING WHATSAPP BUTTON */}
       {/* ========================================================================= */}
       <div className="fixed bottom-6 right-6 z-50 flex items-center group">
-        {/* Tooltip on hover */}
-        <div className="hidden sm:block mr-3 px-3 py-1.5 rounded-xl bg-brand-charcoal text-white text-xs font-medium shadow-soft opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+        <div className="hidden sm:block mr-3 px-3 py-1.5 rounded-xl bg-[#111714] border border-emerald-500/30 text-emerald-200 text-xs font-medium shadow-[0_0_20px_rgba(0,0,0,0.8)] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
           Chat with Two Wise Academy
         </div>
 
@@ -2201,10 +2199,9 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat with Two Wise Academy on WhatsApp"
-          className="relative w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-soft-lg flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
+          className="relative w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-gray-950 shadow-[0_0_30px_rgba(52,211,153,0.4)] flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
         >
-          {/* Subtle pulse ring */}
-          <span className="absolute inset-0 rounded-full bg-emerald-500 opacity-75 animate-ping-slow pointer-events-none"></span>
+          <span className="absolute inset-0 rounded-full bg-emerald-400 opacity-75 animate-ping-slow pointer-events-none"></span>
           <Icon name="whatsapp" className="w-7 h-7 relative z-10" />
         </a>
       </div>

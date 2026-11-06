@@ -1,47 +1,50 @@
-/* Custom styles for Two Wise Academy */
+/* Custom luxury dark styles for Two Wise Academy */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
 :root {
-  --color-charcoal: #252525;
-  --color-lavender: #EAE5FA;
-  --color-blue: #DFEDFA;
-  --color-peach: #FCE8DD;
-  --color-mint: #E2F0E8;
-  --color-yellow: #FFF3D6;
+  --bg-dark-base: #0A0E0C;
+  --bg-dark-surface: #111714;
+  --bg-dark-card: #151D19;
+  --color-pastel-green: #86EFAC;
+  --color-pastel-green-light: #D1FAE5;
+  --color-pastel-red: #FDA4AF;
+  --color-pastel-red-light: #FFE4E6;
 }
 
 html {
   scroll-behavior: smooth;
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  background-color: #0A0E0C;
+  color-scheme: dark;
 }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  color: #252525;
-  background-color: #FFFFFF;
+  color: #F3F4F6;
+  background-color: #0A0E0C;
   margin: 0;
   padding: 0;
 }
 
 h1, h2, h3, h4, h5, h6, .font-heading {
   font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
 }
 
-/* Custom Scrollbar */
+/* Custom Luxury Dark Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #fbfbfb;
+  background: #0A0E0C;
 }
 ::-webkit-scrollbar-thumb {
-  background: #EAE5FA;
+  background: #1F2923;
   border-radius: 9999px;
-  border: 2px solid #ffffff;
+  border: 2px solid #0A0E0C;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #DFEDFA;
+  background: #2D3D34;
 }
 
 /* Animations */
@@ -50,7 +53,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-8px) rotate(1deg);
+    transform: translateY(-8px) rotate(0.5deg);
   }
 }
 
@@ -59,7 +62,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(8px) rotate(-1deg);
+    transform: translateY(8px) rotate(-0.5deg);
   }
 }
 
@@ -69,24 +72,24 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     opacity: 1;
   }
   50% {
-    transform: scale(1.05);
+    transform: scale(1.04);
     opacity: 0.9;
   }
 }
 
 .animate-float {
-  animation: float 5s ease-in-out infinite;
+  animation: float 6s ease-in-out infinite;
 }
 
 .animate-float-reverse {
-  animation: float-reverse 6s ease-in-out infinite;
+  animation: float-reverse 7s ease-in-out infinite;
 }
 
 .animate-pulse-soft {
   animation: pulse-soft 3s ease-in-out infinite;
 }
 
-/* Soft card hover transitions */
+/* Dark card hover lift & glow */
 .hover-card-lift {
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
 }
@@ -94,24 +97,40 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   transform: translateY(-4px);
 }
 
-/* Pastel gradients and subtle patterns */
-.bg-subtle-dots {
-  background-image: radial-gradient(#EAE5FA 1.2px, transparent 1.2px);
-  background-size: 24px 24px;
-}
-
-.bg-subtle-grid {
+/* Subtle dark grid pattern */
+.bg-dark-grid {
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(234, 229, 250, 0.4) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(234, 229, 250, 0.4) 1px, transparent 1px);
+    linear-gradient(to right, rgba(134, 239, 172, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(134, 239, 172, 0.03) 1px, transparent 1px);
 }
 
-/* Glassmorphism nav */
-.nav-glass {
-  background: rgba(255, 255, 255, 0.88);
+.bg-dark-dots {
+  background-image: radial-gradient(rgba(134, 239, 172, 0.08) 1.2px, transparent 1.2px);
+  background-size: 28px 28px;
+}
+
+/* Dark Glassmorphism */
+.nav-glass-dark {
+  background: rgba(10, 14, 12, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-card-dark {
+  background: rgba(22, 30, 26, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Glow Utilities */
+.shadow-glow-green {
+  box-shadow: 0 0 35px -5px rgba(134, 239, 172, 0.18);
+}
+
+.shadow-glow-red {
+  box-shadow: 0 0 35px -5px rgba(253, 164, 175, 0.18);
 }
 
 /* WhatsApp pulse ring */
