@@ -40,6 +40,12 @@ const Icon = ({ name, className = "w-5 h-5" }) => {
         <polygon points="5 3 19 12 5 21 5 3"></polygon>
       </svg>
     ),
+    mail: (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+      </svg>
+    ),
     mapPin: (
       <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
@@ -247,6 +253,7 @@ function App() {
   const whatsappNumber = "9049650666";
   const whatsappUrl = "https://wa.me/919049650666?text=Hi%20Two%20Wise%20Academy!%20I%20would%20like%20to%20enquire%20about%20academic%20coaching%20for%20my%20child.";
   const officialInstagramUrl = "https://www.instagram.com/twowise_academy/";
+  const academyEmail = "twowiseacademy@gmail.com";
 
   // Form subject toggle
   const toggleSubject = (subject) => {
@@ -1304,6 +1311,20 @@ function App() {
                     </a>
                   </div>
                 </div>
+                <div className="flex items-start gap-3 pt-3 border-t border-[#E6DFD1]">
+                  <div className="w-10 h-10 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-[#123C24] shrink-0">
+                    <Icon name="mail" className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-bold text-sm text-[#12261B]">Email Address</h4>
+                    <a href="mailto:twowiseacademy@gmail.com" className="text-xs text-gray-700 hover:text-[#123C24] font-medium block mt-0.5">
+                      twowiseacademy@gmail.com
+                    </a>
+                    <a href="mailto:twowiseacademy@gmail.com" className="text-xs text-[#123C24] hover:underline block mt-0.5 font-bold">
+                      Write to Us →
+                    </a>
+                  </div>
+                </div>
 
                 <div className="flex items-start gap-3 pt-3 border-t border-[#E6DFD1]">
                   <div className="w-10 h-10 rounded-2xl bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-700 shrink-0">
@@ -1507,6 +1528,9 @@ function App() {
               </p>
               <p className="text-gray-700 pt-1">
                 WhatsApp / Call: <a href="tel:+919049650666" className="text-[#123C24] font-bold hover:underline">+91 90496 50666</a>
+              </p>
+              <p className="text-gray-700">
+                Email: <a href="mailto:twowiseacademy@gmail.com" className="text-[#123C24] font-bold hover:underline">twowiseacademy@gmail.com</a>
               </p>
               <p className="text-gray-700">
                 Instagram: <a href={officialInstagramUrl} target="_blank" rel="noopener noreferrer" className="text-[#9B1B1E] font-bold hover:underline">@twowise_academy</a>

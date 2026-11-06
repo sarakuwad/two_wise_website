@@ -88,6 +88,23 @@ const Icon = ({
     }, /*#__PURE__*/React.createElement("polygon", {
       points: "5 3 19 12 5 21 5 3"
     })),
+    mail: /*#__PURE__*/React.createElement("svg", {
+      className: className,
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }, /*#__PURE__*/React.createElement("rect", {
+      width: "20",
+      height: "16",
+      x: "2",
+      y: "4",
+      rx: "2"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+    })),
     mapPin: /*#__PURE__*/React.createElement("svg", {
       className: className,
       viewBox: "0 0 24 24",
@@ -557,6 +574,7 @@ function App() {
   const whatsappNumber = "9049650666";
   const whatsappUrl = "https://wa.me/919049650666?text=Hi%20Two%20Wise%20Academy!%20I%20would%20like%20to%20enquire%20about%20academic%20coaching%20for%20my%20child.";
   const officialInstagramUrl = "https://www.instagram.com/twowise_academy/";
+  const academyEmail = "twowiseacademy@gmail.com";
 
   // Form subject toggle
   const toggleSubject = subject => {
@@ -1449,6 +1467,21 @@ function App() {
   }, "Chat on WhatsApp →"))), /*#__PURE__*/React.createElement("div", {
     className: "flex items-start gap-3 pt-3 border-t border-[#E6DFD1]"
   }, /*#__PURE__*/React.createElement("div", {
+    className: "w-10 h-10 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-[#123C24] shrink-0"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "mail",
+    className: "w-5 h-5"
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
+    className: "font-heading font-bold text-sm text-[#12261B]"
+  }, "Email Address"), /*#__PURE__*/React.createElement("a", {
+    href: "mailto:twowiseacademy@gmail.com",
+    className: "text-xs text-gray-700 hover:text-[#123C24] font-medium block mt-0.5"
+  }, "twowiseacademy@gmail.com"), /*#__PURE__*/React.createElement("a", {
+    href: "mailto:twowiseacademy@gmail.com",
+    className: "text-xs text-[#123C24] hover:underline block mt-0.5 font-bold"
+  }, "Write to Us →"))), /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start gap-3 pt-3 border-t border-[#E6DFD1]"
+  }, /*#__PURE__*/React.createElement("div", {
     className: "w-10 h-10 rounded-2xl bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-700 shrink-0"
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "instagram",
@@ -1643,6 +1676,11 @@ function App() {
     href: "tel:+919049650666",
     className: "text-[#123C24] font-bold hover:underline"
   }, "+91 90496 50666")), /*#__PURE__*/React.createElement("p", {
+    className: "text-gray-700"
+  }, "Email: ", /*#__PURE__*/React.createElement("a", {
+    href: "mailto:twowiseacademy@gmail.com",
+    className: "text-[#123C24] font-bold hover:underline"
+  }, "twowiseacademy@gmail.com")), /*#__PURE__*/React.createElement("p", {
     className: "text-gray-700"
   }, "Instagram: ", /*#__PURE__*/React.createElement("a", {
     href: officialInstagramUrl,
